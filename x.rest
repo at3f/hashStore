@@ -1,0 +1,64 @@
+GET http://127.0.0.1:8888/api
+Content-Type: application/json
+
+GET http://127.0.0.1:8888/api/user
+Content-Type: application/json
+###
+POST http://127.0.0.1:8888/api/user/register
+Content-Type: application/json
+
+{
+    "name":"876786",
+    "email": "menn9aadhm9dx",
+    "phone": "010809d9093",
+    "password": "w398"
+}
+
+###
+POST http://127.0.0.1:8888/api/user/login
+Content-Type: application/json
+
+{
+    "email": "menn9aahm9dx",
+    "password": "w398"
+}
+
+###
+POST http://127.0.0.1:8888/api/user/logout
+Content-Type: application/json
+
+{
+    "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoibWVubjlhYWhtOWR4IiwiaWF0IjoxNjQ0MzQxMzA0fQ.hAOMv3lCQ9yWroxhK8xT_KEiUxBNoWYzUUiW-QFVqtA"
+}
+
+###
+POST http://127.0.0.1:8888/api/user/getNewAccessToken
+Content-Type: application/json
+
+{
+    "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoibWVubjlhYWhtOWR4IiwiaWF0IjoxNjQ0NDQzMTUyfQ.P8CR855oxnbLhU1EixGr2AG_mnHR-rxHYxgxvz0Gsvg"
+}
+###
+GET http://127.0.0.1:8888/api/testAuth
+Content-Type: application/json
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InUiOiJtZW5uOWFhaG05ZHgiLCJpYXQiOjE2NDQ0NDMxNTJ9LCJpYXQiOjE2NDQ0NDMyNzUsImV4cCI6MTY0NDQ0MzMxNX0.aj2VSENEh5sjbNZG0o-DVcf-7cBOugDuu83WdGO4x9g
+
+###
+PUT  http://127.0.0.1:8888/api/user/updatePassword
+Content-Type: application/json
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoibWVubjlhYWhtOWR4IiwiaWF0IjoxNjQ0MjAyNDU5LCJleHAiOjE2NDQyMDI0ODl9.nRJ0iBSzH8qIc3n3X3AnmJcPSdSJ-rmae-QiQ4fpZ_M
+
+{
+    "password": "w398",
+    "newPassword": "w398"  
+}
+
+###
+DELETE http://127.0.0.1:8888/api/user/deleteAccount
+Content-Type: application/json
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoibWVubjlhYWhtOWR4IiwiaWF0IjoxNjQ0MzQxNjA3LCJleHAiOjE2NDQzNDE2Mzd9.nPYrtsHZgG1atGu0mA1zNTP69fU61be_Ehn7sQA7X1A
+
+{
+    "password": "w398",
+    "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoibWVubjlhYWhtOWR4IiwiaWF0IjoxNjQ0MzQxNjA3fQ.0ulL8enCpKd3NPcnmxzjVymbE5NU30aZf6Muk7KacPo"
+}
