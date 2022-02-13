@@ -1,14 +1,6 @@
 const mongoose = require('mongoose')
 const hasher = require('bcrypt')
-
-let userSchema = mongoose.Schema({
-    name:{type:String,required:true},
-    email:{type:String,required:true,unique:true},
-    phone:{type:String,required:true,unique:true},
-    password:{type:String,required:true},
-    balance:{type:Number,default:0}
-})
-let User = mongoose.model('user',userSchema)
+let User = require('../DBSchemas')._User
 
 exports.register = async (name,email,phone,password) =>{
     try {
@@ -38,7 +30,11 @@ exports.register = async (name,email,phone,password) =>{
 exports.login = async (email,password)=>{
     let user = await User.findOne({email:email})
     if(user&&await hasher.compare(password,user.password)){
-        return user
+        return {
+            email:user.email,
+            phone:user.phone,
+            balance:user.balance
+        }
     }else{
         return 'Wrong credentials'
     }
