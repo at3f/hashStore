@@ -52,4 +52,6 @@ app.listen(process.env.port,()=>{
     console.log('done on 8888')
     x=true
     fetch('http://127.0.0.1:8888/testUpdateBalance')
+
+    
 })

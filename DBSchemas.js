@@ -24,7 +24,7 @@ let planContractSchema = mongoose.Schema({
     totalMined:{type:Number,default:0},
     planStatus:{type:Boolean,required:true},
     userID:{type:String,required:true},
-    planID:{type:String,required:true},
+    planID:{type:String,required:true}
 })
 let asicSchema = mongoose.Schema({
     asicName:{type:String,required:true},
@@ -39,7 +39,7 @@ let asicContractSchema = mongoose.Schema({
     startDate:{type:Date}, 
     totalMined:{type:Number,default:0},
     userID:{type:String,required:true},
-    asicID:{type:String,required:true},
+    asicID:{type:String,required:true}
 })
 let depositSchema = mongoose.Schema({
     date:{type:Date,required:true},
