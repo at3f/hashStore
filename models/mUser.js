@@ -1,6 +1,5 @@
-const mongoose = require('mongoose')
 const hasher = require('bcrypt')
-let User = require('../DBSchemas')._User
+const User = require('../DBSchemas')._User
 
 exports.register = async (name,email,phone,password) =>{
     try {

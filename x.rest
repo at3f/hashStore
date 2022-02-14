@@ -62,3 +62,42 @@ Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoibWVubjlhYWhtOW
     "password": "w398",
     "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoibWVubjlhYWhtOWR4IiwiaWF0IjoxNjQ0MzQxNjA3fQ.0ulL8enCpKd3NPcnmxzjVymbE5NU30aZf6Muk7KacPo"
 }
+
+###==================================PLAN============================================
+POST http://127.0.0.1:8888/api/plan/add
+Content-Type: application/json
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoibWVubjlhYWhtOWR4IiwiaWF0IjoxNjQ0ODI4OTA2LCJleHAiOjE2NDQ4Mjg5MzZ9.SB-fehmYCBWgD8fQhht4uipEoWlc5O3LixPltU-FXOw
+
+{
+    "planType":"short",
+    "planName":"regular",
+    "cryptoName":"BTC",
+    "algorithm":"SHA-256",
+    "planDuration":1,
+    "profitability":150,
+    "price":108900
+}
+###
+GET http://127.0.0.1:8888/api/plan?cryptoName=BTC&planType=short
+Content-Type: application/json
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoibWVubjlhYWhtOWR4IiwiaWF0IjoxNjQ0ODMwMTk5LCJleHAiOjE2NDQ4MzAyMjl9.Cply
+
+###
+PUT http://127.0.0.1:8888/api/plan/update/620a18f56c4a576caa1c3271
+Content-Type: application/json
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoibWVubjlhYWhtOWR4IiwiaWF0IjoxNjQ0ODMwMTk5LCJleHAiOjE2NDQ4MzAyMjl9.Cply
+
+{
+    "planType":"short",
+    "planName":"regular",
+    "cryptoName":"BTC",
+    "algorithm":"SHA-256",
+    "planDuration":3,
+    "profitability":150,
+    "price":2000
+}
+
+###
+DELETE  http://127.0.0.1:8888/api/plan/delete/620a21ea14fd951bc78e4bed
+Content-Type: application/json
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoibWVubjlhYWhtOWR4IiwiaWF0IjoxNjQ0ODMwMTk5LCJleHAiOjE2NDQ4MzAyMjl9.Cply

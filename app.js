@@ -9,6 +9,7 @@ mongoose.connect(process.env.dbUrl).then(()=>{
 })
 
 const user = require('./routes/user')
+const plan = require('./routes/plan')
 
 app.use(exp.json())
 
@@ -31,6 +32,7 @@ app.use(exp.json())
 // })
 
 app.use('/api',user)
+app.use('/api',plan)
 
 let x = false
 let b = 0
@@ -51,7 +53,5 @@ app.get('/b',(req,res)=>{
 app.listen(process.env.port,()=>{
     console.log('done on 8888')
     x=true
-    fetch('http://127.0.0.1:8888/testUpdateBalance')
-
-    
+    //fetch('http://127.0.0.1:8888/testUpdateBalance')
 })
