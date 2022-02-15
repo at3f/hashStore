@@ -16,8 +16,7 @@ exports.getNewAccessTokenByRefreshToken = async (token) => {
         if (err) {
             return res.sendStatus(403);
         }
-
-        return jwt.sign({user},process.env.ACCESS_TOKEN_SECRET,{expiresIn:'40s'})
+        return jwt.sign({user},process.env.ACCESS_TOKEN_SECRET,{expiresIn:'60s'})
     })
     
 };

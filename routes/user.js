@@ -1,8 +1,9 @@
 const router = require('express').Router()
 const cUser = require('../controllers/cUser')
 const jtoken = require('../controllers/JWT')
+const apiKey = require('../controllers/apiKey')
 
-router.post('/user/register',cUser.postRegister)
+router.post('/user/register',apiKey.verifyClient,cUser.postRegister)
 router.post('/user/login',cUser.postLogin)
 router.post('/user/logout',cUser.postLogout)
 router.post('/user/getNewAccessToken',cUser.getNewAccessToken)
