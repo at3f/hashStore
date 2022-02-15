@@ -35,14 +35,18 @@ app.use('/api',user)
 app.use('/api',plan)
 
 
-const sec = 1000
-const min = 60*sec
-const hour = 60*min
-const day = 24*hour
+const sec = 1000,
+ min = 60*sec,
+ hour = 60*min,
+ day = 24*hour,
+ month = 30*day,
+ year = 12*month+5*day
 let start = Date.now()
+console.log(new Date(start+year))
 let x = false
 let b = 0
 app.get('/testUpdateBalance',(req,res,next)=>{
+    
     if(x) {
         console.log('calculatingDurationTime&updatingUsersBalance ON')
         next()}
@@ -62,9 +66,8 @@ app.get('/b',(req,res)=>{
 
 
 
-
 app.listen(process.env.port,()=>{
     console.log('done on 8888')
     x=true
-    fetch('http://127.0.0.1:8888/testUpdateBalance')
+    //fetch('http://127.0.0.1:8888/testUpdateBalance')
 })
