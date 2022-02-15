@@ -30,6 +30,7 @@ exports.login = async (email,password)=>{
     let user = await User.findOne({email:email})
     if(user&&await hasher.compare(password,user.password)){
         return {
+            userID:user._id,
             email:user.email,
             phone:user.phone,
             balance:user.balance
