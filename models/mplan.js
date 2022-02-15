@@ -28,6 +28,13 @@ exports.getPlans = async (planType,cryptoName) =>{
         console.log(error)
     }
 }
+exports.getPlanByID = async id =>{
+    try{
+        return plan = await Plan.findById(id)
+    }catch(error){
+        console.log(error)
+    }
+}
 exports.updatePlan = async (id,data)=>{
     try{
         return await Plan.findByIdAndUpdate(id,data)
@@ -42,14 +49,15 @@ exports.deletePlan = async id =>{
         console.log(error)
     }
 }
+
+//======================================================
 exports.getPlansContract = async id =>{
     try{
-        return await Plan.find({userID:id})
+        return await PlanContract.find({userID:id})
     }catch(error){
         console.log(error)
     }
 }
-
 exports.addPlanContract = async (data) =>{
     try{
         let nplanContract = new PlanContract(data)
