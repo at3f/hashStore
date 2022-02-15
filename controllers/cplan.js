@@ -90,3 +90,46 @@ exports.deleteDeletePlan = async (req,res)=>{
         res.sendStatus(500)
     }
 }
+
+//==================================================
+
+exports.getGetPlansContract = async (req,res)=>{
+    try{
+        const {userID} = req.body
+        if(userID){
+            const plansContract = await mPlan.getPlansContract(userID)
+            if(plansContract[0]){
+               res.status(200).json(plansContract)
+            }else{
+                res.sendStatus(400)
+            }
+        }else{
+            res.sendStatus(400)
+        }
+    }catch(error){
+        res.sendStatus(500)
+    }
+}
+
+// exports.postAddPlanContract = async (req,res)=>{
+//     try{
+//         const {userID,planID} = req.body
+//             if(userID&&planID){
+//                 startDate
+
+
+//                     let planContract = await mPlan.addPlanContract({
+                        
+//                     })
+//                         if(planContract){
+//                             res.sendStatus(201)
+//                         }else{
+//                             res.sendStatus(400)
+//                         }
+//                 }else{
+//                     res.sendStatus(500)
+//                 }
+//     }catch(error){
+//         res.sendStatus(500)
+//     }
+// }

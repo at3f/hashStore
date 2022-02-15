@@ -34,14 +34,24 @@ app.use(exp.json())
 app.use('/api',user)
 app.use('/api',plan)
 
+
+const sec = 1000
+const min = 60*sec
+const hour = 60*min
+const day = 24*hour
+let start = Date.now()
 let x = false
 let b = 0
 app.get('/testUpdateBalance',(req,res,next)=>{
     if(x) {
         console.log('calculatingDurationTime&updatingUsersBalance ON')
         next()}
-}, (req,res)=>{
-        setInterval(function(){ 
+}, (req,res,next)=>{
+        setInterval(function(){
+            if(start+min<Date.now()){
+                console.log('done')
+                next()
+            } 
         b=+new Date
         }, 3000);
         if(x) x=!x
@@ -52,8 +62,9 @@ app.get('/b',(req,res)=>{
 
 
 
+
 app.listen(process.env.port,()=>{
     console.log('done on 8888')
     x=true
-    //fetch('http://127.0.0.1:8888/testUpdateBalance')
+    fetch('http://127.0.0.1:8888/testUpdateBalance')
 })
