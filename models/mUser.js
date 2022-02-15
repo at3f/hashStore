@@ -33,7 +33,10 @@ exports.login = async (email,password)=>{
             userID:user._id,
             email:user.email,
             phone:user.phone,
-            balance:user.balance
+            balance:user.balance,
+            demoBalance:user.demoBalance,
+            activePlans:user.activePlans,
+            devices:user.devices
         }
     }else{
         return 'Wrong credentials'

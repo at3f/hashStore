@@ -2,15 +2,15 @@ const Plan = require('../DBSchemas')._Plan
 const PlanContract = require('../DBSchemas')._PlanContract
 
 // getAllPlansBy(planType,cryptoName)
-// addPlan
-// getPlanByID
-// updatePlanBy(ID)
-// deletePlanBy(ID)
+// addPlan ===> admin
+// getPlanByID ===> admin
+// updatePlanBy(ID) ===> admin
+// deletePlanBy(ID) ===> admin
 
 // getAllplansContractByUserID
 // addPlanContract
 // updatePlanContractStatus
-// updatePlanContractTotalMined
+// updatePlanContractTotalMined&hourlyGains
 
 exports.addPlan = async (data) =>{
         try{
@@ -38,6 +38,23 @@ exports.updatePlan = async (id,data)=>{
 exports.deletePlan = async id =>{
     try{
         return await Plan.findByIdAndDelete(id)
+    }catch(error){
+        console.log(error)
+    }
+}
+exports.getPlansContract = async id =>{
+    try{
+        return await Plan.find({userID:id})
+    }catch(error){
+        console.log(error)
+    }
+}
+
+exports.addPlanContract = async (data) =>{
+    try{
+        let nplanContract = new PlanContract(data)
+        let planContractSaved = await nplanContract.save()
+        return planContractSaved
     }catch(error){
         console.log(error)
     }
