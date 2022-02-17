@@ -146,7 +146,7 @@ exports.postAddPlanContract = async (req,res)=>{
                var hashPower
                if(plan.planType==='short'){
                 endDate = startDate + plan.planDuration*month
-                hashPower = await eth.claculateETHhashrate(plan.price,50)
+                hashPower = await eth.claculateETHhashrate(plan.price,105)
                }else{
                 endDate = startDate + plan.planDuration*year
                 hashPower = await eth.claculateETHhashrate(plan.price,130)
