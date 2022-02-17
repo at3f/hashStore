@@ -9,8 +9,7 @@ const PlanContract = require('../DBSchemas')._PlanContract
 
 // getAllplansContractByUserID
 // addPlanContract
-// updatePlanContractStatus
-// updatePlanContractTotalMined&hourlyGains
+// updatePlanContractTotalMined&hourlyGains&ContractStatus
 
 exports.addPlan = async (data) =>{
         try{
