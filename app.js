@@ -46,17 +46,25 @@ console.log(new Date(start+year))
 let x = false
 let b = 0
 app.get('/testUpdateBalance',(req,res,next)=>{
-    
     if(x) {
         console.log('calculatingDurationTime&updatingUsersBalance ON')
         next()}
 }, (req,res,next)=>{
-        setInterval(function(){
+        const int = setInterval(function(){
             if(start+min<Date.now()){
-                console.log('done')
-                next()
+                clearInterval(int)
+                console.log("END :(")
             } 
         b=+new Date
+        console.log(b)
+        }, 3000);
+        const ints = setInterval(function(){
+            if(start+min<Date.now()){
+                clearInterval(ints)
+                console.log("END :(")
+            } 
+        b=+new Date
+        console.log(b)
         }, 3000);
         if(x) x=!x
 })

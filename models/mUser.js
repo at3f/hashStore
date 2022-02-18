@@ -61,4 +61,17 @@ exports.delete = async (email,password)=>{
     }
 }
 
+exports.UpdateActivePlans = async id =>{
+     const n = (await User.findById(id)).activePlans + 1
+     await User.findByIdAndUpdate(id,{activePlans:n})
+}
+
+exports.UpdateActiveDemoPlans = async id =>{
+    const n = (await User.findById(id)).activeDemoPlans + 1
+    await User.findByIdAndUpdate(id,{activeDemoPlans:n})
+}
+
+exports.get_N_UserActiveDemoPlans = async id =>{
+    return (await User.findById(id)).activeDemoPlans
+}
 // updateBalance
