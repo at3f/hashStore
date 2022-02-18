@@ -1,5 +1,7 @@
 const Plan = require('../DBSchemas')._Plan
 const PlanContract = require('../DBSchemas')._PlanContract
+const DemoPlanContract = require('../DBSchemas')._Demo_planContractSchema
+
 
 // getAllPlansBy(planType,cryptoName)
 // addPlan ===> admin
@@ -9,7 +11,11 @@ const PlanContract = require('../DBSchemas')._PlanContract
 
 // getAllplansContractByUserID
 // addPlanContract
-// updatePlanContractTotalMined&hourlyGains&ContractStatus
+// updatePlanContractTotalMined&hourlyGains&ContractStatus ====> SYSTEM
+
+exports.demoContractSTATUSoff = async id =>{
+    await DemoPlanContract.findByIdAndUpdate(id,{planStatus:false})
+}
 
 exports.addPlan = async (data) =>{
         try{
@@ -62,6 +68,26 @@ exports.addPlanContract = async (data) =>{
         let nplanContract = new PlanContract(data)
         let planContractSaved = await nplanContract.save()
         return planContractSaved
+    }catch(error){
+        console.log(error)
+    }
+}
+
+exports.getDemoPlansContract = async id =>{
+    try{
+        return await DemoPlanContract.find({userID:id})
+    }catch(error){
+        console.log(error)
+    }
+}
+exports.addDemoPlanContract = async (data) =>{
+    try{
+        if((await DemoPlanContract.find({userID:data.userID}))[0]){return null}
+        else{
+            let ndemoplanContract = new DemoPlanContract(data)
+            let demoplanContractSaved = await ndemoplanContract.save()
+            return demoplanContractSaved
+        }
     }catch(error){
         console.log(error)
     }

@@ -8,6 +8,7 @@ let userSchema = mongoose.Schema({
     balance:{type:Number,default:0},
     demoBalance:{type:Number,default:0},
     activePlans:{type:Number,default:0},
+    activeDemoPlans:{type:Number,default:0},
     devices:{type:Number,default:0},
 })
 let planSchema = mongoose.Schema({
@@ -34,7 +35,9 @@ let demo_planContractSchema = mongoose.Schema({
     startDate:{type:Date,required:true}, 
     endDate:{type:Date,required:true},
     totalMined:{type:Number,default:0},
-    planStatus:{type:Boolean,required:true},
+    planStatus:{type:Boolean,default:true},
+    hashPower:{type:Number,required:true},
+    hourlyGains:[Number],
     userID:{type:String,required:true},
     planID:{type:String,required:true}
 })
