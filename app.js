@@ -45,27 +45,23 @@ let start = Date.now()
 console.log(new Date(start+year))
 let x = false
 let b = 0
+const testf = async ()=>{
+    const int = setInterval(function(){
+        if(start+min<Date.now()){
+            clearInterval(int)
+            console.log("END :(")
+        } 
+    b=+new Date
+    console.log(b)
+    }, 3000);
+}
 app.get('/testUpdateBalance',(req,res,next)=>{
     if(x) {
         console.log('calculatingDurationTime&updatingUsersBalance ON')
         next()}
-}, (req,res,next)=>{
-        const int = setInterval(function(){
-            if(start+min<Date.now()){
-                clearInterval(int)
-                console.log("END :(")
-            } 
-        b=+new Date
-        console.log(b)
-        }, 3000);
-        const ints = setInterval(function(){
-            if(start+min<Date.now()){
-                clearInterval(ints)
-                console.log("END :(")
-            } 
-        b=+new Date
-        console.log(b)
-        }, 3000);
+}, async (req,res,next)=>{
+        await testf()
+        await testf()
         if(x) x=!x
 })
 app.get('/b',(req,res)=>{

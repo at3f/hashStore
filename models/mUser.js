@@ -61,14 +61,20 @@ exports.delete = async (email,password)=>{
     }
 }
 
-exports.UpdateActivePlans = async id =>{
-     const n = (await User.findById(id)).activePlans + 1
-     await User.findByIdAndUpdate(id,{activePlans:n})
+exports.UpdateActivePlans = async (id,op) =>{
+     await User.findByIdAndUpdate(id,{
+        $inc : {
+            activePlans:op
+        }
+     })
 }
 
-exports.UpdateActiveDemoPlans = async id =>{
-    const n = (await User.findById(id)).activeDemoPlans + 1
-    await User.findByIdAndUpdate(id,{activeDemoPlans:n})
+exports.UpdateActiveDemoPlans = async (id,op) =>{
+    await User.findByIdAndUpdate(id,{
+        $inc : {
+            activeDemoPlans:op
+        }
+    })
 }
 
 exports.get_N_UserActiveDemoPlans = async id =>{
