@@ -78,7 +78,7 @@ Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoibWVubjlhYWhtOW
     "price":108900
 }
 ###
-GET http://127.0.0.1:8888/api/plan?cryptoName=BTC&planType=long
+GET http://127.0.0.1:8888/api/plan?cryptoName=ETH&planType=long
 Content-Type: application/json
 Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoibWVubjlhYWhtOWR4IiwiaWF0IjoxNjQ0ODMwMTk5LCJleHAiOjE2NDQ4MzAyMjl9.Cply
 

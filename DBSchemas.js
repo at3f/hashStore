@@ -27,7 +27,10 @@ let planContractSchema = mongoose.Schema({
     totalMined:{type:Number,default:0},
     planStatus:{type:Boolean,default:true},
     hashPower:{type:Number,required:true},
-    hourlyGains:[Number],
+    hourlyGains:[{
+        date:{type:Date,default:0},
+        profit:{type:Number,default:0}
+    }],
     userID:{type:String,required:true},
     planID:{type:String,required:true}
 })
@@ -37,7 +40,10 @@ let demo_planContractSchema = mongoose.Schema({
     totalMined:{type:Number,default:0},
     planStatus:{type:Boolean,default:true},
     hashPower:{type:Number,required:true},
-    hourlyGains:[Number],
+    hourlyGains:[{
+        date:{type:Date,default:0},
+        profit:{type:Number,default:0}
+    }],
     userID:{type:String,required:true},
     planID:{type:String,required:true}
 })
@@ -73,7 +79,7 @@ let withdrawalSchema = mongoose.Schema({
 exports._User = mongoose.model('user',userSchema)
 exports._Plan = mongoose.model('plan',planSchema)
 exports._PlanContract = mongoose.model('planContract',planContractSchema)
-exports._Demo_planContractSchema = mongoose.model('demo_planContract',demo_planContractSchema)
+exports._Demo_planContract = mongoose.model('demo_planContract',demo_planContractSchema)
 exports._Asic = mongoose.model('asic',asicSchema)
 exports._AsicContract = mongoose.model('asicContract',asicContractSchema)
 exports._Deposit = mongoose.model('deposit',depositSchema)
