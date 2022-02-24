@@ -31,11 +31,13 @@ exports.login = async (email,password)=>{
     if(user&&await hasher.compare(password,user.password)){
         return {
             userID:user._id,
+            name:user.name,
             email:user.email,
             phone:user.phone,
             balance:user.balance,
             demoBalance:user.demoBalance,
             activePlans:user.activePlans,
+            activeDemoPlans:user.activeDemoPlans,
             devices:user.devices
         }
     }else{

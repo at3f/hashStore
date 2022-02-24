@@ -5,11 +5,17 @@ let userSchema = mongoose.Schema({
     email:{type:String,required:true,unique:true},
     phone:{type:String,required:true,unique:true},
     password:{type:String,required:true},
-    balance:{type:Number,default:0},
-    demoBalance:{type:Number,default:0},
+    balance:[{
+        eth:{type:Number,default:0},
+        btc:{type:Number,default:0}
+    }],
+    demoBalance:[{
+        eth:{type:Number,default:0},
+        btc:{type:Number,default:0}
+    }],
     activePlans:{type:Number,default:0},
     activeDemoPlans:{type:Number,default:0},
-    devices:{type:Number,default:0},
+    devices:{type:Number,default:0}
 })
 let planSchema = mongoose.Schema({
     planType:{type:String,required:true},
