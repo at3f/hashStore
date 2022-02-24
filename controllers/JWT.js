@@ -4,7 +4,7 @@ exports.getAccessToken_RefreshToken = async (user)=>{
     const u = user.email
     const accessToken = await jwt.sign({u},
         process.env.ACCESS_TOKEN_SECRET,
-        {expiresIn:'30s'})
+        {expiresIn:'86400s'})
     const refreshToken = await jwt.sign({u},
         process.env.REFRESH_TOKEN_SECRET)
         return {accessToken,refreshToken}
@@ -16,7 +16,7 @@ exports.getNewAccessTokenByRefreshToken = async (token) => {
         if (err) {
             return res.sendStatus(403);
         }
-        return jwt.sign({user},process.env.ACCESS_TOKEN_SECRET,{expiresIn:'60s'})
+        return jwt.sign({user},process.env.ACCESS_TOKEN_SECRET,{expiresIn:'120s'})
     })
     
 };
@@ -39,4 +39,3 @@ exports.authorize = (req, res, next) => {
     }
 };
 
-// API Key

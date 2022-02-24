@@ -52,10 +52,10 @@ exports.addNewProfit_demoContract = async (id,profit)=>{
         await DemoPlanContract.findByIdAndUpdate(id,{
             $push:{
                 hourlyGains:hourlyGains
+            },
+            $inc : {
+                totalMined:profit
             }
-        })
-        await DemoPlanContract.findByIdAndUpdate(id,{
-            $inc : {totalMined:profit}
         })
     }catch(error){
         console.log(error)

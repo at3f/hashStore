@@ -1,10 +1,9 @@
 const fetch = require('node-fetch')
 
 const calculateETHProfitability = async (userHashrateMHs,ethCoin=false) => {
-    const res = await fetch('https://www.etherchain.org/index/data')
-    const eth = await fetch('https://api.ethermine.org/poolStats')
-    const data = await res.json()
-
+    var res = await fetch('https://www.etherchain.org/index/data')
+    var eth = await fetch('https://api.ethermine.org/poolStats')
+    var data = await res.json()
     const blockTime = data.currentStats.block_time
     const networkHashRate = data.currentStats.hashrate
     const blockReward = data.currentStats.block_reward
@@ -24,4 +23,5 @@ let expectedProfit = (profitRatio/100)*planPrice
 let expectedHash = (dymmyHash*expectedProfit)/dymmyProfit
 return expectedHash
 }
+
 exports.calculateETHProfitability = calculateETHProfitability

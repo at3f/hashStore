@@ -31,8 +31,9 @@ app.use(exp.json())
 //     }, 3000);
 // })
 
-app.use('/api',user)
-app.use('/api',plan)
+const apiKey = require('./controllers/apiKey')
+app.use('/api',apiKey.verifyClient,user)
+app.use('/api',apiKey.verifyClient,plan)
 
 
 const sec = 1000,
@@ -63,9 +64,6 @@ app.get('/testUpdateBalance',(req,res,next)=>{
         await testf()
         await testf()
         if(x) x=!x
-})
-app.get('/b',(req,res)=>{
-    res.send(b+'')
 })
 
 

@@ -3,6 +3,6 @@ exports.verifyClient = (req,res,next) =>{
     if(key){
         if(key===process.env.api_key)next()
     }else {
-        res.sendStatus(400)
+        res.status(404).send("UnAuthorized Client")
     }
 }
