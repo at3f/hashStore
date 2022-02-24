@@ -39,9 +39,28 @@ const Add_ETH_demoProfit = async demoPlanContract =>{
     }, 1000); // per hour 1000*60*60
 }
 
-//\\ +++To Be Implemented+++ //\\
-// let ethContracts=[]
-// const contractManagement = 
+let ethContracts=[]
+const contractManagement = async ()=>{
+    var ethProfit,TestEthProfit
+    const m =await setInterval(async () => {
+        if(ethContracts.length===0){
+            clearInterval(m)
+            return
+        }
+        TestEthProfit = await eth.calculateETHProfitability(100,true)
+        ethContracts.forEach(async c => {
+            //c.startDate+100000 INSTEAD of c.endDate
+            if(+c.startDate+1000000<Date.now()){
+                await mPlanContarct.ContractSTATUSoff(c._id)
+                await mUser.UpdateActivePlans(c.userID,-1)
+                ethContracts = ethContracts.filter(t => t !== c)
+                return
+            }
+            ethProfit=c.hashPower*TestEthProfit/100
+            await mPlanContarct.addNewProfit_Contract(c._id,ethProfit)
+        })
+    }, 10000);
+}
 
 const Add_ETH_Profit = async PlanContract =>{
     await mUser.UpdateActivePlans(PlanContract.userID,1)
@@ -56,7 +75,7 @@ const Add_ETH_Profit = async PlanContract =>{
             await mUser.UpdateActivePlans(PlanContract.userID,-1)
             return
         }
-        //let btcProfit = await eth.calculateBTCProfitability(hashPower,true)
+        //let btcProfit = await btc.calculateBTCProfitability(hashPower,true)
         let ethProfit = await eth.calculateETHProfitability(hashPower,true)
         await mPlanContarct.addNewProfit_Contract(PlanContract._id,ethProfit)
     }, 5000); // per hour 1000*60*60
@@ -132,8 +151,11 @@ exports.postAddPlanContract = async (req,res)=>{
                     planID:planID
                 })
                     if(planContract){
+                        await mUser.UpdateActivePlans(planContract.userID,1)
+                        ethContracts.push(planContract)
+                        if(ethContracts.length===1)contractManagement()
                         // run userProfitCalculator
-                        Add_ETH_Profit(planContract)
+                        //Add_ETH_Profit(planContract)
                         //==============
                         res.sendStatus(201)
                     }else{
