@@ -1,8 +1,7 @@
 const PlanContract = require('../DBSchemas')._PlanContract
-const DemoPlanContract = require('../DBSchemas')._Demo_planContract
 
 exports.demoContractSTATUSoff = async id =>{
-    await DemoPlanContract.findByIdAndUpdate(id,{planStatus:false})
+    await PlanContract.findByIdAndUpdate(id,{planStatus:false})
 }
 exports.ContractSTATUSoff = async id =>{
     await PlanContract.findByIdAndUpdate(id,{planStatus:false})
@@ -10,7 +9,7 @@ exports.ContractSTATUSoff = async id =>{
 
 exports.getPlansContract = async id =>{
     try{
-        return await PlanContract.find({userID:id})
+        return await PlanContract.find({userID:id,demo:false})
     }catch(error){
         console.log(error)
     }
@@ -27,7 +26,7 @@ exports.addPlanContract = async (data) =>{
 
 exports.getDemoPlansContract = async id =>{
     try{
-        return await DemoPlanContract.find({userID:id})
+        return await PlanContract.find({userID:id,demo:true})
     }catch(error){
         console.log(error)
     }
@@ -35,9 +34,9 @@ exports.getDemoPlansContract = async id =>{
 
 exports.addDemoPlanContract = async (data) =>{
     try{
-        if((await DemoPlanContract.find({userID:data.userID}))[0]){return null}
+        if((await PlanContract.find({userID:data.userID,demo:true}))[0]){return null}
         else{
-            let ndemoplanContract = new DemoPlanContract(data)
+            let ndemoplanContract = new PlanContract(data)
             let demoplanContractSaved = await ndemoplanContract.save()
             return demoplanContractSaved
         }
@@ -49,8 +48,8 @@ exports.addDemoPlanContract = async (data) =>{
 exports.addNewProfit_demoContract = async (id,profit)=>{
     try{
         var hourlyGains = { date: Date.now(), profit: profit }
-        await DemoPlanContract.findByIdAndUpdate(id,{
-            $push:{
+        await PlanContract.findByIdAndUpdate(id,{
+            $push : {
                 hourlyGains:hourlyGains
             },
             $inc : {
@@ -65,12 +64,12 @@ exports.addNewProfit_Contract = async (id,profit)=>{
     try{
         var hourlyGains = { date: Date.now(), profit: profit }
         await PlanContract.findByIdAndUpdate(id,{
-            $push:{
+            $push : {
                 hourlyGains:hourlyGains
+            },
+            $inc : {
+                totalMined:profit
             }
-        })
-        await PlanContract.findByIdAndUpdate(id,{
-            $inc : {totalMined:profit}
         })
     }catch(error){
         console.log(error)

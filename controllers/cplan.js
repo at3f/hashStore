@@ -2,7 +2,6 @@ const mPlan = require('../models/mPlan')
 const eth = require('./ETH')
 
 
-
 const getETHPlansHashPower = async (plans,type)=>{
     const PlansHashPower = []
     for (let i = 0; i < plans.length; i++) {
@@ -14,10 +13,16 @@ const getETHPlansHashPower = async (plans,type)=>{
 
 exports.postAddPlan = async (req,res)=>{
     try{
-        const {planType,planName,cryptoName,
-            algorithm,planDuration,profitability,price} = req.body
-            if(planType&&planName&&cryptoName&&
-                algorithm&&planDuration&&profitability&&price){
+        const {
+            planType,
+            planName,
+            cryptoName,
+            algorithm,
+            planDuration,
+            profitability,
+            price
+        } = req.body
+            if(planType&&planName&&cryptoName&&algorithm&&planDuration&&profitability&&price){
                     let plan = await mPlan.addPlan({
                         planType:planType,
                         planName:planName,
@@ -25,7 +30,8 @@ exports.postAddPlan = async (req,res)=>{
                         algorithm:algorithm,
                         planDuration:planDuration,
                         profitability:profitability,
-                        price:price
+                        price:price,
+                        availability:availability
                     })
                         if(plan){
                             res.sendStatus(201)
@@ -37,6 +43,19 @@ exports.postAddPlan = async (req,res)=>{
                 }
     }catch(error){
         res.sendStatus(500)
+    }
+}
+
+exports.getGetPlanByID = async (req,res)=>{
+    try {
+        const id = req.params.id
+        if(id){
+            return await mPlan.getPlanByID(id)
+        }else{
+            res.sendStatus(400)
+        }
+    } catch (error) {
+        console.log(error)
     }
 }
 

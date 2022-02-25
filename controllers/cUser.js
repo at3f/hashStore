@@ -78,5 +78,3 @@ exports.deleteUser = async(req,res,next)=>{
         res.status(400).send('right old Password is required')
     }
 }
-
-// addBalance

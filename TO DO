@@ -30,4 +30,7 @@
 #getAllAsicContracts
 #addAsicContract
 
+#admin====> {use different api key}  ,  {use different auth way}
+
 #delete problem
+#integrate demoContract with realContract in one collection  (complete it please)

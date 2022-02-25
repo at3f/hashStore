@@ -6,6 +6,7 @@ const jtoken = require('../controllers/JWT')
 
 router.post('/plan/add',jtoken.authorize,cPlan.postAddPlan)//Admin
 router.get('/plan',jtoken.authorize,cPlan.getGetPlans)
+router.get('/plan/:id',jtoken.authorize,cPlan.getGetPlanByID)//Admin
 router.put('/plan/update/:id',jtoken.authorize,cPlan.putUpdatePlan)//Admin
 router.delete('/plan/delete/:id',jtoken.authorize,cPlan.deleteDeletePlan)//Admin
 
