@@ -5,14 +5,14 @@ let userSchema = mongoose.Schema({
     email:{type:String,required:true,unique:true},
     phone:{type:String,required:true,unique:true},
     password:{type:String,required:true},
-    balance:[{
+    balance:{
         eth:{type:Number,default:0},
         btc:{type:Number,default:0}
-    }],
-    demoBalance:[{
+    },
+    demoBalance:{
         eth:{type:Number,default:0},
         btc:{type:Number,default:0}
-    }],
+    },
     activePlans:{type:Number,default:0},
     activeDemoPlans:{type:Number,default:0},
     devices:{type:Number,default:0}
@@ -28,19 +28,8 @@ let planSchema = mongoose.Schema({
     availability:{type:Boolean,default:true}
 })
 let planContractSchema = mongoose.Schema({
-    startDate:{type:Date,required:true}, 
-    endDate:{type:Date,required:true},
-    totalMined:{type:Number,default:0},
-    planStatus:{type:Boolean,default:true},
-    hashPower:{type:Number,required:true},
-    hourlyGains:[{
-        date:{type:Date,default:0},
-        profit:{type:Number,default:0}
-    }],
-    userID:{type:String,required:true},
-    planID:{type:String,required:true}
-})
-let demo_planContractSchema = mongoose.Schema({
+    demo:{type:Boolean,required:true},
+    cryptoName:{type:String,required:true},
     startDate:{type:Date,required:true}, 
     endDate:{type:Date,required:true},
     totalMined:{type:Number,default:0},
@@ -60,11 +49,12 @@ let asicSchema = mongoose.Schema({
     hashPower:{type:Number,required:true},
     price:{type:Number,required:true},
     hostFees:{type:Number,required:true},
-    availability:{type:Boolean,required:true}
+    availability:{type:Boolean,default:true}
 })
 let asicContractSchema = mongoose.Schema({
+    asicStatus:{type:Boolean,default:false},  //status:false = On-demand but not working
     startDate:{type:Date}, 
-    totalMined:{type:Number,default:0},
+    address:{type:String},
     userID:{type:String,required:true},
     asicID:{type:String,required:true}
 })
@@ -85,7 +75,6 @@ let withdrawalSchema = mongoose.Schema({
 exports._User = mongoose.model('user',userSchema)
 exports._Plan = mongoose.model('plan',planSchema)
 exports._PlanContract = mongoose.model('planContract',planContractSchema)
-exports._Demo_planContract = mongoose.model('demo_planContract',demo_planContractSchema)
 exports._Asic = mongoose.model('asic',asicSchema)
 exports._AsicContract = mongoose.model('asicContract',asicContractSchema)
 exports._Deposit = mongoose.model('deposit',depositSchema)

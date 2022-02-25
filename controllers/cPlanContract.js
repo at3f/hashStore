@@ -17,68 +17,100 @@ const eth = require('./ETH')
 //        await mUser.UpdateActivePlans(userID,-1)
 //     }, time);
 // }
+// const Add_ETH_Profit = async PlanContract =>{
+//     await mUser.UpdateActivePlans(PlanContract.userID,1)
+//     const end = PlanContract.endDate
+//     const hashPower = PlanContract.hashPower
+//     z = Date.now() + 100000
+//     //need job scheduler better then that scheduler
+//     const x = await setInterval(async () => {
+//         if(z<Date.now()) {
+//             clearInterval(x)
+//             await mPlanContarct.ContractSTATUSoff(PlanContract._id)
+//             await mUser.UpdateActivePlans(PlanContract.userID,-1)
+//             return
+//         }
+//         //let btcProfit = await btc.calculateBTCProfitability(hashPower,true)
+//         let ethProfit = await eth.calculateETHProfitability(hashPower,true)
+//         await mPlanContarct.addNewProfit_Contract(PlanContract._id,ethProfit)
+//     }, 5000); // per hour 1000*60*60
+// }
+// const Add_ETH_demoProfit = async demoPlanContract =>{
+//     await mUser.UpdateActiveDemoPlans(demoPlanContract.userID,1)
+//     const end = demoPlanContract.endDate
+//     const hashPower = demoPlanContract.hashPower
+//     z = Date.now() + 100000
+//     //need job scheduler better then that scheduler
+//     const x = await setInterval(async () => {
+//         if(z<Date.now()) {
+//             clearInterval(x)
+//             await mPlanContarct.demoContractSTATUSoff(demoPlanContract._id)
+//             await mUser.UpdateActiveDemoPlans(demoPlanContract.userID,-1)
+//             return
+//         }
 
+//         //let btcProfit = await eth.calculateBTCProfitability(hashPower,true)
+//         let ethProfit = await eth.calculateETHProfitability(hashPower,true)
+//         await mPlanContarct.addNewProfit_demoContract(demoPlanContract._id,ethProfit)
+//     }, 1000); // per hour 1000*60*60
+// }
 
-const Add_ETH_demoProfit = async demoPlanContract =>{
-    await mUser.UpdateActiveDemoPlans(demoPlanContract.userID,1)
-    const end = demoPlanContract.endDate
-    const hashPower = demoPlanContract.hashPower
-    z = Date.now() + 100000
-    //need job scheduler better then that scheduler
-    const x = await setInterval(async () => {
-        if(z<Date.now()) {
-            clearInterval(x)
-            await mPlanContarct.demoContractSTATUSoff(demoPlanContract._id)
-            await mUser.UpdateActiveDemoPlans(demoPlanContract.userID,-1)
-            return
-        }
-
-        //let btcProfit = await eth.calculateBTCProfitability(hashPower,true)
-        let ethProfit = await eth.calculateETHProfitability(hashPower,true)
-        await mPlanContarct.addNewProfit_demoContract(demoPlanContract._id,ethProfit)
-    }, 1000); // per hour 1000*60*60
-}
-
-let ethContracts=[]
+let Contracts=[]
 const contractManagement = async ()=>{
     var ethProfit,TestEthProfit
-    const m =await setInterval(async () => {
-        if(ethContracts.length===0){
+    const period = 5000//1000*60*60
+
+    const m = await setInterval(async () => {
+        if(Contracts.length===0){
             clearInterval(m)
             return
         }
         TestEthProfit = await eth.calculateETHProfitability(100,true)
-        ethContracts.forEach(async c => {
+        //TestBtcProfit = await btc.calculateBTCProfitability(100,true)
+        Contracts.forEach(async c => {
             //c.startDate+100000 INSTEAD of c.endDate
-            if(+c.startDate+1000000<Date.now()){
-                await mPlanContarct.ContractSTATUSoff(c._id)
-                await mUser.UpdateActivePlans(c.userID,-1)
-                ethContracts = ethContracts.filter(t => t !== c)
-                return
+            if(!c.demo){
+                if(+c.startDate+100000<Date.now()){
+                    await mPlanContarct.ContractSTATUSoff(c._id)
+                    await mUser.UpdateActivePlans(c.userID,-1)
+                    Contracts = Contracts.filter(t => t !== c)
+                    return
+                }
+                switch (c.cryptoName) {
+                    case 'ETH':
+                        ethProfit=c.hashPower*TestEthProfit/100
+                        await mPlanContarct.addNewProfit_Contract(c._id,ethProfit)
+                        await mUser.UpdateBalance(c.userID,c.cryptoName,ethProfit)
+                        break
+                    case 'BTC':
+                        //btcProfit=c.hashPower*TestBtcProfit/100
+                        //await mPlanContarct.addNewProfit_Contract(c._id,btcProfit)
+                        //await mUser.UpdateBalance(c.userID,c.cryptoName,btcProfit)
+                        break
+                }
+            }else{
+                if(+c.startDate+100000<Date.now()){
+                    await mPlanContarct.demoContractSTATUSoff(c._id)
+                    await mUser.UpdateActiveDemoPlans(c.userID,-1)
+                    Contracts = Contracts.filter(t => t !== c)
+                    return
+                }
+                switch (c.cryptoName) {
+                    case 'ETH':
+                        ethProfit=c.hashPower*TestEthProfit/100
+                        await mPlanContarct.addNewProfit_demoContract(c._id,ethProfit)
+                        await mUser.UpdateDemoBalance(c.userID,c.cryptoName,ethProfit)
+                        break
+                    case 'BTC':
+                        //btcProfit=c.hashPower*TestBtcProfit/100
+                        //await mPlanContarct.addNewProfit_demoContract(c._id,btcProfit)
+                        //await mUser.UpdateDemoBalance(c.userID,c.cryptoName,btcProfit)
+                        break
+                }
             }
-            ethProfit=c.hashPower*TestEthProfit/100
-            await mPlanContarct.addNewProfit_Contract(c._id,ethProfit)
+            
         })
-    }, 10000);
-}
-
-const Add_ETH_Profit = async PlanContract =>{
-    await mUser.UpdateActivePlans(PlanContract.userID,1)
-    const end = PlanContract.endDate
-    const hashPower = PlanContract.hashPower
-    z = Date.now() + 100000
-    //need job scheduler better then that scheduler
-    const x = await setInterval(async () => {
-        if(z<Date.now()) {
-            clearInterval(x)
-            await mPlanContarct.ContractSTATUSoff(PlanContract._id)
-            await mUser.UpdateActivePlans(PlanContract.userID,-1)
-            return
-        }
-        //let btcProfit = await btc.calculateBTCProfitability(hashPower,true)
-        let ethProfit = await eth.calculateETHProfitability(hashPower,true)
-        await mPlanContarct.addNewProfit_Contract(PlanContract._id,ethProfit)
-    }, 5000); // per hour 1000*60*60
+    }, period);
 }
 
 //============================================================================================
@@ -91,11 +123,7 @@ exports.getGetPlansContract = async (req,res)=>{
         const {userID} = req.body
         if(userID){
             const plansContract = await mPlanContarct.getPlansContract(userID)
-            if(plansContract[0]){
                res.status(200).json(plansContract)
-            }else{
-                res.sendStatus(400)
-            }
         }else{
             res.sendStatus(400)
         }
@@ -108,11 +136,7 @@ exports.getGetDemoPlansContract = async (req,res)=>{
         const {userID} = req.body
         if(userID){
             const DemoPlansContract = await mPlanContarct.getDemoPlansContract(userID)
-            if(DemoPlansContract[0]){
                res.status(200).json(DemoPlansContract)
-            }else{
-                res.sendStatus(400)
-            }
         }else{
             res.sendStatus(400)
         }
@@ -144,6 +168,8 @@ exports.postAddPlanContract = async (req,res)=>{
                }
                if(startDate&&endDate&&hashPower){
                 let planContract = await mPlanContarct.addPlanContract({
+                    demo:false,
+                    cryptoName:plan.cryptoName,
                     startDate:startDate, 
                     endDate:endDate,
                     hashPower:hashPower,
@@ -152,8 +178,8 @@ exports.postAddPlanContract = async (req,res)=>{
                 })
                     if(planContract){
                         await mUser.UpdateActivePlans(planContract.userID,1)
-                        ethContracts.push(planContract)
-                        if(ethContracts.length===1)contractManagement()
+                        Contracts.push(planContract)
+                        if(Contracts.length===1)contractManagement()
                         // run userProfitCalculator
                         //Add_ETH_Profit(planContract)
                         //==============
@@ -185,16 +211,18 @@ exports.postAddDemoPlanContract = async (req,res)=>{
                var endDate 
                var hashPower
                if(plan.planType==='short'){
-                endDate = startDate + plan.planDuration*month
+                endDate = startDate + plan.planDuration*day
                 hashPower = await eth.claculateETHhashrate(plan.price,plan.profitability,plan.planDuration*30)
                }else{
-                endDate = startDate + plan.planDuration*year
+                endDate = startDate + plan.planDuration*3*day
                 hashPower = await eth.claculateETHhashrate(plan.price,plan.profitability,plan.planDuration*365)
                }
                //more secure  (to reduce duplicated requests)
                if((await mUser.get_N_UserActiveDemoPlans(userID))>0) return res.status(400).send("U reached the max Number of demo plans")
                if(startDate&&endDate&&hashPower){
                 let demoPlanContract = await mPlanContarct.addDemoPlanContract({
+                    demo:true,
+                    cryptoName:plan.cryptoName,
                     startDate:startDate, 
                     endDate:endDate,
                     hashPower:hashPower,
@@ -202,8 +230,12 @@ exports.postAddDemoPlanContract = async (req,res)=>{
                     planID:planID
                 })
                     if(demoPlanContract){
+                        await mUser.UpdateActiveDemoPlans(demoPlanContract.userID,1)
+                        Contracts.push(demoPlanContract)
+                        if(Contracts.length===1)contractManagement()
                         // run userProfitCalculator
-                        await Add_ETH_demoProfit(demoPlanContract)
+                        //await Add_ETH_demoProfit(demoPlanContract)
+
                         //=====
                         res.sendStatus(201)
                     }else{

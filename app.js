@@ -10,6 +10,7 @@ mongoose.connect(process.env.dbUrl).then(()=>{
 
 const user = require('./routes/user')
 const plan = require('./routes/plan')
+const asic = require('./routes/asic')
 
 app.use(exp.json())
 
@@ -34,6 +35,7 @@ app.use(exp.json())
 const apiKey = require('./controllers/apiKey')
 app.use('/api',apiKey.verifyClient,user)
 app.use('/api',apiKey.verifyClient,plan)
+app.use('/api',apiKey.verifyClient,asic)
 
 
 const sec = 1000,

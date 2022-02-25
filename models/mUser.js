@@ -82,4 +82,40 @@ exports.UpdateActiveDemoPlans = async (id,op) =>{
 exports.get_N_UserActiveDemoPlans = async id =>{
     return (await User.findById(id)).activeDemoPlans
 }
-// updateBalance
+
+exports.UpdateBalance = async (id,currency,profit)=>{
+    switch (currency) {
+        case 'ETH':
+            await User.findByIdAndUpdate(id,{
+                $inc : {
+                    'balance.eth':profit
+                }
+            })
+            break
+        case 'BTC':
+            await User.findByIdAndUpdate(id,{
+                $inc : {
+                    'balance.btc':profit
+                }
+            })
+            break
+    }
+}
+exports.UpdateDemoBalance = async (id,currency,profit)=>{
+    switch (currency) {
+        case 'ETH':
+            await User.findByIdAndUpdate(id,{
+                $inc : {
+                    'demoBalance.eth':profit
+                }
+            })
+            break
+        case 'BTC':
+            await User.findByIdAndUpdate(id,{
+                $inc : {
+                    'demoBalance.btc':profit
+                }
+            })
+            break
+    }
+}
