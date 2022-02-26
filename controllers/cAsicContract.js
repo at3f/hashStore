@@ -1,4 +1,5 @@
 const mAsicContarct = require('../models/mAsicContract')
+const mUser = require('../models/mUser')
 
 
 exports.getGetAsicsContract = async (req,res)=>{
@@ -34,16 +35,19 @@ exports.postAddAsicContract = async (req,res)=>{
     }
 }
 
-exports.acceptAsicContract = async (req,res)=>{
+exports.activateAsicContarct = async (req,res)=>{
     try {
-        const {contractID} = req.params
+        const contractID = req.params.id
         const {address} = req.body
-        if(contractID){
-            let asicContract = await mAsicContarct.updateAsicContract({
+        if(contractID&&address){
+            let asicContract = await mAsicContarct.updateAsicContract(contractID,{
                 asicStatus:true,
                 address:address
             })
-            if(asicContract)res.sendStatus(201)
+            if(asicContract){
+                await mUser.UpdateActiveAsics(asicContract.userID,1)
+                res.sendStatus(201)
+            }
             else res.sendStatus(400)
         }else{
             res.sendStatus(400)
@@ -55,10 +59,13 @@ exports.acceptAsicContract = async (req,res)=>{
 
 exports.endAsicContract = async(req,res)=>{
     try {
-        const {contractID} = req.params
+        const contractID = req.params.id
         if(contractID){
             let asicContract = await mAsicContarct.expirationON(contractID)
-            if(asicContract)res.sendStatus(201)
+            if(asicContract){
+                await mUser.UpdateActiveAsics(asicContract.userID,-1)
+                res.sendStatus(201)
+            }
             else res.sendStatus(400)
         }else{
             res.sendStatus(400)
@@ -67,7 +74,8 @@ exports.endAsicContract = async(req,res)=>{
         console.log(error)
     }
 }
-exports.activateAsicContarct = async(req,res)=>{
+
+exports.getNotActiveAsicsContract = async(req,res)=>{
     try {
             let asicContracts = await mAsicContarct.getAsicsContract_needActivation()
             if(asicContracts)res.status(200).json(asicContracts)

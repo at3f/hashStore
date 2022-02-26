@@ -11,5 +11,8 @@ router.delete('/delete/:id',jtoken.authorize,cAsic.deleteDeletePlan)//Admin
 
 router.get('/x/contract',jtoken.authorize,cAsicContract.getGetAsicsContract)
 router.post('/x/contract/add',jtoken.authorize,cAsicContract.postAddAsicContract)
+router.get('/x/contract/onDemand',jtoken.authorize,cAsicContract.getNotActiveAsicsContract)
+router.put('/x/contract/activate/:id',jtoken.authorize,cAsicContract.activateAsicContarct)
+router.put('/x/contract/expire/:id',jtoken.authorize,cAsicContract.endAsicContract)
 
 module.exports = router

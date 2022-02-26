@@ -19,7 +19,7 @@ exports.addAsicContract = async (data) =>{
 
 exports.updateAsicContract = async (id,data)=>{
     try {
-        await AsicContract.findByIdAndUpdate(id,data)
+        return await AsicContract.findByIdAndUpdate(id,data)
     } catch (error) {
         console.log(error)
     }
@@ -27,7 +27,7 @@ exports.updateAsicContract = async (id,data)=>{
 
 exports.expirationON = async id=>{
     try {
-        await AsicContract.findByIdAndUpdate(id,{expired:on})
+        return await AsicContract.findByIdAndUpdate(id,{expired:true,asicStatus:false})
     } catch (error) {
         console.log(error)
     }

@@ -119,3 +119,11 @@ exports.UpdateDemoBalance = async (id,currency,profit)=>{
             break
     }
 }
+
+exports.UpdateActiveAsics = async (id,op) =>{
+    await User.findByIdAndUpdate(id,{
+       $inc : {
+            devices:op
+       }
+    })
+}

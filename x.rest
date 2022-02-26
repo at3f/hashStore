@@ -200,3 +200,21 @@ Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoibWVubjk5ODc4Nz
 {
     "userID":"6218d50c25b81b4985fd8f7e"
 }
+###
+GET http://127.0.0.1:8888/api/asic/x/contract/ondemand?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
+Content-Type: application/json
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoibWVubjk5ODc4NzZhYWRobTlkeHgiLCJpYXQiOjE2NDU4ODQyMzQsImV4cCI6MTY0NTk3MDYzNH0.y0cYbV0oJKQz6wFyO89Bjx7UzuzaM47A8lTOVu4RwiQ
+
+###
+PUT http://127.0.0.1:8888/api/asic/x/contract/activate/621aaa71edce9d7ecc1d4bca?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
+Content-Type: application/json
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoibWVubjk5ODc4NzZhYWRobTlkeHgiLCJpYXQiOjE2NDU4ODQyMzQsImV4cCI6MTY0NTk3MDYzNH0.y0cYbV0oJKQz6wFyO89Bjx7UzuzaM47A8lTOVu4RwiQ
+
+{
+    "address":"nesfutys4857y4876cneifuzuer"
+}
+###
+PUT http://127.0.0.1:8888/api/asic/x/contract/expire/621aaa71edce9d7ecc1d4bca?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
+Content-Type: application/json
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoibWVubjk5ODc4NzZhYWRobTlkeHgiLCJpYXQiOjE2NDU4ODQyMzQsImV4cCI6MTY0NTk3MDYzNH0.y0cYbV0oJKQz6wFyO89Bjx7UzuzaM47A8lTOVu4RwiQ
+
