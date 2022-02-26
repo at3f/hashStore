@@ -34,8 +34,8 @@ app.use(exp.json())
 
 const apiKey = require('./controllers/apiKey')
 app.use('/api',apiKey.verifyClient,user)
-app.use('/api',apiKey.verifyClient,plan)
-app.use('/api',apiKey.verifyClient,asic)
+app.use('/api/plan',apiKey.verifyClient,plan)
+app.use('/api/asic',apiKey.verifyClient,asic)
 
 
 const sec = 1000,

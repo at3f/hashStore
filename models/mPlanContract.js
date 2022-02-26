@@ -1,10 +1,18 @@
 const PlanContract = require('../DBSchemas')._PlanContract
 
 exports.demoContractSTATUSoff = async id =>{
-    await PlanContract.findByIdAndUpdate(id,{planStatus:false})
+    try {
+        await PlanContract.findByIdAndUpdate(id,{planStatus:false})
+    } catch (error) {
+        console.log(error)
+    }
 }
 exports.ContractSTATUSoff = async id =>{
-    await PlanContract.findByIdAndUpdate(id,{planStatus:false})
+    try {
+        await PlanContract.findByIdAndUpdate(id,{planStatus:false})
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 exports.getPlansContract = async id =>{

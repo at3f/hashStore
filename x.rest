@@ -18,7 +18,7 @@ POST http://127.0.0.1:8888/api/user/login?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d
 Content-Type: application/json
 
 {
-    "email": "menn99aadhm9dxx",
+    "email": "menn9987876aadhm9dxx",
     "password": "w398"
 }
 
@@ -79,8 +79,12 @@ Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoibWVubjk5YWFkaG
 ###
 GET http://127.0.0.1:8888/api/plan?cryptoName=ETH&planType=long&key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoibWVubjk5YWFkaG05ZHh4IiwiaWF0IjoxNjQ1NTQ5MDc2LCJleHAiOjE2NDU2MzU0NzZ9.oD4kyDCoyINYJnYpU1vXytB43h_Eo_3qxlwC62cpYaE
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoibWVubjk5ODc4NzZhYWRobTlkeHgiLCJpYXQiOjE2NDU4ODQyMzQsImV4cCI6MTY0NTk3MDYzNH0.y0cYbV0oJKQz6wFyO89Bjx7UzuzaM47A8lTOVu4RwiQ
 
+###
+GET http://127.0.0.1:8888/api/plan/620a3e3e50d15271dd99d31a?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
+Content-Type: application/json
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoibWVubjk5ODc4NzZhYWRobTlkeHgiLCJpYXQiOjE2NDU4ODQyMzQsImV4cCI6MTY0NTk3MDYzNH0.y0cYbV0oJKQz6wFyO89Bjx7UzuzaM47A8lTOVu4RwiQ
 
 ###
 PUT http://127.0.0.1:8888/api/plan/update/62151626448be90dcf016713?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
@@ -102,37 +106,97 @@ DELETE  http://127.0.0.1:8888/api/plan/delete/62151626448be90dcf016713?key=c3fe9
 Content-Type: application/json
 Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoibWVubjk5YWFkaG05ZHh4IiwiaWF0IjoxNjQ1NTQ5MDc2LCJleHAiOjE2NDU2MzU0NzZ9.oD4kyDCoyINYJnYpU1vXytB43h_Eo_3qxlwC62cpYaE
 ###==================================PLAN-CONTRACT============================================
-POST http://127.0.0.1:8888/api/democontract/add?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
+POST http://127.0.0.1:8888/api/plan/x/democontract/add?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoibWVubjk5YWFkaG05ZHh4IiwiaWF0IjoxNjQ1Nzk0MzE2LCJleHAiOjE2NDU4ODA3MTZ9.bSkBnH6y4gfv6S318WbTAyhkW96MYkr1Xr6xl69m4y0
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoibWVubjk5ODc4NzZhYWRobTlkeHgiLCJpYXQiOjE2NDU4ODQyMzQsImV4cCI6MTY0NTk3MDYzNH0.y0cYbV0oJKQz6wFyO89Bjx7UzuzaM47A8lTOVu4RwiQ
 
 {
     "userID":"6218d50c25b81b4985fd8f7e",
     "planID":"620a3e3e50d15271dd99d31a"
 }
 ###
-GET http://127.0.0.1:8888/api/democontract?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
+GET http://127.0.0.1:8888/api/plan/x/democontract?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoibWVubjk5YWFkaG05ZHh4IiwiaWF0IjoxNjQ1Nzk0MzE2LCJleHAiOjE2NDU4ODA3MTZ9.bSkBnH6y4gfv6S318WbTAyhkW96MYkr1Xr6xl69m4y0
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoibWVubjk5ODc4NzZhYWRobTlkeHgiLCJpYXQiOjE2NDU4ODQyMzQsImV4cCI6MTY0NTk3MDYzNH0.y0cYbV0oJKQz6wFyO89Bjx7UzuzaM47A8lTOVu4RwiQ
 
 {
     "userID":"6218d50c25b81b4985fd8f7e"
 }
 ###
-POST http://127.0.0.1:8888/api/contract/add?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
+POST http://127.0.0.1:8888/api/plan/x/contract/add?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoibWVubjk5YWFkaG05ZHh4IiwiaWF0IjoxNjQ1Nzk0MzE2LCJleHAiOjE2NDU4ODA3MTZ9.bSkBnH6y4gfv6S318WbTAyhkW96MYkr1Xr6xl69m4y0
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoibWVubjk5ODc4NzZhYWRobTlkeHgiLCJpYXQiOjE2NDU4ODQyMzQsImV4cCI6MTY0NTk3MDYzNH0.y0cYbV0oJKQz6wFyO89Bjx7UzuzaM47A8lTOVu4RwiQ
 
 {
     "userID":"6218d50c25b81b4985fd8f7e",
     "planID":"620a3e3e50d15271dd99d31a"
 }
 ###
-GET http://127.0.0.1:8888/api/contract?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
+GET http://127.0.0.1:8888/api/plan/x/contract?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoibWVubjk5YWFkaG05ZHh4IiwiaWF0IjoxNjQ1Nzk0MzE2LCJleHAiOjE2NDU4ODA3MTZ9.bSkBnH6y4gfv6S318WbTAyhkW96MYkr1Xr6xl69m4y0
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoibWVubjk5ODc4NzZhYWRobTlkeHgiLCJpYXQiOjE2NDU4ODQyMzQsImV4cCI6MTY0NTk3MDYzNH0.y0cYbV0oJKQz6wFyO89Bjx7UzuzaM47A8lTOVu4RwiQ
 
 {
     "userID":"6218d50c25b81b4985fd8f7e"
 }
+
 ###==================================ASIC============================================
+POST http://127.0.0.1:8888/api/asic/add?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
+Content-Type: application/json
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoibWVubjk5ODc4NzZhYWRobTlkeHgiLCJpYXQiOjE2NDU4ODQyMzQsImV4cCI6MTY0NTk3MDYzNH0.y0cYbV0oJKQz6wFyO89Bjx7UzuzaM47A8lTOVu4RwiQ
+
+{
+    "asicName":"AntMiner E9",
+    "cryptoName":"ETH",
+    "algorithm":"ETH-HASH",
+    "hashPower":120000,
+    "price":13000,
+    "hostFees":200
+}
+###
+GET http://127.0.0.1:8888/api/asic?cryptoName=ETH&key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
+Content-Type: application/json
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoibWVubjk5ODc4NzZhYWRobTlkeHgiLCJpYXQiOjE2NDU4ODQyMzQsImV4cCI6MTY0NTk3MDYzNH0.y0cYbV0oJKQz6wFyO89Bjx7UzuzaM47A8lTOVu4RwiQ
+
+###
+GET http://127.0.0.1:8888/api/asic/621a62e000e949327e0dc11b?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
+Content-Type: application/json
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoibWVubjk5ODc4NzZhYWRobTlkeHgiLCJpYXQiOjE2NDU4ODQyMzQsImV4cCI6MTY0NTk3MDYzNH0.y0cYbV0oJKQz6wFyO89Bjx7UzuzaM47A8lTOVu4RwiQ
+
+###
+PUT http://127.0.0.1:8888/api/asic/update/621a3e91b017345a26497416?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
+Content-Type: application/json
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoibWVubjk5ODc4NzZhYWRobTlkeHgiLCJpYXQiOjE2NDU4ODQyMzQsImV4cCI6MTY0NTk3MDYzNH0.y0cYbV0oJKQz6wFyO89Bjx7UzuzaM47A8lTOVu4RwiQ
+
+{
+    "asicName":"AntMiner E9",
+    "cryptoName":"BTCx",
+    "algorithm":"HASH-256",
+    "hashPower":120000,
+    "price":13000,
+    "hostFees":200,
+    "availability":true
+}
+
+###
+DELETE  http://127.0.0.1:8888/api/asic/delete/621a3e91b017345a26497416?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
+Content-Type: application/json
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoibWVubjk5ODc4NzZhYWRobTlkeHgiLCJpYXQiOjE2NDU4ODQyMzQsImV4cCI6MTY0NTk3MDYzNH0.y0cYbV0oJKQz6wFyO89Bjx7UzuzaM47A8lTOVu4RwiQ
+
+###==================================ASIC-CONTRACT============================================
+POST http://127.0.0.1:8888/api/asic/x/contract/add?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
+Content-Type: application/json
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoibWVubjk5ODc4NzZhYWRobTlkeHgiLCJpYXQiOjE2NDU4ODQyMzQsImV4cCI6MTY0NTk3MDYzNH0.y0cYbV0oJKQz6wFyO89Bjx7UzuzaM47A8lTOVu4RwiQ
+
+{
+    "userID":"6218d50c25b81b4985fd8f7e",
+    "asicID":"621a3e91b017345a26497416"
+}
+###
+GET http://127.0.0.1:8888/api/asic/x/contract?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
+Content-Type: application/json
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoibWVubjk5ODc4NzZhYWRobTlkeHgiLCJpYXQiOjE2NDU4ODQyMzQsImV4cCI6MTY0NTk3MDYzNH0.y0cYbV0oJKQz6wFyO89Bjx7UzuzaM47A8lTOVu4RwiQ
+
+{
+    "userID":"6218d50c25b81b4985fd8f7e"
+}

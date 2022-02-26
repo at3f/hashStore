@@ -10,30 +10,30 @@ exports.addAsic = async (data) =>{
     }
 }
 exports.getAsics = async cryptoName =>{
-try{
-    return await Asic.find({cryptoName:cryptoName})
-}catch(error){
-    console.log(error)
-}
+    try{
+        return await Asic.find({cryptoName:cryptoName})
+    }catch(error){
+        console.log(error)
+    }
 }
 exports.getAsicByID = async id =>{
-try{
-    return asic = await Asic.findById(id)
-}catch(error){
-    console.log(error)
-}
+    try{
+        return asic = await Asic.findById(id)
+    }catch(error){
+        console.log(error)
+    }
 }
 exports.updateAsic = async (id,data)=>{
-try{
-    return await Asic.findByIdAndUpdate(id,data)
-}catch(error){
-    console.log(error)
-}
+    try{
+        return await Asic.findByIdAndUpdate(id,data)
+    }catch(error){
+        console.log(error)
+    }
 }
 exports.deleteAsic = async id =>{
-try{
-    return await Asic.findByIdAndDelete(id)
-}catch(error){
-    console.log(error)
-}
+    try{
+        return await Asic.findByIdAndDelete(id)
+    }catch(error){
+        console.log(error)
+    }
 }

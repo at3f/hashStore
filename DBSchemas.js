@@ -53,6 +53,7 @@ let asicSchema = mongoose.Schema({
 })
 let asicContractSchema = mongoose.Schema({
     asicStatus:{type:Boolean,default:false},  //status:false = On-demand but not working
+    expired:{type:Boolean,default:false},
     startDate:{type:Date}, 
     address:{type:String},
     userID:{type:String,required:true},
