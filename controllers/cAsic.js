@@ -36,7 +36,7 @@ exports.getGetAsicByID = async (req,res)=>{
     try {
         const id = req.params.id
         if(id){
-            return await mAsic.getAsicByID(id)
+            res.status(200).json(await mAsic.getAsicByID(id))
         }else{
             res.sendStatus(400)
         }
@@ -50,7 +50,7 @@ exports.getGetAsics =async (req,res) =>{
         const {cryptoName} = req.query
         if(cryptoName){
             const asics = await mAsic.getAsics(cryptoName)
-            if(plans[0]){
+            if(asics[0]){
                res.status(200).json({asics})
             }else{
                 res.sendStatus(400)
@@ -73,6 +73,7 @@ exports.putUpdateAsic = async (req,res)=>{
             hashPower,
             price,
             hostFees,
+            availability,
         } = req.body
             if(id&&asicName&&cryptoName&&algorithm&&hashPower&&price&&hostFees){
                     let asic = await mAsic.updateAsic(id,{

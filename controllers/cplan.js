@@ -50,7 +50,7 @@ exports.getGetPlanByID = async (req,res)=>{
     try {
         const id = req.params.id
         if(id){
-            return await mPlan.getPlanByID(id)
+            res.status(200).json(await mPlan.getPlanByID(id))
         }else{
             res.sendStatus(400)
         }

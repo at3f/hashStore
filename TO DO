@@ -20,17 +20,10 @@
 #===============================================================
 #Auth by gmail using {{passportJS}}
 #({{{({create own wallet for each user}) or ({use coinPayment})}}})
-#({({{{update user balance each hour (totalMined,hourlyGain) then moved to user balance when reach at specific n of crypto}}})})
 
-#addAsic
-#updateAsic
-#deleteAsic
-#getAllAsics
-
-#getAllAsicContracts
-#addAsicContract
+#accept asicContracts
 
 #admin====> {use different api key}  ,  {use different auth way}
 
 #delete problem
-#integrate demoContract with realContract in one collection  (complete it please)
+#integrate demoContract with realContract in one collection  {[(complete it please)]}
