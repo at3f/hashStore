@@ -25,10 +25,18 @@ exports.updateAsicContract = async (id,data)=>{
     }
 }
 
+exports.expirationON = async id=>{
+    try {
+        await AsicContract.findByIdAndUpdate(id,{expired:on})
+    } catch (error) {
+        console.log(error)
+    }
+}
 
-// exports.ContractSTATUSon = async id =>{
-//     await AsicContract.findByIdAndUpdate(id,{asicStatus:true})
-// }
-// exports.ContractEXPIRATIONon = async id =>{
-//     await AsicContract.findByIdAndUpdate(id,{expired:true})
-// }
+exports.getAsicsContract_needActivation = async ()=>{
+    try {
+        return await AsicContract.find({asicStatus:false})
+    } catch (error) {
+        console.log(error)
+    }
+}
