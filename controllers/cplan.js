@@ -31,7 +31,7 @@ exports.postAddPlan = async (req,res)=>{
                         planDuration:planDuration,
                         profitability:profitability,
                         price:price,
-                        availability:availability
+                        availability:true
                     })
                         if(plan){
                             res.sendStatus(201)

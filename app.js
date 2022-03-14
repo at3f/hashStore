@@ -37,6 +37,9 @@ app.use('/api',apiKey.verifyClient,user)
 app.use('/api/plan',apiKey.verifyClient,plan)
 app.use('/api/asic',apiKey.verifyClient,asic)
 
+app.get('/',apiKey.verifyClient,(req,res)=>{
+    res.send("API is ON")
+})
 
 const sec = 1000,
  min = 60*sec,
@@ -70,7 +73,7 @@ app.get('/testUpdateBalance',(req,res,next)=>{
 
 
 
-app.listen(process.env.port,()=>{
+app.listen(process.env.port,'0.0.0.0',()=>{
     console.log('done on 8888')
     x=true
     //fetch('http://127.0.0.1:8888/testUpdateBalance')
