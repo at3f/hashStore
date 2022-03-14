@@ -21,9 +21,14 @@
 #Auth by gmail using {{passportJS}}
 #({{{({create own wallet for each user}) or ({use coinPayment})}}})
 
-#accept asicContracts
+#asicContracts==> get payouts by address or workerID
 
 #admin====> ({use different api key}  ,  {use different auth way})
 
 #delete problem
-#integrate demoContract with realContract in one collection  {[(complete it please)]}
+
+#withdraw&deposit
+
+#update contracts way by userID by insertion id in JWT
+
+#load all active planContracts to contract management
