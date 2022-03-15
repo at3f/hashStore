@@ -54,10 +54,10 @@ exports.update = async (id,password,newPassword)=>{
     }
 }
 
-exports.delete = async (email,password)=>{
-    let user = await User.findOne({email:email})
+exports.delete = async (id,password)=>{
+    let user = await User.findById(id)
     if(user&&await hasher.compare(password,user.password)){
-        return await User.deleteOne({email:email})
+        return await User.findByIdAndRemove(id)
     }else{
         return null
     }
@@ -78,6 +78,7 @@ exports.UpdateActiveDemoPlans = async (id,op) =>{
         }
     })
 }
+
 
 exports.get_N_UserActiveDemoPlans = async id =>{
     return (await User.findById(id)).activeDemoPlans

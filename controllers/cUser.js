@@ -68,9 +68,9 @@ exports.UpdatePassword = async(req,res)=>{
 }
 exports.deleteUser = async(req,res,next)=>{
     const password = req.body.password
-    const email = req.user.u
-    if(email&&password){
-        if(await mUser.delete(email,password)) next()
+    const id = req.user.id
+    if(id&&password){
+        if(await mUser.delete(id,password)) next()
         else{
             res.status(401).send('right old Password is required')
         }
