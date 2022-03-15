@@ -1,11 +1,11 @@
 const jwt = require('jsonwebtoken')
 
 exports.getAccessToken_RefreshToken = async (user)=>{
-    const u = user.email
-    const accessToken = await jwt.sign({u},
+    const id = user.userID
+    const accessToken = await jwt.sign({id},
         process.env.ACCESS_TOKEN_SECRET,
         {expiresIn:'86400s'})
-    const refreshToken = await jwt.sign({u},
+    const refreshToken = await jwt.sign({id},
         process.env.REFRESH_TOKEN_SECRET)
         return {accessToken,refreshToken}
 }

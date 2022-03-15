@@ -29,6 +29,4 @@
 
 #withdraw&deposit
 
-#update contracts way by userID by insertion id in JWT
-
 #load all active planContracts to contract management
