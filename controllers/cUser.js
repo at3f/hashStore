@@ -56,9 +56,9 @@ exports.getNewAccessToken = async (req,res)=>{
 
 exports.UpdatePassword = async(req,res)=>{
     const { password, newPassword } = req.body;
-    const email = req.user.u
-    if(email&&password&&newPassword){
-        if(await mUser.update(email,password,newPassword)) res.sendStatus(201)
+    const id = req.user.id
+    if(id&&password&&newPassword){
+        if(await mUser.update(id,password,newPassword)) res.sendStatus(201)
         else{
             res.status(402).send('right old Password is required')
         }

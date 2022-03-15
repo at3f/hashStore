@@ -120,7 +120,7 @@ const contractManagement = async ()=>{
 //===================================================================
 exports.getGetPlansContract = async (req,res)=>{
     try{
-        const {userID} = req.body
+        const userID = req.user.id
         if(userID){
             const plansContract = await mPlanContarct.getPlansContract(userID)
                res.status(200).json(plansContract)
@@ -133,7 +133,7 @@ exports.getGetPlansContract = async (req,res)=>{
 }
 exports.getGetDemoPlansContract = async (req,res)=>{
     try{
-        const {userID} = req.body
+        const userID = req.user.id
         if(userID){
             const DemoPlansContract = await mPlanContarct.getDemoPlansContract(userID)
                res.status(200).json(DemoPlansContract)
@@ -147,7 +147,8 @@ exports.getGetDemoPlansContract = async (req,res)=>{
 
 exports.postAddPlanContract = async (req,res)=>{
     try{
-        const {userID,planID} = req.body
+        const {planID} = req.body
+        const userID = req.user.id
             if(userID&&planID){
                 const sec = 1000,
                       min = 60*sec,
@@ -197,7 +198,8 @@ exports.postAddPlanContract = async (req,res)=>{
 }
 exports.postAddDemoPlanContract = async (req,res)=>{
     try{
-        const {userID,planID} = req.body
+        const {planID} = req.body
+        const userID = req.user.id
         if((await mUser.get_N_UserActiveDemoPlans(userID))>0) return res.status(400).send("U reached the max Number of demo plans")
             if(userID&&planID){
                 const sec = 1000,

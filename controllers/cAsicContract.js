@@ -4,7 +4,7 @@ const mUser = require('../models/mUser')
 
 exports.getGetAsicsContract = async (req,res)=>{
     try{
-        const {userID} = req.body
+        const userID = req.user.id
         if(userID){
             const asicsContract = await mAsicContarct.getAsicsContract(userID)
             res.status(200).json(asicsContract)
@@ -18,7 +18,8 @@ exports.getGetAsicsContract = async (req,res)=>{
 
 exports.postAddAsicContract = async (req,res)=>{
     try {
-        const {userID,asicID} = req.body
+        const {asicID} = req.body
+        const userID = req.user.id
         if(userID&&asicID){
             let asicContract = mAsicContarct.addAsicContract({
                 startDate:Date.now()+1000*60*60*24*30, // month

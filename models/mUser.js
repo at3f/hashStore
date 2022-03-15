@@ -45,10 +45,10 @@ exports.login = async (email,password)=>{
     }
 }
 
-exports.update = async (email,password,newPassword)=>{
-    let user = await User.findOne({email:email})
+exports.update = async (id,password,newPassword)=>{
+    let user = await User.findById(id)
     if(user&&await hasher.compare(password,user.password)){
-        return await User.updateOne({email:email},{password:await hasher.hash(newPassword,10)})
+        return await User.findByIdAndUpdate(id,{password:await hasher.hash(newPassword,10)})
     }else{
         return null
     }
