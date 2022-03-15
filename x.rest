@@ -8,9 +8,9 @@ Content-Type: application/json
 
 {
     "name":"8767786",
-    "email": "menn9987876aadhms9dxx",
-    "phone": "0108009d98s789093",
-    "password": "w398"
+    "email": "aly@x874.com",
+    "phone": "0900",
+    "password": "x"
 }
 
 ###
@@ -18,8 +18,8 @@ POST http://127.0.0.1:8888/api/user/login?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d
 Content-Type: application/json
 
 {
-    "email": "menn9987876aadhm9dxx",
-    "password": "w398x"
+    "email": "aly@x874.com",
+    "password": "x"
 }
 
 ###
@@ -55,11 +55,11 @@ Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMThkNTBjMj
 ###
 DELETE http://127.0.0.1:8888/api/user/deleteAccount?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoibWVubjlhYWhtOWR4IiwiaWF0IjoxNjQ0MzQxNjA3LCJleHAiOjE2NDQzNDE2Mzd9.nPYrtsHZgG1atGu0mA1zNTP69fU61be_Ehn7sQA7X1A
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzExZjVlOTM0MTczNjFlMjk1ZWRiZCIsImlhdCI6MTY0NzM4NjQ2NSwiZXhwIjoxNjQ3NDcyODY1fQ.iZVsV3YlvkISBlpPVQmzcr_v0HNTA7werLolRB6zkZQ
 
 {
-    "password": "w398",
-    "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoibWVubjlhYWhtOWR4IiwiaWF0IjoxNjQ0MzQxNjA3fQ.0ulL8enCpKd3NPcnmxzjVymbE5NU30aZf6Muk7KacPo"
+    "password": "x",
+    "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzExZjVlOTM0MTczNjFlMjk1ZWRiZCIsImlhdCI6MTY0NzM4NjQ2NX0.yzBLy8LzawhpxNtFo_6JkVZ3ctBbAzBm_8Bcbrbiho0"
 }
 
 ###==================================PLAN============================================
