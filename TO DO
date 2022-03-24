@@ -19,7 +19,9 @@
 #--0
 #===============================================================
 #Auth by gmail using {{passportJS}}
+
 #({{{({create own wallet for each user}) or ({use coinPayment})}}})
+#withdraw&deposit
 
 #asicContracts==> get payouts by address or workerID
 
@@ -27,6 +29,8 @@
 
 #delete problem
 
-#withdraw&deposit
-
 #load all active planContracts to contract management
+
+#btc calculator
+
+#forget pwd & send verification mail
