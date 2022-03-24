@@ -56,7 +56,7 @@ const eth = require('./ETH')
 // }
 
 let Contracts=[]
-const contractManagement = async ()=>{
+const contractManager = async ()=>{
     var ethProfit,TestEthProfit
     const period = 5000//1000*60*60
 
@@ -180,7 +180,7 @@ exports.postAddPlanContract = async (req,res)=>{
                     if(planContract){
                         await mUser.UpdateActivePlans(planContract.userID,1)
                         Contracts.push(planContract)
-                        if(Contracts.length===1)contractManagement()
+                        if(Contracts.length===1)contractManager()
                         // run userProfitCalculator
                         //Add_ETH_Profit(planContract)
                         //==============
@@ -234,7 +234,7 @@ exports.postAddDemoPlanContract = async (req,res)=>{
                     if(demoPlanContract){
                         await mUser.UpdateActiveDemoPlans(demoPlanContract.userID,1)
                         Contracts.push(demoPlanContract)
-                        if(Contracts.length===1)contractManagement()
+                        if(Contracts.length===1)contractManager()
                         // run userProfitCalculator
                         //await Add_ETH_demoProfit(demoPlanContract)
 
