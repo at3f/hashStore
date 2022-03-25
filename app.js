@@ -1,4 +1,5 @@
 const exp = require('express')
+const cors = require('cors')
 const app = exp()
 require('dotenv').config()
 const mongoose = require('mongoose')
@@ -14,6 +15,7 @@ const asic = require('./routes/asic')
 const cLoader = require('./controllers/cPlanContract')
 
 app.use(exp.json())
+app.use(cors())
 
 // yourNumber = parseInt(0x81dae8d5e161e8);
 // const web3 = require('web3')
@@ -42,41 +44,7 @@ app.get('/',apiKey.verifyClient,(req,res)=>{
     res.send("API is ON")
 })
 
-const sec = 1000,
- min = 60*sec,
- hour = 60*min,
- day = 24*hour,
- month = 30*day,
- year = 12*month+5*day
-let start = Date.now()
-console.log(new Date(start+year))
-let x = false
-let b = 0
-const testf = async ()=>{
-    const int = setInterval(function(){
-        if(start+min<Date.now()){
-            clearInterval(int)
-            console.log("END :(")
-        } 
-    b=+new Date
-    console.log(b)
-    }, 3000);
-}
-app.get('/testUpdateBalance',(req,res,next)=>{
-    if(x) {
-        console.log('calculatingDurationTime&updatingUsersBalance ON')
-        next()}
-}, async (req,res,next)=>{
-        await testf()
-        await testf()
-        if(x) x=!x
-})
-
-
-
 app.listen(process.env.port,'0.0.0.0',()=>{
     cLoader.contractManagerLoader()
     console.log('done on 8888')
-    x=true
-    //fetch('http://127.0.0.1:8888/testUpdateBalance')
 })
