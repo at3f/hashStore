@@ -3,8 +3,8 @@ const fetch = require('node-fetch')
 
 
 calculateBTCProfitability = async (userHashrateMHs) => {
-    const res = fetch("https://blockchain.info/q/getdifficulty")
-    return res
+  return fetch("https://blockchain.info/q/getdifficulty")
+
 }
 
 
