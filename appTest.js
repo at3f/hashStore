@@ -2,6 +2,11 @@ const appTest = require('express')()
 const fetch = require('node-fetch')
 
 
+calculateBTCProfitability = async (userHashrateMHs) => {
+    const res = fetch("https://blockchain.info/q/getdifficulty")
+    return res
+}
+
 
 calculateETHProfitability = async (userHashrateMHs) => {
         const res = await fetch('https://www.etherchain.org/index/data')
@@ -19,11 +24,6 @@ calculateETHProfitability = async (userHashrateMHs) => {
         const userEtherPerMin = userRatio * ethPerMin
         return await userEtherPerMin*60*etherPriceInUSD
 }
-
- calculateETHProfitability(1000).then(u=>{
-    console.log(u)
- })
-
 claculateETHhashrate = async (planPrice,profitRatio) =>{
     let dymmyHash = 100
     let dymmyProfit = (await calculateETHProfitability(dymmyHash))*24*365
@@ -32,9 +32,9 @@ claculateETHhashrate = async (planPrice,profitRatio) =>{
     console.log(expectedHash)
 }
 
-claculateETHhashrate(10000,125)
-
-
+calculateBTCProfitability(0).then(x=>{
+  console.log(x)
+})
   appTest.listen(5555,()=>{
     console.log('done on 5555')
 })

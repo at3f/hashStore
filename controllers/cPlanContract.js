@@ -56,13 +56,16 @@ const eth = require('./ETH')
 // }
 
 let Contracts=[]
+let contractManagerStatus=false
 const contractManager = async ()=>{
+    contractManagerStatus=true
     var ethProfit,TestEthProfit
     const period = 5000//1000*60*60
 
     const m = await setInterval(async () => {
         if(Contracts.length===0){
             clearInterval(m)
+            contractManagerStatus=false
             return
         }
         TestEthProfit = await eth.calculateETHProfitability(100,true)
@@ -111,11 +114,18 @@ const contractManager = async ()=>{
             
         })
     }, period);
+    
 }
 
 //============================================================================================
-// function to restore endContract and Add_ETH_Profit when server off then on (load contracts)
+// function to restore contractManager when server restart (load contracts)
 //============================================================================================
+
+exports.contractManagerLoader = async () =>{
+     const activeContracts = await mPlanContarct.getActiveContracts()
+     Contracts = activeContracts
+     if(Contracts.length>0)contractManager()
+}
 
 //===================================================================
 exports.getGetPlansContract = async (req,res)=>{
