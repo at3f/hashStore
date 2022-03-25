@@ -11,6 +11,7 @@ mongoose.connect(process.env.dbUrl).then(()=>{
 const user = require('./routes/user')
 const plan = require('./routes/plan')
 const asic = require('./routes/asic')
+const cLoader = require('./controllers/cPlanContract')
 
 app.use(exp.json())
 
@@ -74,6 +75,7 @@ app.get('/testUpdateBalance',(req,res,next)=>{
 
 
 app.listen(process.env.port,'0.0.0.0',()=>{
+    cLoader.contractManagerLoader()
     console.log('done on 8888')
     x=true
     //fetch('http://127.0.0.1:8888/testUpdateBalance')

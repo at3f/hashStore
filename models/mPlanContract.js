@@ -83,3 +83,12 @@ exports.addNewProfit_Contract = async (id,profit)=>{
         console.log(error)
     }
 }
+
+
+exports.getActiveContracts = async()=>{
+    try{
+        return await PlanContract.find({planStatus:true})
+    }catch(error){
+        console.log(error)
+    }
+}

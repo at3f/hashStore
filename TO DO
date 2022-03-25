@@ -18,6 +18,9 @@
 #get miners data (payouts,currentHash)
 #--0
 #===============================================================
+#===============================================================
+#encrease endDate of contract with restarting period
+
 #Auth by gmail using {{passportJS}}
 
 #({{{({create own wallet for each user}) or ({use coinPayment})}}})
@@ -27,10 +30,7 @@
 
 #admin====> ({use different api key}  ,  {use different auth way})
 
-#delete problem
-
-#load all active planContracts to contract management
-
 #btc calculator
 
 #forget pwd & send verification mail
+#===============================================================
