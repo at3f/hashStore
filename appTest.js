@@ -2,6 +2,7 @@ const appTest = require('express')()
 
 const nodemailer = require("nodemailer");
 
+var code = 090938
 
 var mail = nodemailer.createTransport({
   service: 'gmail',
@@ -12,11 +13,10 @@ var mail = nodemailer.createTransport({
 });
 var mailOptions = {
   from: '"EBITCOINER" <binance0103060120@gmail.com>',
-  to: 'ahmedatef0103060120@gmail.com',
+  to: 'ahmed0103060120@gmail.com',
   subject: 'Verification Mail',
   html: `
-  
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
 <html xmlns="http://www.w3.org/1999/xhtml" style="background-color: rgb(240, 240, 240);"> 
  <head> 
   <title></title> 
@@ -128,11 +128,11 @@ var mailOptions = {
             </tr> 
             <tr> 
              <td align="center" valign="center" width="100%" style="-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-collapse: collapse; display: table-cell;"> 
-              <table border="0" cellspacing="0" cellpadding="0" width="100%" style="-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-collapse: collapse;"> 
-               <tr> 
-                <td align="center" valign="center" width="100%" class="Button-primary-wrapper" style="-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-collapse: collapse; display: table-cell; border-radius: 3px; background-color: rgb(32, 32, 192);"> <a href="#" target="_blank" class="Button-primary" style="-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; font-family: &quot;GT America Medium&quot;, &quot;Roboto&quot;, &quot;Helvetica&quot;, &quot;Arial&quot;, sans-serif; border-radius: 3px; border: 1px solid rgb(32, 32, 192); color: rgb(255, 255, 255); display: block; font-size: 16px; font-weight: 600; padding: 18px; text-decoration: none;"> Reset your password </a> </td> 
-               </tr> 
-              </table> </td> 
+             <table border="0" cellspacing="0" cellpadding="0" width="50%" style="-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-collapse: collapse;"> 
+             <tr> 
+              <td align="center" valign="center"  style="-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-collapse: collapse; display: table-cell; border-radius: 3px; background-color: rgb(255, 255, 255); color:#000; font-size: 150%;"> 874385 </td> 
+             </tr> 
+            </table> </td> 
             </tr> 
            </table> </td> 
          </tr> 

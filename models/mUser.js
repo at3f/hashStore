@@ -128,3 +128,13 @@ exports.UpdateActiveAsics = async (id,op) =>{
        }
     })
 }
+
+exports.isMail = async mail=>{
+    try {
+        const user = await User.findOne({email:mail})
+        if(user) return true
+        return false
+    } catch (error) {
+        console.log(error)
+    }
+}

@@ -1,5 +1,6 @@
 const mUser = require('../models/mUser')
 const jtoken = require('./JWT')
+const MAAS = require('./MAAS')
 
 let refreshTokens = []
 
@@ -76,5 +77,15 @@ exports.deleteUser = async(req,res,next)=>{
         }
     }else{
         res.status(400).send('right old Password is required')
+    }
+}
+
+exports.sendOTP = async (req,res) =>{
+    const email = req.body.email
+    const found = mUser.isMail(email)
+    if(found){
+        await MAAS.send()
+    }else{
+        res.send('Email Not Found!')
     }
 }
