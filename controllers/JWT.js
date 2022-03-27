@@ -1,7 +1,30 @@
 const jwt = require('jsonwebtoken')
 
-exports.getAccessToken_RefreshToken = async (user)=>{
-    const id = user.userID
+exports.getToken = async (id,code)=>{
+    const Token = await jwt.sign({id},
+        code,
+        {expiresIn:'60s'})
+        return Token
+}
+exports.verifyToken = async (req, res, next) => {
+    const authHeader = req.headers.authorization
+    const code = req.body.code
+    if (authHeader) {
+        const token = authHeader.split(' ')[1];
+        
+        jwt.verify(token, code, (err, user) => {
+            if (err) {
+                return res.sendStatus(401);
+            }
+            req.user = user;
+            next();
+        });
+    } else {
+        res.sendStatus(401);
+    }
+};
+
+exports.getAccessToken_RefreshToken = async (id)=>{
     const accessToken = await jwt.sign({id},
         process.env.ACCESS_TOKEN_SECRET,
         {expiresIn:'86400s'})

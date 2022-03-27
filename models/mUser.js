@@ -129,10 +129,70 @@ exports.UpdateActiveAsics = async (id,op) =>{
     })
 }
 
-exports.isMail = async mail=>{
+exports.isMail = async mail =>{
     try {
         const user = await User.findOne({email:mail})
-        if(user) return true
+        if(user){
+            let code = Math.floor(Math.random() * 10000000)
+            await User.findByIdAndUpdate(user._id,{'temporary.code':code})
+            return code
+        }
+        return false
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+exports.compareCode = async (mail,code) =>{
+    try {
+        const user = await User.findOne({email:mail})
+        if(user){
+            if(user.temporary.code == code)return user
+            return 'Wrong Number'
+        }
+        return false
+    } catch (error) {
+        console.log(error)
+    }
+}
+exports.updateNewPassword = async (id,newPassword)=>{
+    try {
+        return await User.findByIdAndUpdate(id,{password:await hasher.hash(newPassword,10),'temporary.code':0})
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+exports.getUser = async id =>{
+    try {
+        const user = await User.findById(id)
+        if(user){
+            return user
+        }
+        return false
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+exports.setVcode = async id=>{
+    try {
+        if(id){
+            let code = Math.floor(Math.random() * 100000000000)
+            await User.findByIdAndUpdate(id,{'temporary.code':code})
+            return code
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
+exports.verifyAccount = async (id,code)=>{
+    try {
+        const user = await User.findById(id)
+        if(user.temporary.code==code){
+            await User.findByIdAndUpdate(id,{verified:true,'temporary.code':0})
+            return true
+        }
         return false
     } catch (error) {
         console.log(error)

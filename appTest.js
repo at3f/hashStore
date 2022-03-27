@@ -198,14 +198,16 @@ var mailOptions = {
   `
 };
   
-mail.sendMail(mailOptions, function(error, info){
-  if (error) {
-    console.log(error);
-  } else {
-    console.log('Email sent: ' + info.response);
-  }
-});
+// mail.sendMail(mailOptions, function(error, info){
+//   if (error) {
+//     console.log(error);
+//   } else {
+//     console.log('Email sent: ' + info.response);
+//   }
+// });
 
+10===109
+  console.log(Math.floor(Math.random() * 1000000000))
 
   appTest.listen(5555,()=>{
     console.log('done on 5555')

@@ -23,7 +23,7 @@ exports.postLogin = async (req,res)=>{
     if(email&&password){
         let user = await mUser.login(email, password)
         if(user.email){
-            let jwt = await jtoken.getAccessToken_RefreshToken(user)
+            let jwt = await jtoken.getAccessToken_RefreshToken(user.userID)
             refreshTokens.push(jwt.refreshToken)
             console.log(refreshTokens)
             res.status(202).json({jwt,user})
@@ -64,6 +64,7 @@ exports.UpdatePassword = async(req,res)=>{
             res.status(402).send('right old Password is required')
         }
     }else{
+        console.log(req.user)
         res.status(401).send('right old Password is required')
     }
 }
@@ -80,12 +81,67 @@ exports.deleteUser = async(req,res,next)=>{
     }
 }
 
+exports.getUserData = async (req,res)=>{
+    let user =await mUser.getUser(req.user.id)
+    if(user)res.status(200).json(user)
+}
+
 exports.sendOTP = async (req,res) =>{
     const email = req.body.email
-    const found = mUser.isMail(email)
+    const found = await mUser.isMail(email)
     if(found){
-        await MAAS.send()
+        await MAAS.send(email,found)
+        res.sendStatus(200)
     }else{
-        res.send('Email Not Found!')
+        res.status(401).send('Email Not Found!')
+    }
+}
+
+exports.sendCode = async (req,res) =>{
+    const {email,code} = req.body
+    if(email&&code){
+        let rez = await mUser.compareCode(email,code)
+        if(rez.email){
+            let jwt = await jtoken.getToken(rez._id,code)
+            res.status(200).json(jwt)
+        }else{
+            res.status(401).send(rez)
+        }
+    }else{
+        res.sendStatus(400)
+    }
+}
+exports.resetPassword = async (req,res)=>{
+    const newPassword = req.body.newPassword
+    const id = req.user.id
+    if(newPassword&&id){
+        let newUser = await mUser.updateNewPassword(id,newPassword)
+        if(newUser) res.sendStatus(201)
+    }else{
+        res.sendStatus(400)
+    }
+}
+
+exports.sendVerificationMail = async (req,res)=>{
+    const email = req.body.email
+    const id = req.user.id
+    if(id){
+        const code = await mUser.setVcode(id)
+        await MAAS.send(email,code,id)
+        res.sendStatus(200)
+    }else{
+        res.sendStatus(400)
+    }
+}
+
+exports.VerificationMail = async (req,res)=>{
+    const code = req.params.code
+    const id = req.params.id
+    if(code){
+        const verified = await mUser.verifyAccount(id,code)
+        if(verified) res.status(200).json('verified')
+        else res.sendStatus(400)
+    }else{
+        res.sendStatus(400)
     }
 }
