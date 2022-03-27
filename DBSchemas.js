@@ -17,7 +17,9 @@ let userSchema = mongoose.Schema({
     activeDemoPlans:{type:Number,default:0},
     devices:{type:Number,default:0},
     verified:{type:Boolean,default:false},
-    temporary:{type:Number}
+    temporary:{
+        code:{type:Number}
+    }
 })
 let planSchema = mongoose.Schema({
     planType:{type:String,required:true},

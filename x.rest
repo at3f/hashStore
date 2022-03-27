@@ -1,15 +1,48 @@
-GET http://127.0.0.1:8888/api?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
+POST http://127.0.0.1:8888/api/user/sendVerificationMail?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
+Content-Type: application/json
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyM2Y2ZGNlNDZkZmRjMmU5ZmJkMDBlZCIsImlhdCI6MTY0ODM0MzcyMSwiZXhwIjoxNjQ4NDMwMTIxfQ.BX3q7PAsjal-JFJ61synBFOaqTm16rfrJpMZLozxvhE
+
+{
+    "email":"ab3atef@yahoo.com"
+}
+###
+GET http://127.0.0.1:8888/api/user/getUserData?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
+Content-Type: application/json
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyM2Y5ZWZlYTQzZGIwNjMxODhmMDQxOSIsImlhdCI6MTY0ODMzOTczMiwiZXhwIjoxNjQ4NDI2MTMyfQ.begO2CHgd3VHlE7MGgjE_JevxOl_VobWcpV2L04y7SE
+
+###
+POST http://127.0.0.1:8888/api/user/forgetPassword?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
 Content-Type: application/json
 
+{
+    "email":"ab3atef@yahoo.com"
+}
 
+###
+POST http://127.0.0.1:8888/api/user/sendCode?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
+Content-Type: application/json
+
+{
+    "email":"1e8af87617@mozej.com",
+    "code":"1862172"
+}
+###
+POST http://127.0.0.1:8888/api/user/resetPassword?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
+Content-Type: application/json
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyM2Y5ZWZlYTQzZGIwNjMxODhmMDQxOSIsImlhdCI6MTY0ODMzOTIxMywiZXhwIjoxNjQ4MzM5MjczfQ.6DhA1G-keZ8RiotZJ7UgaP8XZsHfqcOUJ03tYnCkiyE
+
+{
+    "newPassword":"xx",
+    "code":"1862172"
+}
 ###
 POST http://127.0.0.1:8888/api/user/register?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
 Content-Type: application/json
 
 {
     "name":"8767786",
-    "email": "aly@x874.com",
-    "phone": "0900",
+    "email": "41bd3fea19@catdogmail.live",
+    "phone": "877",
     "password": "x"
 }
 
@@ -18,8 +51,8 @@ POST http://127.0.0.1:8888/api/user/login?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d
 Content-Type: application/json
 
 {
-    "email": "aly@x874.com",
-    "password": "xx"
+    "email": "41bd3fea19@catdogmail.live",
+    "password": "x"
 }
 
 ###
@@ -35,17 +68,17 @@ POST http://127.0.0.1:8888/api/user/getNewAccessToken?key=c3fe929c35dd0cbcc8f062
 Content-Type: application/json
 
 {
-    "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyM2NjMjJmMjM1NmQzNzMzNGI3NmUzYiIsImlhdCI6MTY0ODE0OTM5N30.FsSH7ZN9XPcEhNyKCox8gUPZfLS0NIJXZF6rvTxnuQU"
+    "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyM2Y5ZWZlYTQzZGIwNjMxODhmMDQxOSIsImlhdCI6MTY0ODMzOTIwN30.2CXWFbrhh03_GnUSMSQCV9h_Y75Q_sHBZ-6rkHbc8AM"
 }
 ###
 GET http://127.0.0.1:8888/api/testAuth?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDczODE1NTcsImV4cCI6MTY0NzQ2Nzk1N30.bF1_jwr2cxtDiy47qWDSI-ayuxCu5SQav7AJIfa-Lls
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyM2Y2ZGNlNDZkZmRjMmU5ZmJkMDBlZCIsImlhdCI6MTY0ODMyNjgwMiwiZXhwIjoxNjQ4NDEzMjAyfQ.4kvRFC24W5sTgfSWUxNN7yjjzcF14StVePtXfqZcL5A
 
 ###
 PUT  http://127.0.0.1:8888/api/user/updatePassword?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyM2NjMjJmMjM1NmQzNzMzNGI3NmUzYiIsImlhdCI6MTY0ODE0OTQzNSwiZXhwIjoxNjQ4MjM1ODM1fQ.TVxRRB7T8ysY_iyYB4pAM_xWs_h_5sGY4vUBFYcdluQ
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyM2Y2ZGNlNDZkZmRjMmU5ZmJkMDBlZCIsImlhdCI6MTY0ODMyNjgwMiwiZXhwIjoxNjQ4NDEzMjAyfQ.4kvRFC24W5sTgfSWUxNN7yjjzcF14StVePtXfqZcL5A
 
 {
     "password": "x",
@@ -150,12 +183,12 @@ Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoibWVubjk5ODc4Nz
 ###
 GET http://127.0.0.1:8888/api/asic?cryptoName=ETH&key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoibWVubjk5ODc4NzZhYWRobTlkeHgiLCJpYXQiOjE2NDU4ODQyMzQsImV4cCI6MTY0NTk3MDYzNH0.y0cYbV0oJKQz6wFyO89Bjx7UzuzaM47A8lTOVu4RwiQ
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyM2Y2ZGNlNDZkZmRjMmU5ZmJkMDBlZCIsImlhdCI6MTY0ODMyNjUxMSwiZXhwIjoxNjQ4NDEyOTExfQ.JG36hmeWBI4UfsbzAx_EaiYKZQO8_xTM_IY61Tjsyp8
 
 ###
 GET http://127.0.0.1:8888/api/asic/621a62e000e949327e0dc11b?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoibWVubjk5ODc4NzZhYWRobTlkeHgiLCJpYXQiOjE2NDU4ODQyMzQsImV4cCI6MTY0NTk3MDYzNH0.y0cYbV0oJKQz6wFyO89Bjx7UzuzaM47A8lTOVu4RwiQ
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDgzMjU4NjcsImV4cCI6MTY0ODQxMjI2N30.hDjZKWWGOcm8RabqNunWffGZrAw-pvqqZ0fcmlW7ELo
 
 ###
 PUT http://127.0.0.1:8888/api/asic/update/621a3e91b017345a26497416?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
@@ -188,7 +221,7 @@ Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMThkNTBjMj
 ###
 GET http://127.0.0.1:8888/api/asic/x/contract?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMThkNTBjMjViODFiNDk4NWZkOGY3ZSIsImlhdCI6MTY0NzM4NDIwNiwiZXhwIjoxNjQ3NDcwNjA2fQ.0jdTr5Omn5SKTSaV5UF3HDiMe60Vtp1cXG4YPohcpWY
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyM2Y2ZGNlNDZkZmRjMmU5ZmJkMDBlZCIsImlhdCI6MTY0ODMyNjUxMSwiZXhwIjoxNjQ4NDEyOTExfQ.JG36hmeWBI4UfsbzAx_EaiYKZQO8_xTM_IY61Tjsyp8
 
 ###
 GET http://127.0.0.1:8888/api/asic/x/contract/ondemand?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
