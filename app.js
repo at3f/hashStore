@@ -3,7 +3,7 @@ const cors = require('cors')
 const app = exp()
 require('dotenv').config()
 const mongoose = require('mongoose')
-mongoose.connect(process.env.dbUrl).then(()=>{
+mongoose.connect(process.env.db).then(()=>{
     console.log("DB connected")
 }).catch(err=>{
     console.log(err)
@@ -12,6 +12,7 @@ mongoose.connect(process.env.dbUrl).then(()=>{
 const user = require('./routes/user')
 const plan = require('./routes/plan')
 const asic = require('./routes/asic')
+const ADMIN = require('./routes/ADMIN')
 const cLoader = require('./controllers/cPlanContract')
 
 app.use(exp.json())
@@ -39,6 +40,7 @@ const apiKey = require('./controllers/apiKey')
 app.use('/api',apiKey.verifyClient,user)
 app.use('/api/plan',apiKey.verifyClient,plan)
 app.use('/api/asic',apiKey.verifyClient,asic)
+app.use('/admin',apiKey.verifyADMIN,ADMIN)
 
 app.get('/',apiKey.verifyClient,(req,res)=>{
     res.send("API is ON")

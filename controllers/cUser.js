@@ -86,6 +86,7 @@ exports.getUserData = async (req,res)=>{
     if(user)res.status(200).json(user)
 }
 
+//=======================================================================
 exports.sendOTP = async (req,res) =>{
     const email = req.body.email
     const found = await mUser.isMail(email)
@@ -144,4 +145,13 @@ exports.VerificationMail = async (req,res)=>{
     }else{
         res.sendStatus(400)
     }
+}
+//=======================================================================
+
+exports.isVerified = async (req,res,next)=>{
+    email = req.body.email
+    if(!(await mUser.getVerifiedStatus(email))){
+        res.status(400).json('not Verified')}
+    else
+        next()
 }

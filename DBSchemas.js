@@ -1,5 +1,10 @@
 const mongoose = require('mongoose')
-
+//================================================
+let adminSchema = mongoose.Schema({
+    email:{type:String,required:true,unique:true},
+    OTP:{type:String}
+})
+//================================================
 let userSchema = mongoose.Schema({
     name:{type:String,required:true},
     email:{type:String,required:true,unique:true},
@@ -84,3 +89,4 @@ exports._Asic = mongoose.model('asic',asicSchema)
 exports._AsicContract = mongoose.model('asicContract',asicContractSchema)
 exports._Deposit = mongoose.model('deposit',depositSchema)
 exports._Withdrawal = mongoose.model('withdrawal',withdrawalSchema)
+exports._ADMIN = mongoose.model('admin',adminSchema)
