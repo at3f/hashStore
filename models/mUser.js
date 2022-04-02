@@ -129,6 +129,7 @@ exports.UpdateActiveAsics = async (id,op) =>{
     })
 }
 
+//===================================================================================
 exports.isMail = async mail =>{
     try {
         const user = await User.findOne({email:mail})
@@ -194,6 +195,15 @@ exports.verifyAccount = async (id,code)=>{
             return true
         }
         return false
+    } catch (error) {
+        console.log(error)
+    }
+}
+//===================================================================================
+exports.getVerifiedStatus = async email =>{
+    try {
+        const user = await User.findOne({email:email})
+        return user.verified
     } catch (error) {
         console.log(error)
     }
