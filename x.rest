@@ -242,13 +242,13 @@ Content-Type: application/json
 Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoibWVubjk5ODc4NzZhYWRobTlkeHgiLCJpYXQiOjE2NDU4ODQyMzQsImV4cCI6MTY0NTk3MDYzNH0.y0cYbV0oJKQz6wFyO89Bjx7UzuzaM47A8lTOVu4RwiQ
 
 ###============================================ADMIN============================================
-POST http://127.0.0.1:8888/admin?key=XGYwZGFlXX0CI$6MTY76dhQXh@xNjQ4ODkzfQ2IDjGR0I6tps7zbinX
-Content-Type: application/json
+# POST http://127.0.0.1:8888/admin?key=XGYwZGFlXX0CI$6MTY76dhQXh@xNjQ4ODkzfQ2IDjGR0I6tps7zbinX
+# Content-Type: application/json
 
-{
-    "email":"ahmed0103060120@gmail.com",
-    "password":"0103060120"
-}
+# {
+#     "email":"ahmed0103060120@gmail.com",
+#     "password":"0103060120"
+# }
 ###
 POST http://127.0.0.1:8888/admin/FFAuth?key=XGYwZGFlXX0CI$6MTY76dhQXh@xNjQ4ODkzfQ2IDjGR0I6tps7zbinX
 Content-Type: application/json
