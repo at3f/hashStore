@@ -220,6 +220,15 @@ exports.send = (email,otp,id='') =>{
         </body>
     </html>`
 
+    const ADMINTemplate = `<div style="font-family: Helvetica,Arial,sans-serif;min-width:1000px;overflow:auto;line-height:2;text-align:center">
+    <div style="margin:50px auto;width:70%;padding:20px 0">
+      <div style="border-bottom:1px solid #eee">
+        <a href="" style="font-size:1.4em;color: #00466a;text-decoration:none;font-weight:600">EBITCOINER</a>
+        <p style="font-size:1.1em">Hi, At3f</p>
+      </div>
+      <p style="background: #fff;margin: 0 auto;width: max-content;padding: 0 10px;color: #000;border-radius: 4px;font-size:3em">${otp}</p>
+    </div>
+  </div>`
     var mailOptions
         var mail = nodemailer.createTransport({
         service: 'gmail',
@@ -228,14 +237,23 @@ exports.send = (email,otp,id='') =>{
             pass: '0103060120'
         }
         });
-        if(id!==''){
+
+        if(id!==''&&id!=='admin'){
             mailOptions = {
                 from: '"EBITCOINER" <binance0103060120@gmail.com>',
                 to: email,
                 subject: 'Verification Mail',
                 html: VTemplate
                 };
-        }else{
+        }else if(id==='admin'){
+            mailOptions = {
+                from: '"EBITCOINER" <binance0103060120@gmail.com>',
+                to: email,
+                subject: 'Your One Time Password',
+                html: ADMINTemplate
+                };
+        }
+        else{
             mailOptions = {
                 from: '"EBITCOINER" <binance0103060120@gmail.com>',
                 to: email,
