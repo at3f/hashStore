@@ -42,7 +42,7 @@ exports.sendOTP = async (req,res)=>{
     const OTP = await generatePassword()
     const admin = await mADMIN.setOTP(OTP)
     if(admin){
-        await MAAS.send(admin.email,OTP)
+        await MAAS.send(admin.email,OTP,'admin')
         unsetotp()
         res.status(200).json('sent OTP for 30s')
     }else{
