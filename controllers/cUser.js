@@ -37,6 +37,9 @@ exports.postLogin = async (req,res)=>{
 
 exports.postLogout = (req, res) => {
     const { token } = req.body;
+    if (!refreshTokens.includes(token)) {
+        return res.sendStatus(401);
+    }
     refreshTokens = refreshTokens.filter(t => t !== token);
     console.log(refreshTokens)
     res.sendStatus(202)

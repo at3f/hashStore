@@ -15,7 +15,7 @@ POST http://127.0.0.1:8888/api/user/forgetPassword?key=c3fe929c35dd0cbcc8f062bb6
 Content-Type: application/json
 
 {
-    "email":"ab3atef@yahoo.com"
+    "email":"ahmed0103060120@gmail.com"
 }
 
 ###
@@ -36,14 +36,14 @@ Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyM2Y5ZWZlYT
     "code":"1862172"
 }
 ###
-POST http://127.0.0.1:8888/api/user/register?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
+POST https://cominer.herokuapp.com/api/user/register?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
 Content-Type: application/json
 
 {
     "name":"8767786",
-    "email": "41bd3fea19@catdogmail.live",
-    "phone": "877",
-    "password": "x"
+    "email": "ahmed0103060120@gmail.com",
+    "phone": "87089977",
+    "password": "xxxxxxxx"
 }
 
 ###
@@ -51,7 +51,7 @@ POST http://127.0.0.1:8888/api/user/login?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d
 Content-Type: application/json
 
 {
-    "email": "41bd3fea19@catdogmail.live",
+    "email": "mostafa12@x.com",
     "password": "x"
 }
 
@@ -68,7 +68,7 @@ POST http://127.0.0.1:8888/api/user/getNewAccessToken?key=c3fe929c35dd0cbcc8f062
 Content-Type: application/json
 
 {
-    "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyM2Y5ZWZlYTQzZGIwNjMxODhmMDQxOSIsImlhdCI6MTY0ODMzOTIwN30.2CXWFbrhh03_GnUSMSQCV9h_Y75Q_sHBZ-6rkHbc8AM"
+    "token":"--------------------------AyNDE2NX0.f9AowTkNEVNvicM0yx2B-QStcmAJIeA5bnlI97_lA_8"
 }
 ###
 GET http://127.0.0.1:8888/api/testAuth?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
@@ -110,9 +110,9 @@ Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoibWVubjk5ODc4Nz
     "price":1000
 }
 ###
-GET http://127.0.0.1:8888/api/plan?cryptoName=ETH&planType=long&key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
+GET https://cominer.herokuapp.com/api/plan?cryptoName=ETH&planType=long&key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoibWVubjk5ODc4NzZhYWRobTlkeHgiLCJpYXQiOjE2NDYwNTU5ODIsImV4cCI6MTY0NjE0MjM4Mn0.bBw_sufy2KMyDwTHZeWYa21b0QqcaTr9vcd1MY68Who
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDFjMmJlNjkxOWVjZGYwZGFlZGJkNSIsImlhdCI6MTY0ODc2MjU4NiwiZXhwIjoxNjQ4ODQ4OTg2fQ.JOZc6HZMpDFX_cDUFKdHZ4fO2rPq2uJaNy4RklD1lcM
 
 ###
 GET http://127.0.0.1:8888/api/plan/620a3e3e50d15271dd99d31a?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
@@ -140,9 +140,9 @@ DELETE  http://127.0.0.1:8888/api/plan/delete/62151626448be90dcf016713?key=c3fe9
 Content-Type: application/json
 Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoibWVubjk5YWFkaG05ZHh4IiwiaWF0IjoxNjQ1NTQ5MDc2LCJleHAiOjE2NDU2MzU0NzZ9.oD4kyDCoyINYJnYpU1vXytB43h_Eo_3qxlwC62cpYaE
 ###==================================PLAN-CONTRACT============================================
-POST http://127.0.0.1:8888/api/plan/x/democontract/add?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
+POST https://cominer.herokuapp.com/api/plan/x/democontract/add?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyM2NjMjJmMjM1NmQzNzMzNGI3NmUzYiIsImlhdCI6MTY0ODE1MDg3OSwiZXhwIjoxNjQ4MjM3Mjc5fQ.taiAuf4KL9-EGG4-N2EnJDd2rJTY5EnFok_mQWYICMc
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDFmOTA5MjlhNmRkODE1ZmE0MGMwNSIsImlhdCI6MTY0ODQ5MDg3NiwiZXhwIjoxNjQ4NTc3Mjc2fQ.pNR1iT2LJ-KyQeOhggGQteyKhhZxXAz1ssDIrxzblUU
 
 {
     "planID":"620a3e3e50d15271dd99d31a"
@@ -150,21 +150,21 @@ Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyM2NjMjJmMj
 ###
 GET http://127.0.0.1:8888/api/plan/x/democontract?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMThkNTBjMjViODFiNDk4NWZkOGY3ZSIsImlhdCI6MTY0NzM4NDIwNiwiZXhwIjoxNjQ3NDcwNjA2fQ.0jdTr5Omn5SKTSaV5UF3HDiMe60Vtp1cXG4YPohcpWY
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDlmNzA5NGY4ODVmNDg5YjdhYzhkNiIsImlhdCI6MTY0OTAyNDkzNywiZXhwIjoxNjQ5MTExMzM3fQ.ZXgQWkWVA0pYkOi-owOvCbCCCP-trnM43of4ibADaK8
 
 
 ###
-POST http://127.0.0.1:8888/api/plan/x/contract/add?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
+POST https://cominer.herokuapp.com/api/plan/x/contract/add?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyM2NjMjJmMjM1NmQzNzMzNGI3NmUzYiIsImlhdCI6MTY0ODE1MDg3OSwiZXhwIjoxNjQ4MjM3Mjc5fQ.taiAuf4KL9-EGG4-N2EnJDd2rJTY5EnFok_mQWYICMc
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDFjMmJlNjkxOWVjZGYwZGFlZGJkNSIsImlhdCI6MTY0ODc2MjU4NiwiZXhwIjoxNjQ4ODQ4OTg2fQ.JOZc6HZMpDFX_cDUFKdHZ4fO2rPq2uJaNy4RklD1lcM
 
 {
-    "planID":"620a3e3e50d15271dd99d31a"
+    "planID":"6241fac32e9d176352ea9419"
 }
 ###
 GET http://127.0.0.1:8888/api/plan/x/contract?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMThkNTBjMjViODFiNDk4NWZkOGY3ZSIsImlhdCI6MTY0NzM4NDIwNiwiZXhwIjoxNjQ3NDcwNjA2fQ.0jdTr5Omn5SKTSaV5UF3HDiMe60Vtp1cXG4YPohcpWY
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDlmNzA5NGY4ODVmNDg5YjdhYzhkNiIsImlhdCI6MTY0OTAyNDkzNywiZXhwIjoxNjQ5MTExMzM3fQ.ZXgQWkWVA0pYkOi-owOvCbCCCP-trnM43of4ibADaK8
 
 
 ###==================================ASIC============================================
@@ -241,3 +241,40 @@ PUT http://127.0.0.1:8888/api/asic/x/contract/expire/621aaa71edce9d7ecc1d4bca?ke
 Content-Type: application/json
 Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoibWVubjk5ODc4NzZhYWRobTlkeHgiLCJpYXQiOjE2NDU4ODQyMzQsImV4cCI6MTY0NTk3MDYzNH0.y0cYbV0oJKQz6wFyO89Bjx7UzuzaM47A8lTOVu4RwiQ
 
+###============================================ADMIN============================================
+POST http://127.0.0.1:8888/admin?key=XGYwZGFlXX0CI$6MTY76dhQXh@xNjQ4ODkzfQ2IDjGR0I6tps7zbinX
+Content-Type: application/json
+
+{
+    "email":"ahmed0103060120@gmail.com",
+    "password":"0103060120"
+}
+###
+POST http://127.0.0.1:8888/admin/FFAuth?key=XGYwZGFlXX0CI$6MTY76dhQXh@xNjQ4ODkzfQ2IDjGR0I6tps7zbinX
+Content-Type: application/json
+
+{
+    "password":"0103060120"
+}
+###
+POST http://127.0.0.1:8888/admin/MFAuth?key=XGYwZGFlXX0CI$6MTY76dhQXh@xNjQ4ODkzfQ2IDjGR0I6tps7zbinX
+Content-Type: application/json
+
+{
+    "otp":"FH8X7pGWu9cSJOBu"
+}
+
+###
+POST http://127.0.0.1:8888/admin/getNewAccessToken?key=XGYwZGFlXX0CI$6MTY76dhQXh@xNjQ4ODkzfQ2IDjGR0I6tps7zbinX
+Content-Type: application/json
+
+{
+    "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDlmNzA5NGY4ODVmNDg5YjdhYzhkNiIsImlhdCI6MTY0OTAyNTY5Mn0.VC-nKOkFezRVEeicD0SMZeQMBUChbJL5Q6N0-lEWi7o"
+}
+###
+POST http://127.0.0.1:8888/admin/logout?key=XGYwZGFlXX0CI$6MTY76dhQXh@xNjQ4ODkzfQ2IDjGR0I6tps7zbinX
+Content-Type: application/json
+
+{
+    "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDlmNzA5NGY4ODVmNDg5YjdhYzhkNiIsImlhdCI6MTY0OTAyNTY5Mn0.VC-nKOkFezRVEeicD0SMZeQMBUChbJL5Q6N0-lEWi7o"
+}

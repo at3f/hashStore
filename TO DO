@@ -21,7 +21,7 @@
 #===============================================================
 #encrease endDate of contract with restarting period
 
-#Auth by gmail using {{passportJS}}
+#Auth by google authenticator
 
 #({{{({create own wallet for each user}) or ({use coinPayment})}}})
 #withdraw&deposit
@@ -33,4 +33,6 @@
 #btc calculator
 
 #don't send password
+
+#unset temporary on user
 #===============================================================
