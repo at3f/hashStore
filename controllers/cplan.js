@@ -1,4 +1,4 @@
-const mPlan = require('../models/mPlan')
+const mPlan = require('../models/mplan')
 const eth = require('./ETH')
 
 

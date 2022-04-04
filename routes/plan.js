@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const cPlan = require('../controllers/cPlan')
+const cPlan = require('../controllers/cplan')
 const cPlanContract = require('../controllers/cPlanContract')
 const jtoken = require('../controllers/JWT')
 
