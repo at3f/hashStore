@@ -28,11 +28,8 @@
 
 #asicContracts==> get payouts by address or workerID
 
-#admin====> ({use different api key}  ,  {use different auth way})
-
 #btc calculator
 
 #don't send password
 
-#unset temporary on user
 #===============================================================

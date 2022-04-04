@@ -4,7 +4,7 @@ const jtoken = require('../controllers/JWT')
 
 
 router.post('/user/register',cUser.postRegister)
-router.post('/user/login',cUser.isVerified,cUser.postLogin)
+router.post('/user/login',cUser.postLogin)
 router.post('/user/logout',cUser.postLogout)
 router.post('/user/getNewAccessToken',cUser.getNewAccessToken)
 router.put('/user/updatePassword',jtoken.authorize,cUser.UpdatePassword)
