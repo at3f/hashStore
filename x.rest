@@ -23,17 +23,17 @@ POST http://127.0.0.1:8888/api/user/sendCode?key=c3fe929c35dd0cbcc8f062bb60e9d2c
 Content-Type: application/json
 
 {
-    "email":"1e8af87617@mozej.com",
-    "code":"1862172"
+    "email":"ahmed0103060120@gmail.com",
+    "code":"6684219"
 }
 ###
 POST http://127.0.0.1:8888/api/user/resetPassword?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyM2Y5ZWZlYTQzZGIwNjMxODhmMDQxOSIsImlhdCI6MTY0ODMzOTIxMywiZXhwIjoxNjQ4MzM5MjczfQ.6DhA1G-keZ8RiotZJ7UgaP8XZsHfqcOUJ03tYnCkiyE
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNGEwYjg0YThmM2M5NDU1ODU4YTFhNyIsImlhdCI6MTY0OTEwOTQwMSwiZXhwIjoxNjQ5MTA5NDYxfQ.Fq5HoOwFFG2Idyb1dSDX86ABTqL8XjUWd3BskxfH7LU
 
 {
-    "newPassword":"xx",
-    "code":"1862172"
+    "newPassword":"x",
+    "code":"6684219"
 }
 ###
 POST https://cominer.herokuapp.com/api/user/register?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
@@ -51,7 +51,7 @@ POST http://127.0.0.1:8888/api/user/login?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d
 Content-Type: application/json
 
 {
-    "email": "mostafa12@x.com",
+    "email": "ahmed0103060120@gmail.com",
     "password": "x"
 }
 
@@ -98,12 +98,12 @@ Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzExZjVlOT
 ###==================================PLAN============================================
 POST http://127.0.0.1:8888/api/plan/add?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoibWVubjk5ODc4NzZhYWRobTlkeHgiLCJpYXQiOjE2NDYwNTU5ODIsImV4cCI6MTY0NjE0MjM4Mn0.bBw_sufy2KMyDwTHZeWYa21b0QqcaTr9vcd1MY68Who
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDFjMmJlNjkxOWVjZGYwZGFlZGJkNSIsImlhdCI6MTY0OTEwODMzMCwiZXhwIjoxNjQ5MTk0NzMwfQ.fYOiEuTJ4MJVDO8T3C6v9VvtPt95-COlgPDAhadc-1Y
 
 {
     "planType":"long",
     "planName":"regular",
-    "cryptoName":"ETH",
+    "cryptoName":"STX",
     "algorithm":"SHA-256",
     "planDuration":1,
     "profitability":150,
@@ -170,15 +170,15 @@ Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDlmNzA5NG
 ###==================================ASIC============================================
 POST http://127.0.0.1:8888/api/asic/add?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoibWVubjk5ODc4NzZhYWRobTlkeHgiLCJpYXQiOjE2NDU4ODQyMzQsImV4cCI6MTY0NTk3MDYzNH0.y0cYbV0oJKQz6wFyO89Bjx7UzuzaM47A8lTOVu4RwiQ
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDFjMmJlNjkxOWVjZGYwZGFlZGJkNSIsImlhdCI6MTY0OTEwODMzMCwiZXhwIjoxNjQ5MTk0NzMwfQ.fYOiEuTJ4MJVDO8T3C6v9VvtPt95-COlgPDAhadc-1Y
 
 {
-    "asicName":"AntMiner E9",
-    "cryptoName":"ETH",
+    "asicName":"AntMiner E6",
+    "cryptoName":"BTC",
     "algorithm":"ETH-HASH",
-    "hashPower":120000,
-    "price":13000,
-    "hostFees":200
+    "hashPower":134000,
+    "price":30000,
+    "hostFees":600
 }
 ###
 GET http://127.0.0.1:8888/api/asic?cryptoName=ETH&key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
@@ -213,10 +213,10 @@ Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoibWVubjk5ODc4Nz
 ###==================================ASIC-CONTRACT============================================
 POST http://127.0.0.1:8888/api/asic/x/contract/add?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMThkNTBjMjViODFiNDk4NWZkOGY3ZSIsImlhdCI6MTY0NzM4NDIwNiwiZXhwIjoxNjQ3NDcwNjA2fQ.0jdTr5Omn5SKTSaV5UF3HDiMe60Vtp1cXG4YPohcpWY
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDFjMmJlNjkxOWVjZGYwZGFlZGJkNSIsImlhdCI6MTY0OTEwODMzMCwiZXhwIjoxNjQ5MTk0NzMwfQ.fYOiEuTJ4MJVDO8T3C6v9VvtPt95-COlgPDAhadc-1Y
 
 {
-    "asicID":"621a3e91b017345a26497416"
+    "asicID":"624866187db9d4a1ef65b09c"
 }
 ###
 GET http://127.0.0.1:8888/api/asic/x/contract?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
@@ -229,12 +229,12 @@ Content-Type: application/json
 Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoibWVubjk5ODc4NzZhYWRobTlkeHgiLCJpYXQiOjE2NDU4ODQyMzQsImV4cCI6MTY0NTk3MDYzNH0.y0cYbV0oJKQz6wFyO89Bjx7UzuzaM47A8lTOVu4RwiQ
 
 ###
-PUT http://127.0.0.1:8888/api/asic/x/contract/activate/621aaa71edce9d7ecc1d4bca?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
+PUT http://127.0.0.1:8888/api/asic/x/contract/activate/624b662f015a20f302a74bbd?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoibWVubjk5ODc4NzZhYWRobTlkeHgiLCJpYXQiOjE2NDU4ODQyMzQsImV4cCI6MTY0NTk3MDYzNH0.y0cYbV0oJKQz6wFyO89Bjx7UzuzaM47A8lTOVu4RwiQ
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDFjMmJlNjkxOWVjZGYwZGFlZGJkNSIsImlhdCI6MTY0OTEwODMzMCwiZXhwIjoxNjQ5MTk0NzMwfQ.fYOiEuTJ4MJVDO8T3C6v9VvtPt95-COlgPDAhadc-1Y
 
 {
-    "address":"nesfutys4857y4876cneifuzuer"
+    "address":"0XF624J1598asnNBUYftBSUydt7jCRTYuurvyJbd"
 }
 ###
 PUT http://127.0.0.1:8888/api/asic/x/contract/expire/621aaa71edce9d7ecc1d4bca?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
@@ -261,7 +261,7 @@ POST http://127.0.0.1:8888/admin/MFAuth?key=XGYwZGFlXX0CI$6MTY76dhQXh@xNjQ4ODkzf
 Content-Type: application/json
 
 {
-    "otp":"FH8X7pGWu9cSJOBu"
+    "otp":"48Z8cDAXr4qH8DZ6"
 }
 
 ###

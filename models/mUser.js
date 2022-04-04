@@ -158,7 +158,7 @@ exports.compareCode = async (mail,code) =>{
 }
 exports.updateNewPassword = async (id,newPassword)=>{
     try {
-        return await User.findByIdAndUpdate(id,{password:await hasher.hash(newPassword,10),'temporary.code':0})
+        return await User.findByIdAndUpdate(id,{password:await hasher.hash(newPassword,10),$unset: {'temporary.code': 1 }})
     } catch (error) {
         console.log(error)
     }
@@ -191,7 +191,7 @@ exports.verifyAccount = async (id,code)=>{
     try {
         const user = await User.findById(id)
         if(user.temporary.code==code){
-            await User.findByIdAndUpdate(id,{verified:true,'temporary.code':0})
+            await User.findByIdAndUpdate(id,{verified:true,$unset: {'temporary.code': 1 }})
             return true
         }
         return false
