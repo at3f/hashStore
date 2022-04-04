@@ -1,5 +1,5 @@
 const mPlanContarct = require('../models/mPlanContract')
-const mPlan = require('../models/mPlan')
+const mPlan = require('../models/mplan')
 const mUser = require('../models/mUser')
 const eth = require('./ETH')
 

@@ -46,7 +46,7 @@ app.get('/',apiKey.verifyClient,(req,res)=>{
     res.send("API is ON")
 })
 
-app.listen(process.env.port,'0.0.0.0',()=>{
+app.listen(process.env.PORT||8888,'0.0.0.0',()=>{
     cLoader.contractManagerLoader()
     console.log('done on 8888')
 })
