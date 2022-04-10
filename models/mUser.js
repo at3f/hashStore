@@ -1,49 +1,82 @@
 const hasher = require('bcrypt')
 const User = require('../DBSchemas')._User
 
-exports.register = async (name,email,phone,password) =>{
+exports.register = async (userName,email,phone,password) =>{
     try {
-        let user = await User.findOne({email:email})
-    if(user){
-        return 'Email is used'
-    }else{
-        user = null
-        user = await User.findOne({phone:phone})
-        if(user){
-            return 'Phone is used' 
-        }else{
+        let userMail = await User.findOne({email:email})
+        let userPhone = await User.findOne({phone:phone})
+        let userUserName = await User.findOne({userName:userName})
+        if(userPhone) return 'Phone is used'
+        else if(userUserName) return 'User Name is used'
+        else if(userMail) return 'Email is used'
+        else{
             let nuser = new User({
-                name:name,
+                userName:userName,
                 email:email,
                 phone:phone,
                 password: await hasher.hash(password,10)
             })
             let userSaved = nuser.save()
             return userSaved
-        }
-    }
+            }
     } catch (error) {
         console.log(error)
     }
 }
-exports.login = async (email,password)=>{
-    let user = await User.findOne({email:email})
-    if(user&&await hasher.compare(password,user.password)){
-        return {
-            userID:user._id,
-            name:user.name,
-            email:user.email,
-            phone:user.phone,
-            balance:user.balance,
-            demoBalance:user.demoBalance,
-            activePlans:user.activePlans,
-            activeDemoPlans:user.activeDemoPlans,
-            devices:user.devices
+
+exports.isUser = async(userName,password)=>{
+    try {
+        let user = await User.findOne({userName:userName})
+        if(user&&await hasher.compare(password,user.password)){
+            return true
+        }else{
+            return false
         }
-    }else{
-        return 'Wrong credentials'
+    } catch (error) {
+        console.log(error)
     }
 }
+exports.setOTP = async(userName,OTP) =>{
+    try {
+        return (await User.findOneAndUpdate({userName:userName},{OTP:OTP}))
+    } catch (error) {
+        console.log(error)
+    }
+}
+exports.UNsetOTP = async userName =>{
+    try {
+        await User.findOneAndUpdate({userName:userName},{$unset: {OTP: 1 }})
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+exports.getUserAuth = async userName =>{
+    try {
+        return (await User.findOne({userName:userName}))
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+// exports.login = async (email,password)=>{
+//     let user = await User.findOne({email:email})
+//     if(user&&await hasher.compare(password,user.password)){
+//         return {
+//             userID:user._id,
+//             name:user.name,
+//             email:user.email,
+//             phone:user.phone,
+//             balance:user.balance,
+//             demoBalance:user.demoBalance,
+//             activePlans:user.activePlans,
+//             activeDemoPlans:user.activeDemoPlans,
+//             devices:user.devices
+//         }
+//     }else{
+//         return 'Wrong credentials'
+//     }
+// }
 
 exports.update = async (id,password,newPassword)=>{
     let user = await User.findById(id)
@@ -176,35 +209,34 @@ exports.getUser = async id =>{
     }
 }
 
-exports.setVcode = async id=>{
-    try {
-        if(id){
-            let code = Math.floor(Math.random() * 100000000000)
-            await User.findByIdAndUpdate(id,{'temporary.code':code})
-            return code
-        }
-    } catch (error) {
-        console.log(error)
-    }
-}
-exports.verifyAccount = async (id,code)=>{
-    try {
-        const user = await User.findById(id)
-        if(user.temporary.code==code){
-            await User.findByIdAndUpdate(id,{verified:true,$unset: {'temporary.code': 1 }})
-            return true
-        }
-        return false
-    } catch (error) {
-        console.log(error)
-    }
-}
-//===================================================================================
-exports.getVerifiedStatus = async email =>{
-    try {
-        const user = await User.findOne({email:email})
-        return user.verified
-    } catch (error) {
-        console.log(error)
-    }
-}
+// exports.setVcode = async id=>{
+//     try {
+//         if(id){
+//             let code = Math.floor(Math.random() * 100000000000)
+//             await User.findByIdAndUpdate(id,{'temporary.code':code})
+//             return code
+//         }
+//     } catch (error) {
+//         console.log(error)
+//     }
+// }
+// exports.verifyAccount = async (id,code)=>{
+//     try {
+//         const user = await User.findById(id)
+//         if(user.temporary.code==code){
+//             await User.findByIdAndUpdate(id,{verified:true,$unset: {'temporary.code': 1 }})
+//             return true
+//         }
+//         return false
+//     } catch (error) {
+//         console.log(error)
+//     }
+// }
+// exports.getVerifiedStatus = async email =>{
+//     try {
+//         const user = await User.findOne({email:email})
+//         return user.verified
+//     } catch (error) {
+//         console.log(error)
+//     }
+// }

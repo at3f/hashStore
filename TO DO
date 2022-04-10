@@ -19,17 +19,15 @@
 #--0
 #===============================================================
 #===============================================================
-#encrease endDate of contract with restarting period
 
-#Auth by google authenticator
-
-#({{{({create own wallet for each user}) or ({use coinPayment})}}})
 #withdraw&deposit
 
 #asicContracts==> get payouts by address or workerID
+#             ==> store workerID in asicContract
 
 #btc calculator
 
 #don't send password
 
+#createdAt & UpdatedAt
 #===============================================================

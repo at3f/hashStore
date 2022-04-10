@@ -7,7 +7,7 @@ let adminSchema = mongoose.Schema({
 })
 //================================================
 let userSchema = mongoose.Schema({
-    name:{type:String,required:true},
+    userName:{type:String,required:true,unique:true},
     email:{type:String,required:true,unique:true},
     phone:{type:String,required:true,unique:true},
     password:{type:String,required:true},
@@ -22,7 +22,7 @@ let userSchema = mongoose.Schema({
     activePlans:{type:Number,default:0},
     activeDemoPlans:{type:Number,default:0},
     devices:{type:Number,default:0},
-    verified:{type:Boolean,default:false},
+    OTP:{type:String},
     temporary:{
         code:{type:Number}
     }
