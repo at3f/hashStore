@@ -3,35 +3,73 @@ const jtoken = require('./JWT')
 const MAAS = require('./MAAS')
 
 let refreshTokens = []
+const unsetotp = async userName=>{
+    await setTimeout(async () => {
+        await mUser.UNsetOTP(userName)
+    }, 30000);
+}
+const generatePassword = async ()=> {
+    var length = 16,
+        charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
+        retVal = "";
+    for (var i = 0, n = charset.length; i < length; ++i) {
+        retVal += charset.charAt(Math.floor(Math.random() * n));
+    }
+    return retVal;
+}
 
 exports.postRegister = async (req,res)=>{
-    const { name,email,phone, password } = req.body;
-    if(name&&email&&password&&phone){
-       let user = await mUser.register(name,email,phone,password)
+    const { userName,email,phone, password } = req.body;
+    if(userName&&email&&password&&phone){
+       let user = await mUser.register(userName,email,phone,password)
        if(user.email){
            res.sendStatus(201)
        }else{
            res.status(400).json(user)
        }
     }else{
-        res.send('Email & Password & phone are required')
+        res.send('User name & Email & Password & phone are required')
     }
 }
 
-exports.postLogin = async (req,res)=>{
-    const { email, password } = req.body;
-    if(email&&password){
-        let user = await mUser.login(email, password)
-        if(user.email){
-            let jwt = await jtoken.getAccessToken_RefreshToken(user.userID)
+exports.isUser = async (req,res,next)=>{
+    const { userName, password } = req.body;
+    if(userName&&password){
+        if((await mUser.isUser(userName, password))){
+            next()
+        }else{
+            res.json('Wrong credentials')
+        }
+    }else{
+        res.status(403).json('Wrong credentials')
+    }
+}
+exports.sendOTP = async (req,res)=>{
+    const { userName } = req.body;
+    const OTP = await generatePassword()
+    const user = await mUser.setOTP(userName,OTP)
+    if(user){
+        await MAAS.send(user.email,OTP,user.userName)
+        await unsetotp(user.userName)
+        res.status(200).json('sent OTP for 30s')
+    }else{
+        res.sendStatus(400)
+    }
+}
+exports.Userlogin = async (req,res)=>{
+    const {userName,otp} = req.body
+    if(userName&&otp){
+        let user = await mUser.getUserAuth(userName)
+        if(user.OTP===otp){
+            let jwt = await jtoken.getAccessToken_RefreshToken(user._id)
             refreshTokens.push(jwt.refreshToken)
             console.log(refreshTokens)
             res.status(202).json({jwt,user})
         }else{
-            res.status(403).json(user)
+            res.status(400).json('Wrong OTP')
         }
     }else{
-        res.status(403).json('Wrong credentials')
+        res.sendStatus(400)
     }
 }
 
@@ -90,7 +128,7 @@ exports.getUserData = async (req,res)=>{
 }
 
 //=======================================================================
-exports.sendOTP = async (req,res) =>{
+exports.sendCode = async (req,res) =>{
     const email = req.body.email
     const found = await mUser.isMail(email)
     if(found){
@@ -101,7 +139,7 @@ exports.sendOTP = async (req,res) =>{
     }
 }
 
-exports.sendCode = async (req,res) =>{
+exports.verifyCode = async (req,res) =>{
     const {email,code} = req.body
     if(email&&code){
         let rez = await mUser.compareCode(email,code)
@@ -126,35 +164,34 @@ exports.resetPassword = async (req,res)=>{
     }
 }
 
-exports.sendVerificationMail = async (req,res)=>{
-    const email = req.body.email
-    const id = req.user.id
-    if(id){
-        const code = await mUser.setVcode(id)
-        await MAAS.send(email,code,id)
-        res.sendStatus(200)
-    }else{
-        res.sendStatus(400)
-    }
-}
-
-exports.VerificationMail = async (req,res)=>{
-    const code = req.params.code
-    const id = req.params.id
-    if(code){
-        const verified = await mUser.verifyAccount(id,code)
-        if(verified) res.status(200).json('verified')
-        else res.sendStatus(400)
-    }else{
-        res.sendStatus(400)
-    }
-}
-//=======================================================================
-
-exports.isVerified = async (req,res,next)=>{
-    email = req.body.email
-    if(!(await mUser.getVerifiedStatus(email))){
-        res.status(400).json('not Verified')}
-    else
-        next()
-}
+//================================================================================
+// exports.sendVerificationMail = async (req,res)=>{
+//     const email = req.body.email
+//     const id = req.user.id
+//     if(id){
+//         const code = await mUser.setVcode(id)
+//         await MAAS.send(email,code,id)
+//         res.sendStatus(200)
+//     }else{
+//         res.sendStatus(400)
+//     }
+// }
+// exports.VerificationMail = async (req,res)=>{
+//     const code = req.params.code
+//     const id = req.params.id
+//     if(code){
+//         const verified = await mUser.verifyAccount(id,code)
+//         if(verified) res.status(200).json('verified')
+//         else res.sendStatus(400)
+//     }else{
+//         res.sendStatus(400)
+//     }
+// }
+// exports.isVerified = async (req,res,next)=>{
+//     email = req.body.email
+//     if(!(await mUser.getVerifiedStatus(email))){
+//         res.status(400).json('not Verified')}
+//     else
+//         next()
+// }
+//================================================================================

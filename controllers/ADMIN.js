@@ -12,7 +12,7 @@ var ADMINrefreshToken
 const unsetotp = async ()=>{
     await setTimeout(async () => {
         await mADMIN.UNsetOTP()
-    }, 20000);
+    }, 30000);
 }
 
 const generatePassword = async ()=> {
@@ -37,7 +37,6 @@ exports.isAdminPassword = async (req,res,next)=>{
         res.sendStatus(400)
     }
 }
-
 exports.sendOTP = async (req,res)=>{
     const OTP = await generatePassword()
     const admin = await mADMIN.setOTP(OTP)
