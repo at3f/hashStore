@@ -53,7 +53,15 @@ exports.UNsetOTP = async userName =>{
 
 exports.getUserAuth = async userName =>{
     try {
-        return (await User.findOne({userName:userName}))
+        var usersProjection = { 
+            __v: false,
+            password: false,
+            email: false,
+            phone:false,
+            createdAt:false,
+            updatedAt:false
+        }; 
+        return (await User.findOne({userName:userName},usersProjection))
     } catch (error) {
         console.log(error)
     }
@@ -199,7 +207,16 @@ exports.updateNewPassword = async (id,newPassword)=>{
 
 exports.getUser = async id =>{
     try {
-        const user = await User.findById(id)
+        var usersProjection = { 
+            __v: false,
+            _id:false,
+            password: false,
+            email: false,
+            phone:false,
+            createdAt:false,
+            updatedAt:false
+        };    
+        const user = await User.findById(id,usersProjection)
         if(user){
             return user
         }
@@ -240,3 +257,15 @@ exports.getUser = async id =>{
 //         console.log(error)
 //     }
 // }
+exports.getAllUsers = async ()=>{
+    try {
+        var usersProjection = { 
+            __v: false,
+            password: false,
+            createdAt:false,
+        };
+        return (await User.find({},usersProjection))
+    } catch (error) {
+        console.log(error)
+    }
+}

@@ -40,3 +40,10 @@ exports.getAsicsContract_needActivation = async ()=>{
         console.log(error)
     }
 }
+exports.getAsicsContract_notneedActivation = async ()=>{
+    try {
+        return await AsicContract.find({asicStatus:true})
+    } catch (error) {
+        console.log(error)
+    }
+}

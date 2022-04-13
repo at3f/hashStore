@@ -26,7 +26,7 @@ let userSchema = mongoose.Schema({
     temporary:{
         code:{type:Number}
     }
-})
+}, { timestamps: true })
 let planSchema = mongoose.Schema({
     planType:{type:String,required:true},
     planName:{type:String,required:true},
@@ -36,7 +36,7 @@ let planSchema = mongoose.Schema({
     profitability:{type:Number,required:true},
     price:{type:Number,required:true},
     availability:{type:Boolean,default:true}
-})
+}, { timestamps: true })
 let planContractSchema = mongoose.Schema({
     demo:{type:Boolean,required:true},
     cryptoName:{type:String,required:true},
@@ -60,28 +60,28 @@ let asicSchema = mongoose.Schema({
     price:{type:Number,required:true},
     hostFees:{type:Number,required:true},
     availability:{type:Boolean,default:true}
-})
+}, { timestamps: true })
 let asicContractSchema = mongoose.Schema({
+    hostFees:{type:Number,required:true},
     asicStatus:{type:Boolean,default:false},  //status:false = On-demand but not working
     expired:{type:Boolean,default:false},
     startDate:{type:Date}, 
     address:{type:String},
+    workerID:{type:String},
     userID:{type:String,required:true},
     asicID:{type:String,required:true}
-})
+}, { timestamps: true })
 let depositSchema = mongoose.Schema({
-    date:{type:Date,required:true},
     amount:{type:Number,required:true},
     transactionStatus:{type:String,required:true},
     userID:{type:String,required:true}
-})
+}, { timestamps: true })
 let withdrawalSchema = mongoose.Schema({
     address:{type:String,required:true},
-    date:{type:Date,required:true},
     amount:{type:Number,required:true},
     transactionStatus:{type:String,required:true},
     userID:{type:String,required:true}
-})
+}, { timestamps: true })
 
 exports._User = mongoose.model('user',userSchema)
 exports._Plan = mongoose.model('plan',planSchema)

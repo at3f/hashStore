@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const cUser = require('../controllers/cUser')
 const jtoken = require('../controllers/JWT')
-
+const jADMINtoken = require('../controllers/ADMINJWT')
 
 router.post('/user/register',cUser.postRegister)
 router.post('/user/FFactorAuth',cUser.isUser,cUser.sendOTP)
@@ -18,6 +18,8 @@ router.post('/user/resetPassword',jtoken.verifyToken,cUser.resetPassword)
 
 // router.post('/user/sendVerificationMail',jtoken.authorize,cUser.sendVerificationMail)
 // router.get('/user/VerificationMail/:id/:code',cUser.VerificationMail)
+
+router.get('/admin/getUsers',jADMINtoken.authorize,cUser.getAllUsers) //Admin
 
 router.get('/testAuth',jtoken.authorize,async (req,res)=>{
     res.send("SUCCESS")

@@ -40,7 +40,7 @@ const apiKey = require('./controllers/apiKey')
 app.use('/api',apiKey.verifyClient,user)
 app.use('/api/plan',apiKey.verifyClient,plan)
 app.use('/api/asic',apiKey.verifyClient,asic)
-app.use('/admin',apiKey.verifyADMIN,ADMIN)
+app.use('/admin',apiKey.verifyClient,ADMIN)
 
 app.get('/',apiKey.verifyClient,(req,res)=>{
     res.send("API is ON")

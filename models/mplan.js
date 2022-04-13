@@ -31,7 +31,7 @@ exports.getPlans = async (planType,cryptoName) =>{
 }
 exports.getPlanByID = async id =>{
     try{
-        return plan = await Plan.findById(id)
+        return await Plan.findById(id)
     }catch(error){
         console.log(error)
     }

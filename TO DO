@@ -1,8 +1,4 @@
 #####================#####===================({[USER]})================#####=================#####
-#Auth by gmail using {{passportJS}}
-#({{{({create own wallet for each user}) or ({use coinBase-commerce})}}})
-#({({{{update user balance each hour (totalMined,hourlyGain) then moved to user balance when reach to specific n of crypto}}})})
-# update hashRate calculations
 #####================#####===================({[ADIMN]})================#####=================#####
 #addPlan
 #updatePlan
@@ -20,14 +16,17 @@
 #===============================================================
 #===============================================================
 
+
+
+
+#add contract  balance -=plan/asic price
 #withdraw&deposit
+#get All users transactions logs
+#data validation
+
 
 #asicContracts==> get payouts by address or workerID
-#             ==> store workerID in asicContract
 
 #btc calculator
-
-#don't send password
-
-#createdAt & UpdatedAt
+#real contract manager
 #===============================================================

@@ -31,11 +31,11 @@ exports.authorize = (req, res, next) => {
             if (err) {
                 return res.sendStatus(401);
             }
-            req.user = user;
             next();
         });
     } else {
         res.sendStatus(401);
     }
 };
+
 
