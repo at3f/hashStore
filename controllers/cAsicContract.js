@@ -1,5 +1,6 @@
 const mAsicContarct = require('../models/mAsicContract')
 const mUser = require('../models/mUser')
+const mAsic = require('../models/mAsic')
 
 
 exports.getGetAsicsContract = async (req,res)=>{
@@ -21,10 +22,13 @@ exports.postAddAsicContract = async (req,res)=>{
         const {asicID} = req.body
         const userID = req.user.id
         if(userID&&asicID){
-            let asicContract = mAsicContarct.addAsicContract({
+            const asic = await mAsic.getAsicByID(asicID)
+            if(!asic) res.sendStatus(400)
+            let asicContract = await mAsicContarct.addAsicContract({
                 startDate:Date.now()+1000*60*60*24*30, // month
                 userID:userID,
-                asicID:asicID
+                asicID:asicID,
+                hostFees:asic.hostFees
             })
             if(asicContract)res.sendStatus(201)
             else res.sendStatus(400)
@@ -39,11 +43,12 @@ exports.postAddAsicContract = async (req,res)=>{
 exports.activateAsicContarct = async (req,res)=>{
     try {
         const contractID = req.params.id
-        const {address} = req.body
-        if(contractID&&address){
+        const {address,workerID} = req.body
+        if(contractID&&address&&workerID){
             let asicContract = await mAsicContarct.updateAsicContract(contractID,{
                 asicStatus:true,
-                address:address
+                address:address,
+                workerID:workerID
             })
             if(asicContract){
                 await mUser.UpdateActiveAsics(asicContract.userID,1)
@@ -83,5 +88,28 @@ exports.getNotActiveAsicsContract = async(req,res)=>{
             else res.sendStatus(400)
     } catch (error) {
         console.log(error)
+    }
+}
+//==========
+exports.getActiveAsicsContract = async(req,res)=>{
+    try {
+            let asicContracts = await mAsicContarct.getAsicsContract_notneedActivation()
+            if(asicContracts)res.status(200).json(asicContracts)
+            else res.sendStatus(400)
+    } catch (error) {
+        console.log(error)
+    }
+}
+exports.getUserAsicsContract = async (req,res)=>{
+    try{
+        const userID = req.params.id
+        if(userID){
+            const asicsContract = await mAsicContarct.getAsicsContract(userID)
+            res.status(200).json(asicsContract)
+        }else{
+            res.sendStatus(400)
+        }
+    }catch(error){
+        res.sendStatus(500)
     }
 }

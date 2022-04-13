@@ -160,6 +160,8 @@ exports.postAddPlanContract = async (req,res)=>{
         const {planID} = req.body
         const userID = req.user.id
             if(userID&&planID){
+                const plan = await mPlan.getPlanByID(planID)
+                if(!plan) res.sendStatus(400)
                 const sec = 1000,
                       min = 60*sec,
                       hour = 60*min,
@@ -167,7 +169,6 @@ exports.postAddPlanContract = async (req,res)=>{
                       month = 30*day,
                       year = 12*month+5*day
                const startDate = Date.now()
-               const plan = await mPlan.getPlanByID(planID)
                var endDate 
                var hashPower
                if(plan.planType==='short'){
@@ -211,6 +212,8 @@ exports.postAddDemoPlanContract = async (req,res)=>{
         const {planID} = req.body
         const userID = req.user.id
         if((await mUser.get_N_UserActiveDemoPlans(userID))>0) return res.status(400).send("U reached the max Number of demo plans")
+                const plan = await mPlan.getPlanByID(planID)
+                if(!plan) res.sendStatus(400)
             if(userID&&planID){
                 const sec = 1000,
                       min = 60*sec,
@@ -219,7 +222,6 @@ exports.postAddDemoPlanContract = async (req,res)=>{
                       month = 30*day,
                       year = 12*month+5*day
                const startDate = Date.now()
-               const plan = await mPlan.getPlanByID(planID)
                var endDate 
                var hashPower
                if(plan.planType==='short'){
@@ -257,6 +259,20 @@ exports.postAddDemoPlanContract = async (req,res)=>{
                 }else{
                     res.sendStatus(500)
                 }
+    }catch(error){
+        res.sendStatus(500)
+    }
+}
+
+exports.getUserPlansContract = async (req,res)=>{
+    try{
+        const userID = req.params.id
+        if(userID){
+            const plansContract = await mPlanContarct.getPlansContract(userID)
+               res.status(200).json(plansContract)
+        }else{
+            res.sendStatus(400)
+        }
     }catch(error){
         res.sendStatus(500)
     }

@@ -73,6 +73,7 @@ exports.Userlogin = async (req,res)=>{
     }
 }
 
+
 exports.postLogout = (req, res) => {
     const { token } = req.body;
     if (!refreshTokens.includes(token)) {
@@ -195,3 +196,9 @@ exports.resetPassword = async (req,res)=>{
 //         next()
 // }
 //================================================================================
+
+exports.getAllUsers = async (req,res)=>{
+    let users = await mUser.getAllUsers()
+    if(users) res.status(200).json(users)
+    else res.sendStatus(400)
+}
