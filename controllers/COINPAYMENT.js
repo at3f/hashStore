@@ -10,7 +10,7 @@ exports.withdraw = async (amount,currency,address)=>{
         amount:amount,
         currency: currency,
         address:address,
-        ipn_url:'https://dealer0.herokuapp.com/notify2'
+        ipn_url:'https://cominer.herokuapp.com/api/withdraw'
     })
 }
 exports.getDepositAddress = async currency=>{

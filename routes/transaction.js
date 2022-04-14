@@ -9,8 +9,6 @@ router.post('/setwithdrawrequest',jtoken.authorize,cTransaction.setWithdrawReque
 router.get('/getwithdraws',jtoken.authorize,cTransaction.getWithdraws)
 
 
-
-
 router.post('/deposit',cTransaction.verifyNotification,cTransaction.depositNotification)
 router.post('/withdraw',cTransaction.verifyNotification,cTransaction.withdrawNotification)
 
