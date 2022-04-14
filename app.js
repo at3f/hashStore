@@ -39,7 +39,7 @@ app.use(cors())
 // })
 
 const apiKey = require('./controllers/apiKey')
-app.use('/api',transaction)
+app.use('/api/transaction',transaction)
 app.use('/api',apiKey.verifyClient,user)
 app.use('/api/plan',apiKey.verifyClient,plan)
 app.use('/api/asic',apiKey.verifyClient,asic)

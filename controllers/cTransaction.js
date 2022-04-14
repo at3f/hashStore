@@ -50,6 +50,7 @@ exports.depositNotification = async (req, res) => {
     let deposit =await mTransaction.getDeposit(deposit_id)
     let userID = await mUser.getUserIDByAddress(currency,address)
     status==="100"?fStatus="SUCCESS":fStatus="PENDING"
+    if(status==="100") await mUser.UpdateBalance(userID,currency,amount)
     if(!deposit){
         if(!userID) return res.end()
         await mTransaction.addDeposit({
@@ -71,7 +72,7 @@ exports.depositNotification = async (req, res) => {
 
 exports.setWithdrawRequest = async (req,res)=>{
     const {currency,amount,address} = req.body
-    if(amount<=0) return res.status(400).json({msg:'invalid amount'})
+    if(amount<=0||!currency||!amount||!address) return res.status(400).json({msg:'invalid credentials'})
     const userID = req.user.id
     const user = await mUser.getUser(userID)
     switch (currency) {
@@ -113,6 +114,20 @@ exports.withdrawNotification = async (req, res) => {
 
 exports.getWithdraws = async (req,res)=>{
     const userID = req.user.id
+    if(!userID) return res.sendStatus(400)
+    let withdraws = await mTransaction.getWithdraws(userID)
+    res.status(200).json(withdraws)
+}
+
+exports.getUserDeposits = async (req,res)=>{
+    const userID = req.params.id
+    if(!userID) return res.sendStatus(400)
+    let deposits = await mTransaction.getDeposits(userID)
+    res.status(200).json(deposits)
+}
+
+exports.getUserWithdraws = async (req,res)=>{
+    const userID = req.params.id
     if(!userID) return res.sendStatus(400)
     let withdraws = await mTransaction.getWithdraws(userID)
     res.status(200).json(withdraws)
