@@ -157,11 +157,24 @@ exports.getGetDemoPlansContract = async (req,res)=>{
 
 exports.postAddPlanContract = async (req,res)=>{
     try{
-        const {planID} = req.body
+        const {planID,currency} = req.body
         const userID = req.user.id
-            if(userID&&planID){
+            if(userID&&planID&&currency){
                 const plan = await mPlan.getPlanByID(planID)
                 if(!plan) res.sendStatus(400)
+                //===========
+                const user = await mUser.getUser(userID)
+                switch (currency) {
+                    case 'ETH':
+                        const priceInETH = await eth.USDtoETH(plan.price)
+                        if(priceInETH>user.balance.eth) return res.status(400).json({msg:'no sufficient balance'})
+                        await mUser.UpdateBalance(userID,currency,-priceInETH)
+                        break;
+                    case 'BTC':
+                        // wait to BTC calc
+                        break;
+                }
+                //===========
                 const sec = 1000,
                       min = 60*sec,
                       hour = 60*min,
@@ -209,12 +222,25 @@ exports.postAddPlanContract = async (req,res)=>{
 }
 exports.postAddDemoPlanContract = async (req,res)=>{
     try{
-        const {planID} = req.body
+        const {planID,currency} = req.body
         const userID = req.user.id
-        if((await mUser.get_N_UserActiveDemoPlans(userID))>0) return res.status(400).send("U reached the max Number of demo plans")
+        if((await mUser.get_N_UserActiveDemoPlans(userID))>0) return res.status(400).json({msg:"U reached the max Number of demo plans"})
                 const plan = await mPlan.getPlanByID(planID)
                 if(!plan) res.sendStatus(400)
-            if(userID&&planID){
+                //===========
+                const user = await mUser.getUser(userID)
+                switch (currency) {
+                    case 'ETH':
+                        const priceInETH = await eth.USDtoETH(plan.price)
+                        if(priceInETH>user.demoBalance.eth) return res.status(400).json({msg:'no sufficient balance'})
+                        await mUser.UpdateDemoBalance(userID,currency,-priceInETH)
+                        break;
+                    case 'BTC':
+                        // wait to BTC calc
+                        break;
+                }
+                //===========
+            if(userID&&planID&&currency){
                 const sec = 1000,
                       min = 60*sec,
                       hour = 60*min,
@@ -231,8 +257,6 @@ exports.postAddDemoPlanContract = async (req,res)=>{
                 endDate = startDate + plan.planDuration*3*day
                 hashPower = await eth.claculateETHhashrate(plan.price,plan.profitability,plan.planDuration*365)
                }
-               //more secure  (to reduce duplicated requests)
-               if((await mUser.get_N_UserActiveDemoPlans(userID))>0) return res.status(400).send("U reached the max Number of demo plans")
                if(startDate&&endDate&&hashPower){
                 let demoPlanContract = await mPlanContarct.addDemoPlanContract({
                     demo:true,

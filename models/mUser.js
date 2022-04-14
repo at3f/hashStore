@@ -214,7 +214,8 @@ exports.getUser = async id =>{
             email: false,
             phone:false,
             createdAt:false,
-            updatedAt:false
+            updatedAt:false,
+            depositAddress:false
         };    
         const user = await User.findById(id,usersProjection)
         if(user){
@@ -265,6 +266,61 @@ exports.getAllUsers = async ()=>{
             createdAt:false,
         };
         return (await User.find({},usersProjection))
+    } catch (error) {
+        console.log(error)
+    }
+}
+//==============================================
+exports.setAddress = async (userID,address,currency)=>{
+    try {
+        switch (currency) {
+            case 'ETH':
+                await User.findByIdAndUpdate(userID,{'depositAddress.eth':address})
+                break;
+            case 'BTC':
+                await User.findByIdAndUpdate(userID,{'depositAddress.btc':address})
+                break;
+            case 'LTCT':
+                await User.findByIdAndUpdate(userID,{'depositAddress.ltct':address})
+                break;
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
+exports.getAddress = async (userID,currency)=>{
+    try {
+        let userAddress
+        switch (currency) {
+            case 'ETH':
+                userAddress = (await User.findById(userID)).depositAddress.eth
+                break;
+            case 'BTC':
+                userAddress = (await User.findById(userID)).depositAddress.btc
+                break;
+            case 'LTCT':
+                userAddress = (await User.findById(userID)).depositAddress.ltct
+                break;
+        }
+        return userAddress
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+exports.getUserIDByAddress = async (currency,address) =>{
+    try {
+        switch (currency) {
+            case 'ETH':
+                return (await User.findOne({'depositAddress.eth':address}))._id
+                break;
+            case 'BTC':
+                return (await User.findOne({'depositAddress.btc':address}))._id
+                break;
+            case 'LTCT':
+                return (await User.findOne({'depositAddress.ltct':address}))._id
+                break;
+        }
     } catch (error) {
         console.log(error)
     }

@@ -1,7 +1,7 @@
 const mAsicContarct = require('../models/mAsicContract')
 const mUser = require('../models/mUser')
 const mAsic = require('../models/mAsic')
-
+const eth = require('./ETH')
 
 exports.getGetAsicsContract = async (req,res)=>{
     try{
@@ -19,11 +19,24 @@ exports.getGetAsicsContract = async (req,res)=>{
 
 exports.postAddAsicContract = async (req,res)=>{
     try {
-        const {asicID} = req.body
+        const {asicID,currency} = req.body
         const userID = req.user.id
-        if(userID&&asicID){
+        if(userID&&asicID&&currency){
             const asic = await mAsic.getAsicByID(asicID)
             if(!asic) res.sendStatus(400)
+            //===========
+            const user = await mUser.getUser(userID)
+            switch (currency) {
+                case 'ETH':
+                    const priceInETH = await eth.USDtoETH(asic.price)
+                    if(priceInETH>user.balance.eth) return res.status(400).json({msg:'no sufficient balance'})
+                    await mUser.UpdateBalance(userID,currency,-priceInETH)
+                    break;
+                case 'BTC':
+                    // wait to BTC calc
+                    break;
+            }
+            //===========
             let asicContract = await mAsicContarct.addAsicContract({
                 startDate:Date.now()+1000*60*60*24*30, // month
                 userID:userID,

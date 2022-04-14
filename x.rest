@@ -8,7 +8,7 @@
 ###
 GET http://127.0.0.1:8888/api/user/getUserData?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNTFlY2FlMDAwZWM0NmJhNWYwOGQzNCIsImlhdCI6MTY0OTgxNjQ2OSwiZXhwIjoxNjQ5OTAyODY5fQ.KPsrsM1TvaGEVfHJ2_Sysbz-ssnL9DzpiT0VCUDT_2c
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNTc3YzAzOTU4NGFhYTkzNTk2MzMzOCIsImlhdCI6MTY0OTkwMDYxMCwiZXhwIjoxNjQ5OTg3MDEwfQ.pqQ5SOK_lrQKu0LMt3C89RKNH1eusa3ui00Vs_N6DbE
 
 ###
 POST http://127.0.0.1:8888/api/user/forgetPassword?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
@@ -40,9 +40,9 @@ POST http://127.0.0.1:8888/api/user/register?key=c3fe929c35dd0cbcc8f062bb60e9d2c
 Content-Type: application/json
 
 {
-    "userName":"at03f",
-    "email": "ahmed010306012x0@gmail.com",
-    "phone": "870899977",
+    "userName":"at33f",
+    "email": "ahmed0103060120@gmail.com",
+    "phone": "8708999077",
     "password": "x"
 }
 
@@ -60,7 +60,7 @@ Content-Type: application/json
 
 {
     "userName": "at33f",
-    "otp": "rFoYSsJIX25bhKBZ"
+    "otp": "oMvideuPTMZNTHyh"
 }
 ###
 POST http://127.0.0.1:8888/api/user/logout?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
@@ -117,9 +117,9 @@ Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDlmNzA5NG
     "price":1000
 }
 ###
-GET http://127.0.0.1:8888/api/plan?cryptoName=BTC&planType=long&key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
+GET http://127.0.0.1:8888/api/plan?cryptoName=ETH&planType=long&key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDk4MTgyNzEsImV4cCI6MTY0OTkwNDY3MX0.-H4teB6aTEB4v3s1Exl-ntvBf2A_rNtmMQHEe2klgf4
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNTFlY2FlMDAwZWM0NmJhNWYwOGQzNCIsImlhdCI6MTY0OTg3NTIzMiwiZXhwIjoxNjQ5OTYxNjMyfQ.NYNrFny3XvmYoCUEllRVC7YXj-ttegFBG6VyV0mMX3A
 
 ###
 GET http://127.0.0.1:8888/api/plan/admin?cryptoName=BTC&planType=long&key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
@@ -154,23 +154,25 @@ Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoibWVubjk5YWFkaG
 ###==================================PLAN-CONTRACT============================================
 POST http://127.0.0.1:8888/api/plan/x/democontract/add?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDk1NDcyNzksImV4cCI6MTY0OTYzMzY3OX0.HkFvb40QGBGBx3Aqi_TP_7XVk7k2iGfNu5DZRf-_uRI
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNTFlY2FlMDAwZWM0NmJhNWYwOGQzNCIsImlhdCI6MTY0OTg3NTIzMiwiZXhwIjoxNjQ5OTYxNjMyfQ.NYNrFny3XvmYoCUEllRVC7YXj-ttegFBG6VyV0mMX3A
 
 {
-    "planID":"624b658a015a20f302a74bad"
+    "planID":"6241fac32e9d176352ea9419",
+    "currency":"ETH"
 }
 ###
 GET http://127.0.0.1:8888/api/plan/x/democontract?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNTFlY2FlMDAwZWM0NmJhNWYwOGQzNCIsImlhdCI6MTY0OTU0ODUzOCwiZXhwIjoxNjQ5NjM0OTM4fQ.BdzpXISMWeA-aFXHQnUT7DUOsC5aTBOzb5otRpkDBcg
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNTFlY2FlMDAwZWM0NmJhNWYwOGQzNCIsImlhdCI6MTY0OTg3NTIzMiwiZXhwIjoxNjQ5OTYxNjMyfQ.NYNrFny3XvmYoCUEllRVC7YXj-ttegFBG6VyV0mMX3A
 
 ###
 POST http://127.0.0.1:8888/api/plan/x/contract/add?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNTFlY2FlMDAwZWM0NmJhNWYwOGQzNCIsImlhdCI6MTY0OTU0ODUzOCwiZXhwIjoxNjQ5NjM0OTM4fQ.BdzpXISMWeA-aFXHQnUT7DUOsC5aTBOzb5otRpkDBcg
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNTFlY2FlMDAwZWM0NmJhNWYwOGQzNCIsImlhdCI6MTY0OTg3NTIzMiwiZXhwIjoxNjQ5OTYxNjMyfQ.NYNrFny3XvmYoCUEllRVC7YXj-ttegFBG6VyV0mMX3A
 
 {
-    "planID":"624b88cc7cf2a02d1a385866"
+    "planID":"6241fac32e9d176352ea9419",
+    "currency":"ETH"
 }
 ###
 GET http://127.0.0.1:8888/api/plan/x/contract?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
@@ -196,14 +198,19 @@ Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDFjMmJlNj
     "hostFees":600
 }
 ###
+GET http://127.0.0.1:8888/api/asic?cryptoName=ETH&key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
+Content-Type: application/json
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNTFlY2FlMDAwZWM0NmJhNWYwOGQzNCIsImlhdCI6MTY0OTgxODY5MiwiZXhwIjoxNjQ5OTA1MDkyfQ.9p3tFS-vGlWYIMXdr7M-fgPIrh6FN-Dh7KNASGnpSUU
+
+###
 GET http://127.0.0.1:8888/api/asic/admin?cryptoName=ETH&key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDlmNzA5NGY4ODVmNDg5YjdhYzhkNiIsImlhdCI6MTY0OTgxMjk4MCwiZXhwIjoxNjQ5ODk5MzgwfQ.L4aEWo-zqvKDr1flfg0x_Tr4kXuqweeaa43oLTwtmws
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNTFlY2FlMDAwZWM0NmJhNWYwOGQzNCIsImlhdCI6MTY0OTgxODY5MiwiZXhwIjoxNjQ5OTA1MDkyfQ.9p3tFS-vGlWYIMXdr7M-fgPIrh6FN-Dh7KNASGnpSUU
 
 ###
 GET http://127.0.0.1:8888/api/asic/621a62e000e949327e0dc11b?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDgzMjU4NjcsImV4cCI6MTY0ODQxMjI2N30.hDjZKWWGOcm8RabqNunWffGZrAw-pvqqZ0fcmlW7ELo
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNTFlY2FlMDAwZWM0NmJhNWYwOGQzNCIsImlhdCI6MTY0OTgxODY5MiwiZXhwIjoxNjQ5OTA1MDkyfQ.9p3tFS-vGlWYIMXdr7M-fgPIrh6FN-Dh7KNASGnpSUU
 
 ###
 PUT http://127.0.0.1:8888/api/asic/update/621a3e91b017345a26497416?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
@@ -231,7 +238,8 @@ Content-Type: application/json
 Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNTFlY2FlMDAwZWM0NmJhNWYwOGQzNCIsImlhdCI6MTY0OTgxODY5MiwiZXhwIjoxNjQ5OTA1MDkyfQ.9p3tFS-vGlWYIMXdr7M-fgPIrh6FN-Dh7KNASGnpSUU
 
 {
-    "asicID":"624866187db9d4a1ef65b09c"
+    "asicID":"624b65d9015a20f302a74bb7",
+    "currency":"ETH"
 }
 ###
 GET http://127.0.0.1:8888/api/asic/x/contract?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
@@ -303,3 +311,9 @@ Content-Type: application/json
 GET http://127.0.0.1:8888/api/admin/getUsers?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
 Content-Type: application/json
 Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDlmNzA5NGY4ODVmNDg5YjdhYzhkNiIsImlhdCI6MTY0OTgxMjk4MCwiZXhwIjoxNjQ5ODk5MzgwfQ.L4aEWo-zqvKDr1flfg0x_Tr4kXuqweeaa43oLTwtmws
+
+###============================================TRANSACTIONS============================================
+GET http://127.0.0.1:8888/api/getdepositaddress?currency=BTC
+Content-Type: application/json
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNTc3YzAzOTU4NGFhYTkzNTk2MzMzOCIsImlhdCI6MTY0OTkwMDYxMCwiZXhwIjoxNjQ5OTg3MDEwfQ.pqQ5SOK_lrQKu0LMt3C89RKNH1eusa3ui00Vs_N6DbE
+http://127.0.0.1:8888/api/deposit

@@ -42,12 +42,9 @@ exports.getDemoPlansContract = async id =>{
 
 exports.addDemoPlanContract = async (data) =>{
     try{
-        if((await PlanContract.find({userID:data.userID,demo:true}))[0]){return null}
-        else{
             let ndemoplanContract = new PlanContract(data)
             let demoplanContractSaved = await ndemoplanContract.save()
             return demoplanContractSaved
-        }
     }catch(error){
         console.log(error)
     }
