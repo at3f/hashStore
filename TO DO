@@ -16,14 +16,9 @@
 #===============================================================
 #===============================================================
 
-
-
-
-#add contract  balance -=plan/asic price
 #withdraw&deposit
 #get All users transactions logs
 #data validation
-
 
 #asicContracts==> get payouts by address or workerID
 

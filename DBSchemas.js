@@ -12,6 +12,7 @@ let userSchema = mongoose.Schema({
     phone:{type:String,required:true,unique:true},
     password:{type:String,required:true},
     balance:{
+        ltct:{type:Number,default:0},
         eth:{type:Number,default:0},
         btc:{type:Number,default:0}
     },
@@ -23,6 +24,11 @@ let userSchema = mongoose.Schema({
     activeDemoPlans:{type:Number,default:0},
     devices:{type:Number,default:0},
     OTP:{type:String},
+    depositAddress:{
+        ltct:{type:String},
+        eth:{type:String},
+        btc:{type:String}
+    },
     temporary:{
         code:{type:Number}
     }
@@ -71,15 +77,23 @@ let asicContractSchema = mongoose.Schema({
     userID:{type:String,required:true},
     asicID:{type:String,required:true}
 }, { timestamps: true })
+
 let depositSchema = mongoose.Schema({
+    _id:{type:String,required:true},
     amount:{type:Number,required:true},
+    currency:{type:String,required:true},
     transactionStatus:{type:String,required:true},
+    txn_id:{type:String,required:true},
     userID:{type:String,required:true}
 }, { timestamps: true })
-let withdrawalSchema = mongoose.Schema({
+
+let withdrawSchema = mongoose.Schema({
+    _id:{type:String,required:true},
     address:{type:String,required:true},
     amount:{type:Number,required:true},
+    currency:{type:String,required:true},
     transactionStatus:{type:String,required:true},
+    txn_id:{type:String},
     userID:{type:String,required:true}
 }, { timestamps: true })
 
@@ -89,5 +103,5 @@ exports._PlanContract = mongoose.model('planContract',planContractSchema)
 exports._Asic = mongoose.model('asic',asicSchema)
 exports._AsicContract = mongoose.model('asicContract',asicContractSchema)
 exports._Deposit = mongoose.model('deposit',depositSchema)
-exports._Withdrawal = mongoose.model('withdrawal',withdrawalSchema)
+exports._Withdraw = mongoose.model('withdrawal',withdrawSchema)
 exports._ADMIN = mongoose.model('admin',adminSchema)
