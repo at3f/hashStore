@@ -127,6 +127,13 @@ exports.get_N_UserActiveDemoPlans = async id =>{
 
 exports.UpdateBalance = async (id,currency,profit)=>{
     switch (currency) {
+        case 'LTCT':
+            await User.findByIdAndUpdate(id,{
+                $inc : {
+                    'balance.ltct':profit
+                }
+            })
+            break
         case 'ETH':
             await User.findByIdAndUpdate(id,{
                 $inc : {
