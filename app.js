@@ -16,6 +16,7 @@ const ADMIN = require('./routes/ADMIN')
 const transaction = require('./routes/transaction')
 const cLoader = require('./controllers/cPlanContract')
 
+app.use(exp.urlencoded({ extended: true }))
 app.use(exp.json())
 app.use(cors())
 
