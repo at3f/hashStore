@@ -64,7 +64,7 @@ exports.Userlogin = async (req,res)=>{
             let jwt = await jtoken.getAccessToken_RefreshToken(user._id)
             refreshTokens.push(jwt.refreshToken)
             console.log(refreshTokens)
-            res.status(202).json({jwt,user})
+            res.status(200).json({jwt,user})
         }else{
             res.status(400).json({message:'Wrong OTP'})
         }
@@ -81,7 +81,7 @@ exports.postLogout = (req, res) => {
     }
     refreshTokens = refreshTokens.filter(t => t !== token);
     console.log(refreshTokens)
-    res.sendStatus(202)
+    res.sendStatus(200)
 };
 
 exports.getNewAccessToken = async (req,res)=>{
@@ -94,7 +94,7 @@ exports.getNewAccessToken = async (req,res)=>{
         return res.sendStatus(401);
     }
     const x = await jtoken.getNewAccessTokenByRefreshToken(token)
-    res.status(202).json(x)
+    res.status(200).json(x)
 }
 
 exports.UpdatePassword = async(req,res)=>{
