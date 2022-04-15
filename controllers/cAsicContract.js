@@ -29,7 +29,7 @@ exports.postAddAsicContract = async (req,res)=>{
             switch (currency) {
                 case 'ETH':
                     const priceInETH = await eth.USDtoETH(asic.price)
-                    if(priceInETH>user.balance.eth) return res.status(400).json({msg:'no sufficient balance'})
+                    if(priceInETH>user.balance.eth) return res.status(400).json({ message:'no sufficient balance'})
                     await mUser.UpdateBalance(userID,currency,-priceInETH)
                     break;
                 case 'BTC':

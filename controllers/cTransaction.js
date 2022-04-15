@@ -3,11 +3,12 @@ const mTransaction = require('../models/mTransaction')
 const mUser = require('../models/mUser')
 const { verify } = require('coinpayments-ipn')
 
+let coins = ["ETH","LTCT","BTC"]
 
 exports.getDepositAddress = async (req,res)=>{
     const currency = req.query.currency
     const userID = req.user.id
-    if(!currency || !userID) return res.sendStatus(400)
+    if(!coins.includes(currency) || !userID) return res.sendStatus(400)
     let userAddress = await mUser.getAddress(userID,currency)
     if(!userAddress) {
         userAddress = (await COINPAYMENT.getDepositAddress(currency)).address
@@ -72,21 +73,21 @@ exports.depositNotification = async (req, res) => {
 
 exports.setWithdrawRequest = async (req,res)=>{
     const {currency,amount,address} = req.body
-    if(amount<=0||!currency||!amount||!address) return res.status(400).json({msg:'invalid credentials'})
+    if(amount<=0||!coins.includes(currency)||!amount||!address) return res.status(400).json({ message:'invalid credentials'})
     const userID = req.user.id
     const user = await mUser.getUser(userID)
     switch (currency) {
         case 'ETH':
-            if(amount>user.balance.eth) return res.status(400).json({msg:'no sufficient balance'})
+            if(amount>user.balance.eth) return res.status(400).json({message:'no sufficient balance'})
             break;
         case 'BTC':
-            if(amount>user.balance.btc) return res.status(400).json({msg:'no sufficient balance'})
+            if(amount>user.balance.btc) return res.status(400).json({message:'no sufficient balance'})
             break;
         case 'LTCT':
-            if(amount>user.balance.ltct) return res.status(400).json({msg:'no sufficient balance'})
+            if(amount>user.balance.ltct) return res.status(400).json({message:'no sufficient balance'})
             break;
         default:
-            return res.status(400).json({error:'invalid currency'})
+            return res.status(400).json({message:'invalid currency'})
             break
     }
     await mUser.UpdateBalance(userID,currency,-amount)
