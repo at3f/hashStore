@@ -7,7 +7,7 @@ const getETHPlansHashPower = async (plans,type)=>{
     const PlansHashPower = []
     for (let i = 0; i < plans.length; i++) {
         PlanHash = await eth.claculateETHhashrate(plans[i].price,plans[i].profitability,plans[i].planDuration*type)
-        PlansHashPower.push((plans[i]._id).toString(),PlanHash)
+        PlansHashPower.push({planid:(plans[i]._id).toString(),hashrate:PlanHash})
     }
     return PlansHashPower
 }

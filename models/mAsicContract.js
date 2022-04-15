@@ -47,3 +47,11 @@ exports.getAsicsContract_notneedActivation = async ()=>{
         console.log(error)
     }
 }
+
+exports.getAsicContarctByAddress = async (address)=>{
+    try {
+        return await AsicContract.find({address:address})
+    } catch (error) {
+        console.log(error)
+    }
+}

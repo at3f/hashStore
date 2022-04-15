@@ -69,6 +69,7 @@ let asicSchema = mongoose.Schema({
 }, { timestamps: true })
 let asicContractSchema = mongoose.Schema({
     hostFees:{type:Number,required:true},
+    asicName:{type:String,required:true},
     asicStatus:{type:Boolean,default:false},  //status:false = On-demand but not working
     expired:{type:Boolean,default:false},
     startDate:{type:Date}, 
@@ -80,6 +81,7 @@ let asicContractSchema = mongoose.Schema({
 
 let depositSchema = mongoose.Schema({
     _id:{type:String,required:true},
+    depositSource:{type:String,required:true},
     amount:{type:Number,required:true},
     currency:{type:String,required:true},
     transactionStatus:{type:String,required:true},
