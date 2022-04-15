@@ -1,6 +1,7 @@
 const mPlan = require('../models/mplan')
 const eth = require('./ETH')
 
+let coins = ["ETH","BTC"]
 
 const getETHPlansHashPower = async (plans,type)=>{
     const PlansHashPower = []
@@ -22,7 +23,7 @@ exports.postAddPlan = async (req,res)=>{
             profitability,
             price
         } = req.body
-            if(planType&&planName&&cryptoName&&algorithm&&planDuration&&profitability&&price){
+            if(planType&&planName&&coins.includes(cryptoName)&&algorithm&&planDuration&&profitability&&price){
                     let plan = await mPlan.addPlan({
                         planType:planType,
                         planName:planName,
@@ -62,7 +63,7 @@ exports.getGetPlanByID = async (req,res)=>{
 exports.getGetPlans =async (req,res) =>{
     try{
         const {planType,cryptoName} = req.query
-        if(planType&&cryptoName){
+        if(planType&&coins.includes(cryptoName)){
             const plans = await mPlan.getPlans(planType,cryptoName)
             if(plans[0]){
                var type
@@ -85,7 +86,7 @@ exports.putUpdatePlan = async (req,res)=>{
         const id = req.params.id
         const {planType,planName,cryptoName,
             algorithm,planDuration,profitability,price} = req.body
-            if(id&&planType&&planName&&cryptoName&&
+            if(id&&planType&&planName&&coins.includes(cryptoName)&&
                 algorithm&&planDuration&&profitability&&price){
                     let plan = await mPlan.updatePlan(id,{
                         planType:planType,

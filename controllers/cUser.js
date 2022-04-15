@@ -28,7 +28,7 @@ exports.postRegister = async (req,res)=>{
            res.status(400).json(user)
        }
     }else{
-        res.send('User name & Email & Password & phone are required')
+        res.status(400).json({message:'User name & Email & Password & phone are required'})
     }
 }
 
@@ -38,10 +38,10 @@ exports.isUser = async (req,res,next)=>{
         if((await mUser.isUser(userName, password))){
             next()
         }else{
-            res.json('Wrong credentials')
+            res.json({message:'Wrong credentials'})
         }
     }else{
-        res.status(403).json('Wrong credentials')
+        res.status(403).json({message:'Wrong credentials'})
     }
 }
 exports.sendOTP = async (req,res)=>{
@@ -51,7 +51,7 @@ exports.sendOTP = async (req,res)=>{
     if(user){
         await MAAS.send(user.email,OTP,user.userName)
         await unsetotp(user.userName)
-        res.status(200).json('sent OTP for 30s')
+        res.status(200).json({message:'sent OTP for 30s'})
     }else{
         res.sendStatus(400)
     }
@@ -66,7 +66,7 @@ exports.Userlogin = async (req,res)=>{
             console.log(refreshTokens)
             res.status(202).json({jwt,user})
         }else{
-            res.status(400).json('Wrong OTP')
+            res.status(400).json({message:'Wrong OTP'})
         }
     }else{
         res.sendStatus(400)
@@ -103,11 +103,11 @@ exports.UpdatePassword = async(req,res)=>{
     if(id&&password&&newPassword){
         if(await mUser.update(id,password,newPassword)) res.sendStatus(201)
         else{
-            res.status(402).send('right old Password is required')
+            res.status(402).send({message:'right old Password is required'})
         }
     }else{
         console.log(req.user)
-        res.status(401).send('right old Password is required')
+        res.status(401).send({message:'right old Password is required'})
     }
 }
 exports.deleteUser = async(req,res,next)=>{
@@ -116,10 +116,10 @@ exports.deleteUser = async(req,res,next)=>{
     if(id&&password){
         if(await mUser.delete(id,password)) next()
         else{
-            res.status(401).send('right old Password is required')
+            res.status(401).send({message:'right old Password is required'})
         }
     }else{
-        res.status(400).send('right old Password is required')
+        res.status(400).send({message:'right old Password is required'})
     }
 }
 
@@ -136,7 +136,7 @@ exports.sendCode = async (req,res) =>{
         await MAAS.send(email,found)
         res.sendStatus(200)
     }else{
-        res.status(401).send('Email Not Found!')
+        res.status(401).send({message:'Email Not Found!'})
     }
 }
 

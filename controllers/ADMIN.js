@@ -31,7 +31,7 @@ exports.isAdminPassword = async (req,res,next)=>{
         if((await mADMIN.isPassword(password))){
             next()
         }else{
-            res.json('Wrong Password')
+            res.status(400).json({ message:'Wrong Password'})
         }
     }else{
         res.sendStatus(400)
@@ -43,7 +43,7 @@ exports.sendOTP = async (req,res)=>{
     if(admin){
         await MAAS.send(admin.email,OTP,'admin')
         unsetotp()
-        res.status(200).json('sent OTP for 30s')
+        res.status(200).json( {message:'sent OTP for 30s'})
     }else{
         res.sendStatus(400)
     }
@@ -58,7 +58,7 @@ exports.ADMINlogin = async (req,res)=>{
             console.log(ADMINrefreshToken)
             res.status(202).json({jwt})
         }else{
-            res.json('Wrong OTP')
+            res.status(400).json( {message:'Wrong OTP'})
         }
     }else{
         res.sendStatus(400)
@@ -76,7 +76,7 @@ exports.getNewAccessToken = async (req,res)=>{
     }
     const x = await jtoken.getNewAccessTokenByRefreshToken(token)
     if(!x) return res.sendStatus(401);
-    res.status(202).json(x)
+    res.status(202).json({accessToken:x})
 }
 
 exports.ADMINLogout = (req, res) => {

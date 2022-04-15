@@ -167,7 +167,7 @@ exports.postAddPlanContract = async (req,res)=>{
                 switch (currency) {
                     case 'ETH':
                         const priceInETH = await eth.USDtoETH(plan.price)
-                        if(priceInETH>user.balance.eth) return res.status(400).json({msg:'no sufficient balance'})
+                        if(priceInETH>user.balance.eth) return res.status(400).json({ message:'no sufficient balance'})
                         await mUser.UpdateBalance(userID,currency,-priceInETH)
                         break;
                     case 'BTC':
@@ -224,7 +224,7 @@ exports.postAddDemoPlanContract = async (req,res)=>{
     try{
         const {planID,currency} = req.body
         const userID = req.user.id
-        if((await mUser.get_N_UserActiveDemoPlans(userID))>0) return res.status(400).json({msg:"U reached the max Number of demo plans"})
+        if((await mUser.get_N_UserActiveDemoPlans(userID))>0) return res.status(400).json({ message:"U reached the max Number of demo plans"})
                 const plan = await mPlan.getPlanByID(planID)
                 if(!plan) res.sendStatus(400)
                 //===========
@@ -232,7 +232,7 @@ exports.postAddDemoPlanContract = async (req,res)=>{
                 switch (currency) {
                     case 'ETH':
                         const priceInETH = await eth.USDtoETH(plan.price)
-                        if(priceInETH>user.demoBalance.eth) return res.status(400).json({msg:'no sufficient balance'})
+                        if(priceInETH>user.demoBalance.eth) return res.status(400).json({ message:'no sufficient balance'})
                         await mUser.UpdateDemoBalance(userID,currency,-priceInETH)
                         break;
                     case 'BTC':

@@ -1,5 +1,5 @@
 const mAsic = require('../models/mAsic')
-
+let coins = ["ETH","BTC"]
 exports.postAddAsic = async (req,res)=>{
     try{
         const {
@@ -10,7 +10,7 @@ exports.postAddAsic = async (req,res)=>{
             price,
             hostFees,
         } = req.body
-            if(asicName&&cryptoName&&algorithm&&hashPower&&price&&hostFees){
+            if(asicName&&coins.includes(cryptoName)&&algorithm&&hashPower&&price&&hostFees){
                     let asic = await mAsic.addAsic({
                         asicName:asicName,
                         cryptoName:cryptoName,
@@ -48,7 +48,7 @@ exports.getGetAsicByID = async (req,res)=>{
 exports.getGetAsics =async (req,res) =>{
     try{
         const {cryptoName} = req.query
-        if(cryptoName){
+        if(coins.includes(cryptoName)){
             const asics = await mAsic.getAsics(cryptoName)
             if(asics[0]){
                res.status(200).json({asics})
@@ -75,7 +75,7 @@ exports.putUpdateAsic = async (req,res)=>{
             hostFees,
             availability,
         } = req.body
-            if(id&&asicName&&cryptoName&&algorithm&&hashPower&&price&&hostFees){
+            if(id&&asicName&&coins.includes(cryptoName)&&algorithm&&hashPower&&price&&hostFees){
                     let asic = await mAsic.updateAsic(id,{
                         asicName:asicName,
                         cryptoName:cryptoName,
