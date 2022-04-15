@@ -208,7 +208,7 @@ exports.postAddPlanContract = async (req,res)=>{
                         // run userProfitCalculator
                         //Add_ETH_Profit(planContract)
                         //==============
-                        res.sendStatus(201)
+                        res.sendStatus(200)
                     }else{
                         res.sendStatus(400)
                     }
@@ -275,7 +275,7 @@ exports.postAddDemoPlanContract = async (req,res)=>{
                         //await Add_ETH_demoProfit(demoPlanContract)
 
                         //=====
-                        res.sendStatus(201)
+                        res.sendStatus(200)
                     }else{
                         res.status(400).send("U reached the max Number of demo plans")
                     }

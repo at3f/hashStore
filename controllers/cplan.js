@@ -35,7 +35,7 @@ exports.postAddPlan = async (req,res)=>{
                         availability:true
                     })
                         if(plan){
-                            res.sendStatus(201)
+                            res.sendStatus(200)
                         }else{
                             res.sendStatus(400)
                         }

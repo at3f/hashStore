@@ -23,7 +23,7 @@ exports.postRegister = async (req,res)=>{
     if(userName&&email&&password&&phone){
        let user = await mUser.register(userName,email,phone,password)
        if(user.email){
-           res.sendStatus(201)
+           res.sendStatus(200)
        }else{
            res.status(400).json(user)
        }
@@ -101,7 +101,7 @@ exports.UpdatePassword = async(req,res)=>{
     const { password, newPassword } = req.body;
     const id = req.user.id
     if(id&&password&&newPassword){
-        if(await mUser.update(id,password,newPassword)) res.sendStatus(201)
+        if(await mUser.update(id,password,newPassword)) res.sendStatus(200)
         else{
             res.status(402).send({message:'right old Password is required'})
         }
@@ -159,7 +159,7 @@ exports.resetPassword = async (req,res)=>{
     const id = req.user.id
     if(newPassword&&id){
         let newUser = await mUser.updateNewPassword(id,newPassword)
-        if(newUser) res.sendStatus(201)
+        if(newUser) res.sendStatus(200)
     }else{
         res.sendStatus(400)
     }

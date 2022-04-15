@@ -20,7 +20,7 @@ exports.postAddAsic = async (req,res)=>{
                         hostFees:hostFees
                     })
                         if(asic){
-                            res.sendStatus(201)
+                            res.sendStatus(200)
                         }else{
                             res.sendStatus(400)
                         }
@@ -51,7 +51,7 @@ exports.getGetAsics =async (req,res) =>{
         if(coins.includes(cryptoName)){
             const asics = await mAsic.getAsics(cryptoName)
             if(asics[0]){
-               res.status(200).json({asics})
+               res.status(200).json(asics)
             }else{
                 res.sendStatus(400)
             }
