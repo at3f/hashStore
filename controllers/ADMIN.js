@@ -56,7 +56,7 @@ exports.ADMINlogin = async (req,res)=>{
             let jwt = await jtoken.getAccessToken_RefreshToken(process.env.adminID)
             ADMINrefreshToken = jwt.refreshToken
             console.log(ADMINrefreshToken)
-            res.status(202).json({jwt})
+            res.status(200).json({jwt})
         }else{
             res.status(400).json( {message:'Wrong OTP'})
         }
@@ -76,7 +76,7 @@ exports.getNewAccessToken = async (req,res)=>{
     }
     const x = await jtoken.getNewAccessTokenByRefreshToken(token)
     if(!x) return res.sendStatus(401);
-    res.status(202).json({accessToken:x})
+    res.status(200).json({accessToken:x})
 }
 
 exports.ADMINLogout = (req, res) => {
@@ -86,5 +86,5 @@ exports.ADMINLogout = (req, res) => {
     }
     ADMINrefreshToken = ""
     console.log(ADMINrefreshToken)
-    res.sendStatus(202)
+    res.sendStatus(200)
 };
