@@ -10,12 +10,12 @@ exports.withdraw = async (amount,currency,address)=>{
         amount:amount,
         currency: currency,
         address:address,
-        ipn_url:'https://cominer.herokuapp.com/api/withdraw'
+        ipn_url:'https://cominer.herokuapp.com/api/transaction/withdraw'
     })
 }
 exports.getDepositAddress = async currency=>{
     return await client.getCallbackAddress({
         currency: currency,
-        ipn_url:'https://cominer.herokuapp.com/api/deposit'
+        ipn_url:'https://cominer.herokuapp.com/api/transaction/deposit'
     })
 }

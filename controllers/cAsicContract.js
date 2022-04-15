@@ -43,7 +43,7 @@ exports.postAddAsicContract = async (req,res)=>{
                 asicID:asicID,
                 hostFees:asic.hostFees
             })
-            if(asicContract)res.sendStatus(201)
+            if(asicContract)res.sendStatus(200)
             else res.sendStatus(400)
         }else{
             res.sendStatus(400)
@@ -65,7 +65,7 @@ exports.activateAsicContarct = async (req,res)=>{
             })
             if(asicContract){
                 await mUser.UpdateActiveAsics(asicContract.userID,1)
-                res.sendStatus(201)
+                res.sendStatus(200)
             }
             else res.sendStatus(400)
         }else{
@@ -83,7 +83,7 @@ exports.endAsicContract = async(req,res)=>{
             let asicContract = await mAsicContarct.expirationON(contractID)
             if(asicContract){
                 await mUser.UpdateActiveAsics(asicContract.userID,-1)
-                res.sendStatus(201)
+                res.sendStatus(200)
             }
             else res.sendStatus(400)
         }else{

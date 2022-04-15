@@ -50,6 +50,7 @@ exports.depositNotification = async (req, res) => {
     let fStatus
     let deposit =await mTransaction.getDeposit(deposit_id)
     let userID = await mUser.getUserIDByAddress(currency,address)
+    if(status==="100"&&deposit&&deposit.transactionStatus!=="SUCCESS") await mUser.UpdateBalance(userID,currency,amount)
     status==="100"?fStatus="SUCCESS":fStatus="PENDING"
     if(status==="100") await mUser.UpdateBalance(userID,currency,amount)
     if(!deposit){
@@ -67,7 +68,6 @@ exports.depositNotification = async (req, res) => {
     await mTransaction.UpdateDeposit(deposit._id,{
         transactionStatus:fStatus
     })
-    if(status==="100") await mUser.UpdateBalance(userID,currency,amount)
     res.end()
 }
 
