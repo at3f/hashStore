@@ -1,6 +1,7 @@
 const COINPAYMENT = require('./COINPAYMENT')
 const mTransaction = require('../models/mTransaction')
 const mUser = require('../models/mUser')
+const mAsicContarct = require('../models/mAsicContract')
 const { verify } = require('coinpayments-ipn')
 
 let coins = ["ETH","LTCT","BTC"]
@@ -15,6 +16,13 @@ exports.getDepositAddress = async (req,res)=>{
         await mUser.setAddress(userID,userAddress,currency)
     }
     res.status(200).json({address:userAddress})
+}
+
+exports.getDepositAddressForAsicContarct = async (req,res)=>{
+    const currency = req.query.currency
+    if(!coins.includes(currency)) return res.sendStatus(400)
+    let asicContractAddress = (await COINPAYMENT.getDepositAddressForAsicContract(currency)).address
+    res.status(200).json({address:asicContractAddress})
 }
 
 exports.getDeposits = async (req,res)=>{
@@ -59,7 +67,8 @@ exports.depositNotification = async (req, res) => {
             currency:currency,
             transactionStatus:fStatus,
             txn_id:txn_id,
-            userID:userID
+            userID:userID,
+            depositSource:"USER"
         })
         return res.end()
     }
@@ -67,6 +76,33 @@ exports.depositNotification = async (req, res) => {
         transactionStatus:fStatus
     })
     if(status==="100") await mUser.UpdateBalance(userID,currency,amount)
+    res.end()
+}
+
+exports.depositNotificationForAsicContract = async (req, res) => {
+    const {address,amount,currency,deposit_id,status,txn_id} = req.body
+    let profit = (+amount-(asicContract.hostFees/100)*(+amount))
+    let fStatus
+    let deposit =await mTransaction.getDeposit(deposit_id)
+    let asicContract = await mAsicContarct.getAsicContarctByAddress(address)
+    status==="100"?fStatus="SUCCESS":fStatus="PENDING"
+    if(!deposit){
+        if(!asicContract) return res.end()
+        await mTransaction.addDeposit({
+            _id:deposit_id,
+            amount:profit,
+            currency:currency,
+            transactionStatus:fStatus,
+            txn_id:txn_id,
+            userID:asicContract.userID,
+            depositSource:"ASIC"
+        })
+        return res.end()
+    }
+    await mTransaction.UpdateDeposit(deposit._id,{
+        transactionStatus:fStatus
+    })
+    if(status==="100") await mUser.UpdateBalance(userID,currency,profit)
     res.end()
 }
 

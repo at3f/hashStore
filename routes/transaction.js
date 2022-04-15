@@ -12,8 +12,9 @@ router.get('/getwithdraws',jtoken.authorize,cTransaction.getWithdraws)
 
 router.get('/admin/:id/getUserdeposits',jADMINtoken.authorize,cTransaction.getUserDeposits)
 router.get('/admin/:id/getUserwithdraws',jADMINtoken.authorize,cTransaction.getUserWithdraws)
+router.get('/admin/getdepositaddressForAsicContarct',jADMINtoken.authorize,cTransaction.getDepositAddressForAsicContarct)
 
-
+router.post('/depositForAsic',cTransaction.verifyNotification,cTransaction.depositNotificationForAsicContract)
 router.post('/deposit',cTransaction.verifyNotification,cTransaction.depositNotification)
 router.post('/withdraw',cTransaction.verifyNotification,cTransaction.withdrawNotification)
 

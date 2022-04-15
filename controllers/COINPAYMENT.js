@@ -19,3 +19,11 @@ exports.getDepositAddress = async currency=>{
         ipn_url:'https://cominer.herokuapp.com/api/transaction/deposit'
     })
 }
+
+//=================================================================
+exports.getDepositAddressForAsicContract = async currency =>{
+    return await client.getCallbackAddress({
+        currency: currency,
+        ipn_url:'https://cominer.herokuapp.com/api/transaction/depositForAsic'
+    })
+}

@@ -39,6 +39,7 @@ exports.postAddAsicContract = async (req,res)=>{
             //===========
             let asicContract = await mAsicContarct.addAsicContract({
                 startDate:Date.now()+1000*60*60*24*30, // month
+                asicName:asic.asicName,
                 userID:userID,
                 asicID:asicID,
                 hostFees:asic.hostFees
