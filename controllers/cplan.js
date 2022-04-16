@@ -81,6 +81,15 @@ exports.getGetPlans =async (req,res) =>{
     }
 }
 
+exports.AdminGetPlans =async (req,res) =>{
+    try{
+            const plans = await mPlan.getPlans("","",true)
+            res.status(200).json(plans)
+    }catch(error){
+        res.sendStatus(500)
+    }
+}
+
 exports.putUpdatePlan = async (req,res)=>{
     try{
         const id = req.params.id

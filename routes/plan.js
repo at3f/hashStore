@@ -6,7 +6,7 @@ const jADMINtoken = require('../controllers/ADMINJWT')
 
 router.post('/add',jADMINtoken.authorize,cPlan.postAddPlan)//Admin
 router.get('/',jtoken.authorize,cPlan.getGetPlans)
-router.get('/admin',jADMINtoken.authorize,cPlan.getGetPlans)
+router.get('/admin',jADMINtoken.authorize,cPlan.AdminGetPlans)//Admin
 router.get('/:id',jADMINtoken.authorize,cPlan.getGetPlanByID)//Admin
 router.put('/update/:id',jADMINtoken.authorize,cPlan.putUpdatePlan)//Admin
 router.delete('/delete/:id',jADMINtoken.authorize,cPlan.deleteDeletePlan)//Admin
