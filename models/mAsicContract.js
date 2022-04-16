@@ -50,7 +50,7 @@ exports.getAsicsContract_notneedActivation = async ()=>{
 
 exports.getAsicContarctByAddress = async (address)=>{
     try {
-        return await AsicContract.find({address:address})
+        return await AsicContract.findOne({address:address})
     } catch (error) {
         console.log(error)
     }

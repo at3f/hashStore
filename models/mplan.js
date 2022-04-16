@@ -22,8 +22,9 @@ exports.addPlan = async (data) =>{
             console.log(error)
         }
 }
-exports.getPlans = async (planType,cryptoName) =>{
+exports.getPlans = async (planType,cryptoName,admin=false) =>{
     try{
+        if(admin) return await Plan.find()
         return await Plan.find({cryptoName:cryptoName,planType:planType})
     }catch(error){
         console.log(error)

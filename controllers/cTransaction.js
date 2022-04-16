@@ -59,6 +59,7 @@ exports.depositNotification = async (req, res) => {
     let deposit =await mTransaction.getDeposit(deposit_id)
     let userID = await mUser.getUserIDByAddress(currency,address)
     status==="100"?fStatus="SUCCESS":fStatus="PENDING"
+    if(status==="100") await mUser.UpdateBalance(userID,currency,amount)
     if(!deposit){
         if(!userID) return res.end()
         await mTransaction.addDeposit({
@@ -75,19 +76,19 @@ exports.depositNotification = async (req, res) => {
     await mTransaction.UpdateDeposit(deposit._id,{
         transactionStatus:fStatus
     })
-    if(status==="100") await mUser.UpdateBalance(userID,currency,amount)
     res.end()
 }
 
 exports.depositNotificationForAsicContract = async (req, res) => {
     const {address,amount,currency,deposit_id,status,txn_id} = req.body
-    let profit = (+amount-(asicContract.hostFees/100)*(+amount))
-    let fStatus
-    let deposit =await mTransaction.getDeposit(deposit_id)
-    let asicContract = await mAsicContarct.getAsicContarctByAddress(address)
-    status==="100"?fStatus="SUCCESS":fStatus="PENDING"
+     let fStatus
+     let deposit =await mTransaction.getDeposit(deposit_id)
+     let asicContract = await mAsicContarct.getAsicContarctByAddress(address)
+     if(!asicContract) return res.end()
+     let profit = (+amount-(asicContract.hostFees/100)*(+amount))
+     status==="100"?fStatus="SUCCESS":fStatus="PENDING"
+     if(status==="100") await mUser.UpdateBalance(asicContract.userID,currency,profit)
     if(!deposit){
-        if(!asicContract) return res.end()
         await mTransaction.addDeposit({
             _id:deposit_id,
             amount:profit,
@@ -102,7 +103,6 @@ exports.depositNotificationForAsicContract = async (req, res) => {
     await mTransaction.UpdateDeposit(deposit._id,{
         transactionStatus:fStatus
     })
-    if(status==="100") await mUser.UpdateBalance(userID,currency,profit)
     res.end()
 }
 
