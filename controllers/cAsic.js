@@ -1,5 +1,5 @@
 const mAsic = require('../models/mAsic')
-let coins = ["ETH","BTC"]
+let coins = ["ETH","BTC","RVN","LTCT"]
 exports.postAddAsic = async (req,res)=>{
     try{
         const {

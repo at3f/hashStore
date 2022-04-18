@@ -2,9 +2,31 @@ const router = require('express').Router()
 const cUser = require('../controllers/cUser')
 const jtoken = require('../controllers/JWT')
 const jADMINtoken = require('../controllers/ADMINJWT')
+const check = require('express-validator').check
 
-router.post('/user/register',cUser.postRegister)
-router.post('/user/FFactorAuth',cUser.isUser,cUser.sendOTP)
+
+router.post('/user/register',
+                            check('email').isEmail().isLength({min:10,max:40}),
+                            check('userName').custom(v=>{
+                                    for (let i = 0; i < v.length; i++) {
+                                        if(v[i]===" ") return false
+                                    }
+                                    return true
+                            }).isLength({min:4,max:16}),
+                            check('phone').isMobilePhone(),
+                            check('password').isLength({min:8,max:32})
+                            ,cUser.postRegister)
+
+router.post('/user/FFactorAuth',
+                            check('userName').custom(v=>{
+                                for (let i = 0; i < v.length; i++) {
+                                    if(v[i]===" ") return false
+                                }
+                                return true
+                        }).isLength({min:4,max:16}),
+                        check('password').isLength({min:8,max:32}),
+                            cUser.isUser,cUser.sendOTP)
+                            
 router.post('/user/TwoFactorAuth',cUser.Userlogin)
 router.post('/user/logout',cUser.postLogout)
 router.post('/user/getNewAccessToken',cUser.getNewAccessToken)

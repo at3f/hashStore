@@ -10,6 +10,7 @@ const getETHPlansHashPower = async (plans,type)=>{
         PlansHashPower.push({planid:(plans[i]._id).toString(),hashrate:PlanHash})
     }
     return PlansHashPower
+    //=====================ONLY ETH===========================
 }
 
 exports.postAddPlan = async (req,res)=>{
@@ -83,8 +84,8 @@ exports.getGetPlans =async (req,res) =>{
 
 exports.GetPlans =async (req,res) =>{
     try{
-            const plans = await mPlan.getPlans()
-            res.status(200).json(plans)
+        const plans = await mPlan.getPlans("","",true)
+        res.status(200).json(plans)
     }catch(error){
         res.sendStatus(500)
     }
