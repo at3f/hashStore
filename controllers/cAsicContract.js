@@ -44,7 +44,7 @@ exports.postAddAsicContract = async (req,res)=>{
                 asicID:asicID,
                 hostFees:asic.hostFees
             })
-            if(asicContract)res.sendStatus(200)
+            if(asicContract)res.status(200).json({})
             else res.sendStatus(400)
         }else{
             res.sendStatus(400)

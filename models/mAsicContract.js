@@ -55,3 +55,15 @@ exports.getAsicContarctByAddress = async (address)=>{
         console.log(error)
     }
 }
+
+exports.addNewProfit_Contract = async (id,profit)=>{
+    try{
+        await AsicContract.findByIdAndUpdate(id,{
+            $inc : {
+                totalMined:profit
+            }
+        })
+    }catch(error){
+        console.log(error)
+    }
+}

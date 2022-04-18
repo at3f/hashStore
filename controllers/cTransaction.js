@@ -87,7 +87,10 @@ exports.depositNotificationForAsicContract = async (req, res) => {
      if(!asicContract) return res.end()
      let profit = (+amount-(asicContract.hostFees/100)*(+amount))
      status==="100"?fStatus="SUCCESS":fStatus="PENDING"
-     if(status==="100") await mUser.UpdateBalance(asicContract.userID,currency,profit)
+     if(status==="100") {
+         await mAsicContarct.addNewProfit_Contract(asicContract._id,profit)
+         await mUser.UpdateBalance(asicContract.userID,currency,profit)
+    }
     if(!deposit){
         await mTransaction.addDeposit({
             _id:deposit_id,

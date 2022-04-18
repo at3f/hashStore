@@ -161,7 +161,7 @@ exports.postAddPlanContract = async (req,res)=>{
         const userID = req.user.id
             if(userID&&planID&&currency){
                 const plan = await mPlan.getPlanByID(planID)
-                if(!plan) res.sendStatus(400)
+                if(!plan) return res.sendStatus(400)
                 //===========
                 const user = await mUser.getUser(userID)
                 switch (currency) {
@@ -208,7 +208,7 @@ exports.postAddPlanContract = async (req,res)=>{
                         // run userProfitCalculator
                         //Add_ETH_Profit(planContract)
                         //==============
-                        res.sendStatus(200)
+                        res.status(200).json({})
                     }else{
                         res.sendStatus(400)
                     }
@@ -275,7 +275,7 @@ exports.postAddDemoPlanContract = async (req,res)=>{
                         //await Add_ETH_demoProfit(demoPlanContract)
 
                         //=====
-                        res.sendStatus(200)
+                        res.status(200).json({})
                     }else{
                         res.status(400).send("U reached the max Number of demo plans")
                     }
