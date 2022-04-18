@@ -12,11 +12,14 @@ let userSchema = mongoose.Schema({
     phone:{type:String,required:true,unique:true},
     password:{type:String,required:true},
     balance:{
+        rvn:{type:Number,default:0},
         ltct:{type:Number,default:0},
         eth:{type:Number,default:0},
         btc:{type:Number,default:0}
     },
     demoBalance:{
+        rvn:{type:Number,default:0},
+        ltct:{type:Number,default:0},
         eth:{type:Number,default:0},
         btc:{type:Number,default:0}
     },
@@ -25,6 +28,7 @@ let userSchema = mongoose.Schema({
     devices:{type:Number,default:0},
     OTP:{type:String},
     depositAddress:{
+        rvn:{type:String},
         ltct:{type:String},
         eth:{type:String},
         btc:{type:String}
@@ -72,6 +76,7 @@ let asicContractSchema = mongoose.Schema({
     asicName:{type:String,required:true},
     asicStatus:{type:Boolean,default:false},  //status:false = On-demand but not working
     expired:{type:Boolean,default:false},
+    totalMined:{type:Number,default:0},
     startDate:{type:Date}, 
     address:{type:String},
     workerID:{type:String},

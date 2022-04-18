@@ -1,7 +1,7 @@
 const mPlan = require('../models/mplan')
 const eth = require('./ETH')
 
-let coins = ["ETH","BTC"]
+let coins = ["ETH","BTC","RVN","LTCT"]
 
 const getETHPlansHashPower = async (plans,type)=>{
     const PlansHashPower = []
@@ -81,9 +81,9 @@ exports.getGetPlans =async (req,res) =>{
     }
 }
 
-exports.AdminGetPlans =async (req,res) =>{
+exports.GetPlans =async (req,res) =>{
     try{
-            const plans = await mPlan.getPlans("","",true)
+            const plans = await mPlan.getPlans()
             res.status(200).json(plans)
     }catch(error){
         res.sendStatus(500)
@@ -94,7 +94,7 @@ exports.putUpdatePlan = async (req,res)=>{
     try{
         const id = req.params.id
         const {planType,planName,cryptoName,
-            algorithm,planDuration,profitability,price} = req.body
+            algorithm,planDuration,profitability,price,availability} = req.body
             if(id&&planType&&planName&&coins.includes(cryptoName)&&
                 algorithm&&planDuration&&profitability&&price){
                     let plan = await mPlan.updatePlan(id,{
@@ -104,7 +104,8 @@ exports.putUpdatePlan = async (req,res)=>{
                         algorithm:algorithm,
                         planDuration:planDuration,
                         profitability:profitability,
-                        price:price
+                        price:price,
+                        availability:availability
                     })
                         if(plan){
                             res.sendStatus(200)

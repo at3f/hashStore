@@ -23,7 +23,7 @@ exports.postRegister = async (req,res)=>{
     if(userName&&email&&password&&phone){
        let user = await mUser.register(userName,email,phone,password)
        if(user.email){
-           res.sendStatus(200)
+           res.status(200).json({})
        }else{
            res.status(400).json(user)
        }
@@ -81,7 +81,7 @@ exports.postLogout = (req, res) => {
     }
     refreshTokens = refreshTokens.filter(t => t !== token);
     console.log(refreshTokens)
-    res.sendStatus(200)
+    res.status(200).json({})
 };
 
 exports.getNewAccessToken = async (req,res)=>{

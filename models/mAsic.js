@@ -11,7 +11,7 @@ exports.addAsic = async (data) =>{
 }
 exports.getAsics = async cryptoName =>{
     try{
-        return await Asic.find({cryptoName:cryptoName})
+        return await Asic.find()
     }catch(error){
         console.log(error)
     }

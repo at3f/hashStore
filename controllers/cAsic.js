@@ -47,17 +47,12 @@ exports.getGetAsicByID = async (req,res)=>{
 
 exports.getGetAsics =async (req,res) =>{
     try{
-        const {cryptoName} = req.query
-        if(coins.includes(cryptoName)){
-            const asics = await mAsic.getAsics(cryptoName)
+            const asics = await mAsic.getAsics()
             if(asics[0]){
                res.status(200).json(asics)
             }else{
                 res.sendStatus(400)
             }
-        }else{
-            res.sendStatus(400)
-        }
     }catch(error){
         res.sendStatus(500)
     }
