@@ -171,8 +171,13 @@ exports.postAddPlanContract = async (req,res)=>{
                         await mUser.UpdateBalance(userID,currency,-priceInETH)
                         break;
                     case 'BTC':
-                        // wait to BTC calc
+                        const priceInBTC = await eth.USDtoBTC(plan.price)
+                        if(priceInBTC>user.balance.btc) return res.status(400).json({ message:'no sufficient balance'})
+                        await mUser.UpdateBalance(userID,currency,-priceInBTC)
                         break;
+                    default:
+                        return res.sendStatus(400)
+                        break
                 }
                 //===========
                 const sec = 1000,
@@ -236,7 +241,9 @@ exports.postAddDemoPlanContract = async (req,res)=>{
                         await mUser.UpdateDemoBalance(userID,currency,-priceInETH)
                         break;
                     case 'BTC':
-                        // wait to BTC calc
+                        const priceInBTC = await eth.USDtoBTC(plan.price)
+                        if(priceInBTC>user.demoBalance.btc) return res.status(400).json({ message:'no sufficient balance'})
+                        await mUser.UpdateDemoBalance(userID,currency,-priceInBTC)
                         break;
                 }
                 //===========

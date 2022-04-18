@@ -30,4 +30,12 @@ exports.USDtoETH = async (usd)=>{
     return usd/etherPriceInUSD
 }
 
+
+
+exports.USDtoBTC = async (usd)=>{
+    var btc = await fetch('https://api.blockchain.com/v3/exchange/tickers/BTC-USD')
+    const btcPriceInUSD = (await btc.json()).last_trade_price
+    return usd/btcPriceInUSD
+}
+
 exports.calculateETHProfitability = calculateETHProfitability

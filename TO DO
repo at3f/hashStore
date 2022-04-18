@@ -16,13 +16,9 @@
 #===============================================================
 #===============================================================
 
-#status from pool
+#asicContract clicked to pool with address  !!!!IMPORTANT
 
-#coins RVN LTCT
-#total mined asicContract
 #data validation
-
-#asicContracts==> get payouts by address or workerID
 
 #btc calculator
 #real contract manager

@@ -1,6 +1,7 @@
 const mUser = require('../models/mUser')
 const jtoken = require('./JWT')
 const MAAS = require('./MAAS')
+const validationResult = require('express-validator').validationResult
 
 let refreshTokens = []
 const unsetotp = async userName=>{
@@ -20,6 +21,7 @@ const generatePassword = async ()=> {
 
 exports.postRegister = async (req,res)=>{
     const { userName,email,phone, password } = req.body;
+    if(!validationResult(req).isEmpty()) return res.status(400).json(validationResult(req))
     if(userName&&email&&password&&phone){
        let user = await mUser.register(userName,email,phone,password)
        if(user.email){
