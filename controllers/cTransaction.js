@@ -2,6 +2,7 @@ const COINPAYMENT = require('./COINPAYMENT')
 const mTransaction = require('../models/mTransaction')
 const mUser = require('../models/mUser')
 const mAsicContarct = require('../models/mAsicContract')
+const mAsic = require('../models/mAsic')
 const { verify } = require('coinpayments-ipn')
 
 let coins = ["ETH","LTCT","BTC"]
@@ -19,8 +20,9 @@ exports.getDepositAddress = async (req,res)=>{
 }
 
 exports.getDepositAddressForAsicContarct = async (req,res)=>{
-    const currency = req.query.currency
-    if(!coins.includes(currency)) return res.sendStatus(400)
+    const asicID = req.query.asicID
+    if(!asicID) res.sendStatus(400)
+    const currency = (await mAsic.getAsicByID(asicID)).cryptoName
     let asicContractAddress = (await COINPAYMENT.getDepositAddressForAsicContract(currency)).address
     res.status(200).json({address:asicContractAddress})
 }

@@ -89,3 +89,11 @@ exports.getActiveContracts = async()=>{
         console.log(error)
     }
 }
+
+exports.totalPlanContarcts = async ()=>{
+    try {
+        return await PlanContract.countDocuments({demo:false})
+    } catch (error) {
+        console.log(error)
+    }
+}

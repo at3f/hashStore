@@ -2,6 +2,15 @@ const mADMIN = require('../models/ADMIN')
 const jtoken = require('./ADMINJWT')
 const MAAS = require('./MAAS')
 
+const mUser = require('../models/mUser')
+const mPlan = require('../models/mPlan')
+const mAsic = require('../models/mAsic')
+const mPlanContract = require('../models/mPlanContract')
+const mAsicContract = require('../models/mAsicContract')
+const mTransaction = require('../models/mTransaction')
+
+const COINPAYMENT = require('../controllers/COINPAYMENT')
+
 // exports.test = async (req,res)=>{
 //     await mADMIN.testR(req.body.email,req.body.password)
 //     res.sendStatus(200)
@@ -88,3 +97,31 @@ exports.ADMINLogout = (req, res) => {
     console.log(ADMINrefreshToken)
     res.sendStatus(200)
 };
+
+exports.getOverViewData = async (req, res) =>{
+    const balances = await COINPAYMENT.getBalances()
+    const totalUsers = await mUser.totalUsers()
+    const totalPlans = await mPlan.totalPlans()
+    const totalAsics = await mAsic.totalAsics()
+    const totalPlanContarcts = await mPlanContract.totalPlanContarcts()
+    const totalActiveAsicContarcts = await mAsicContract.totalActiveAsicContarcts()
+    const totalAsicContarctsOnDemand = await mAsicContract.totalAsicContarctsOnDemand()
+    const totalWithdrawals = await mTransaction.totalWithdrawals()
+    const totalDeposits = await mTransaction.totalDeposits()
+    const planSubscribtion = await mPlan.planSubscribtion()
+    const asicSubscribtion = await mAsic.asicSubscribtion()
+    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    res.status(200).json({
+                            balances:balances,
+                            totalUsers:totalUsers,
+                            totalPlans:totalPlans,
+                            totalAsics:totalAsics,
+                            totalPlanContarcts:totalPlanContarcts,
+                            totalActiveAsicContarcts:totalActiveAsicContarcts,
+                            totalAsicContarctsOnDemand:totalAsicContarctsOnDemand,
+                            totalWithdrawals:totalWithdrawals,
+                            totalDeposits:totalDeposits,
+                            planSubscribtion:planSubscribtion,
+                            asicSubscribtion,asicSubscribtion
+                        })
+}

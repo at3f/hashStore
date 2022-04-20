@@ -37,3 +37,27 @@ exports.deleteAsic = async id =>{
         console.log(error)
     }
 }
+exports.totalAsics = async ()=>{
+    try {
+        return await Asic.countDocuments()
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+exports.asicSubscribtion = async ()=>{
+    return await Asic.aggregate([
+    { "$addFields": { "asicID": { "$toString": "$_id" }}},
+    { "$lookup": {
+      "from": "asiccontracts",
+      "localField": "asicID",
+      "foreignField": "asicID",
+      "as": "output"
+    }},{
+       $project:{
+         _id:0,
+         asicName: 1,
+         numOfSubscribtions: {"$size": "$output"},
+       }
+     }])
+}

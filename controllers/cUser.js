@@ -130,6 +130,11 @@ exports.getUserData = async (req,res)=>{
     if(user)res.status(200).json(user)
 }
 
+exports.getUserDataForAdmin = async (req,res)=>{
+    let user =await mUser.getUser(req.params.id)
+    if(user)res.status(200).json(user)
+}
+
 //=======================================================================
 exports.sendCode = async (req,res) =>{
     const email = req.body.email

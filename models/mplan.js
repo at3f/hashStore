@@ -53,3 +53,29 @@ exports.deletePlan = async id =>{
 }
 
 //======================================================
+exports.totalPlans = async ()=>{
+    try {
+        return await Plan.countDocuments()
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+exports.planSubscribtion = async ()=>{
+     return await Plan.aggregate([
+     { "$addFields": { "planID": { "$toString": "$_id" }}},
+     { "$lookup": {
+       "from": "plancontracts",
+       "localField": "planID",
+       "foreignField": "planID",
+       "as": "output"
+     }},{
+        $project:{
+          _id:0,
+          planName: 1,
+          planType:1,
+          cryptoName:1,
+          numOfSubscribtions: {"$size": "$output"},
+        }
+      }])
+}
