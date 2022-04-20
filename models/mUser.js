@@ -225,9 +225,6 @@ exports.getUser = async id =>{
             __v: false,
             _id:false,
             password: false,
-            email: false,
-            phone:false,
-            createdAt:false,
             updatedAt:false,
             depositAddress:false
         };    
@@ -277,7 +274,6 @@ exports.getAllUsers = async ()=>{
         var usersProjection = { 
             __v: false,
             password: false,
-            createdAt:false,
         };
         return (await User.find({},usersProjection))
     } catch (error) {
@@ -335,6 +331,14 @@ exports.getUserIDByAddress = async (currency,address) =>{
                 return (await User.findOne({'depositAddress.ltct':address}))._id
                 break;
         }
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+exports.totalUsers = async ()=>{
+    try {
+        return await User.countDocuments()
     } catch (error) {
         console.log(error)
     }

@@ -55,3 +55,19 @@ exports.getWithdraws = async userID =>{
         console.log(error)
     }
 }
+
+exports.totalWithdrawals = async ()=>{
+    try {
+        return await Withdraw.countDocuments()
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+exports.totalDeposits = async ()=>{
+    try {
+        return await Deposit.countDocuments({depositSource:"USER"})
+    } catch (error) {
+        console.log(error)
+    }
+}

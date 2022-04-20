@@ -67,3 +67,19 @@ exports.addNewProfit_Contract = async (id,profit)=>{
         console.log(error)
     }
 }
+
+
+exports.totalActiveAsicContarcts = async () =>{
+    try{
+        return await AsicContract.countDocuments({asicStatus:true})
+    }catch(error){
+        console.log(error)
+    }
+}
+exports.totalAsicContarctsOnDemand = async () =>{
+    try{
+        return await AsicContract.countDocuments({asicStatus:false,expired:false})
+    }catch(error){
+        console.log(error)
+    }
+}
