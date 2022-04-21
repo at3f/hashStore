@@ -5,7 +5,7 @@ const mAsicContarct = require('../models/mAsicContract')
 const mAsic = require('../models/mAsic')
 const { verify } = require('coinpayments-ipn')
 
-let coins = ["ETH","LTCT","BTC"]
+let coins = ["ETH","LTCT","BTC","RVN"]
 
 exports.getDepositAddress = async (req,res)=>{
     const currency = req.query.currency

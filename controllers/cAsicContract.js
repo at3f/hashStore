@@ -138,6 +138,6 @@ exports.getAsicContarctPayouts = async (req,res)=>{
     const userID = req.user.id
     const asicContractID = req.params.id
     if(!asicContractID || !userID) res.sendStatus(400)
-    const payouts = await mTransaction.getPayouts()
+    const payouts = await mTransaction.getPayouts(userID,asicContractID)
     res.status(200).json(payouts)
 }
