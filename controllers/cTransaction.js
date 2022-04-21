@@ -101,7 +101,8 @@ exports.depositNotificationForAsicContract = async (req, res) => {
             transactionStatus:fStatus,
             txn_id:txn_id,
             userID:asicContract.userID,
-            depositSource:"ASIC"
+            depositSource:asicContract.asicName,
+            asicContractID:asicContract._id
         })
         return res.end()
     }

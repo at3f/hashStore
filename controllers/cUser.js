@@ -40,10 +40,10 @@ exports.isUser = async (req,res,next)=>{
         if((await mUser.isUser(userName, password))){
             next()
         }else{
-            res.json({message:'Wrong credentials'})
+            res.status(400).json({message:'Wrong credentials'})
         }
     }else{
-        res.status(403).json({message:'Wrong credentials'})
+        res.status(400).json({message:'Wrong credentials'})
     }
 }
 exports.sendOTP = async (req,res)=>{

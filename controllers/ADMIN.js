@@ -3,7 +3,7 @@ const jtoken = require('./ADMINJWT')
 const MAAS = require('./MAAS')
 
 const mUser = require('../models/mUser')
-const mPlan = require('../models/mPlan')
+const mPlan = require('../models/mplan')
 const mAsic = require('../models/mAsic')
 const mPlanContract = require('../models/mPlanContract')
 const mAsicContract = require('../models/mAsicContract')

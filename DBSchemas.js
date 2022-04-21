@@ -91,7 +91,8 @@ let depositSchema = mongoose.Schema({
     currency:{type:String,required:true},
     transactionStatus:{type:String,required:true},
     txn_id:{type:String,required:true},
-    userID:{type:String,required:true}
+    userID:{type:String,required:true},
+    asicContractID:{type:String},
 }, { timestamps: true })
 
 let withdrawSchema = mongoose.Schema({
