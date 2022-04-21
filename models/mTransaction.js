@@ -71,3 +71,11 @@ exports.totalDeposits = async ()=>{
         console.log(error)
     }
 }
+
+exports.getPayouts = async (userID,asicContractID)=>{
+    try {
+        return await Deposit.find({userID:userID,asicContractID:asicContractID})
+    } catch (error) {
+        console.log(error)
+    }
+}

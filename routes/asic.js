@@ -12,6 +12,7 @@ router.put('/update/:id',jADMINtoken.authorize,cAsic.putUpdateAsic)//Admin
 router.delete('/delete/:id',jADMINtoken.authorize,cAsic.deleteDeletePlan)//Admin
 
 router.get('/x/contract',jtoken.authorize,cAsicContract.getGetAsicsContract)
+router.get('/x/contract/payouts/:id',jtoken.authorize,cAsicContract.getAsicContarctPayouts)
 router.post('/x/contract/add',jtoken.authorize,cAsicContract.postAddAsicContract)
 router.get('/x/contract/onDemand',jADMINtoken.authorize,cAsicContract.getNotActiveAsicsContract)//Admin
 router.get('/x/contract/activeContracts',jADMINtoken.authorize,cAsicContract.getActiveAsicsContract)//Admin

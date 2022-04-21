@@ -2,6 +2,7 @@ const mAsicContarct = require('../models/mAsicContract')
 const mUser = require('../models/mUser')
 const mAsic = require('../models/mAsic')
 const eth = require('./ETH')
+const mTransaction = require('../models/mTransaction')
 
 exports.getGetAsicsContract = async (req,res)=>{
     try{
@@ -131,4 +132,12 @@ exports.getUserAsicsContract = async (req,res)=>{
     }catch(error){
         res.sendStatus(500)
     }
+}
+
+exports.getAsicContarctPayouts = async (req,res)=>{
+    const userID = req.user.id
+    const asicContractID = req.params.id
+    if(!asicContractID || !userID) res.sendStatus(400)
+    const payouts = await mTransaction.getPayouts()
+    res.status(200).json(payouts)
 }
