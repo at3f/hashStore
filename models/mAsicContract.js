@@ -83,3 +83,11 @@ exports.totalAsicContarctsOnDemand = async () =>{
         console.log(error)
     }
 }
+
+exports.checkAsicContractOndemand = async asicID =>{
+    try {
+        return await AsicContract.find({asicID:asicID,asicStatus:false,expired:false})
+    } catch (error) {
+        console.log(error)
+    }
+}

@@ -9,7 +9,7 @@ router.get('/',jtoken.authorize,cAsic.getGetAsics)
 router.get('/admin',jADMINtoken.authorize,cAsic.getGetAsics)
 router.get('/:id',jADMINtoken.authorize,cAsic.getGetAsicByID)//Admin
 router.put('/update/:id',jADMINtoken.authorize,cAsic.putUpdateAsic)//Admin
-router.delete('/delete/:id',jADMINtoken.authorize,cAsic.deleteDeletePlan)//Admin
+router.delete('/delete/:id',jADMINtoken.authorize,cAsic.deleteDeleteAsic)//Admin
 
 router.get('/x/contract',jtoken.authorize,cAsicContract.getGetAsicsContract)
 router.get('/x/contract/payouts/:id',jtoken.authorize,cAsicContract.getAsicContarctPayouts)

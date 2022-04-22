@@ -1,4 +1,5 @@
 const mAsic = require('../models/mAsic')
+const mAsicContarct = require('../models/mAsicContract')
 let coins = ["ETH","BTC","RVN","LTCT"]
 exports.postAddAsic = async (req,res)=>{
     try{
@@ -93,10 +94,12 @@ exports.putUpdateAsic = async (req,res)=>{
     }
 }
 
-exports.deleteDeletePlan = async (req,res)=>{
+exports.deleteDeleteAsic = async (req,res)=>{
     try{
         const id = req.params.id
             if(id){
+                const chck = await mAsicContarct.checkAsicContractOndemand(id)
+                if(chck[0]) res.sendStatus(400)
                 let asic = await mAsic.deleteAsic(id)
                         if(asic){
                             res.sendStatus(200)

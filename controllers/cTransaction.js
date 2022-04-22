@@ -22,7 +22,9 @@ exports.getDepositAddress = async (req,res)=>{
 exports.getDepositAddressForAsicContarct = async (req,res)=>{
     const asicID = req.query.asicID
     if(!asicID) res.sendStatus(400)
-    const currency = (await mAsic.getAsicByID(asicID)).cryptoName
+    const asic = (await mAsic.getAsicByID(asicID))
+    if(!asic)res.sendStatus(400)
+    const currency = asic.cryptoName
     let asicContractAddress = (await COINPAYMENT.getDepositAddressForAsicContract(currency)).address
     res.status(200).json({address:asicContractAddress})
 }
