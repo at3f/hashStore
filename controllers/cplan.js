@@ -1,7 +1,6 @@
 const mPlan = require('../models/mplan')
 const eth = require('./ETH')
-
-let coins = ["ETH","BTC","RVN","LTCT"]
+const validationResult = require('express-validator').validationResult
 
 const getETHPlansHashPower = async (plans,type)=>{
     const PlansHashPower = []
@@ -15,6 +14,7 @@ const getETHPlansHashPower = async (plans,type)=>{
 
 exports.postAddPlan = async (req,res)=>{
     try{
+        if(!validationResult(req).isEmpty()) return res.status(400).json(validationResult(req))
         const {
             planType,
             planName,
@@ -24,12 +24,12 @@ exports.postAddPlan = async (req,res)=>{
             profitability,
             price
         } = req.body
-            if(planType&&planName&&coins.includes(cryptoName)&&algorithm&&planDuration&&profitability&&price){
+            if(planType&&planName&&cryptoName&&algorithm&&planDuration&&profitability&&price){
                     let plan = await mPlan.addPlan({
-                        planType:planType,
+                        planType:planType.toLowerCase(),
                         planName:planName,
-                        cryptoName:cryptoName,
-                        algorithm:algorithm,
+                        cryptoName:cryptoName.toUpperCase(),
+                        algorithm:algorithm.toUpperCase(),
                         planDuration:planDuration,
                         profitability:profitability,
                         price:price,
@@ -63,9 +63,10 @@ exports.getGetPlanByID = async (req,res)=>{
 
 exports.getGetPlans =async (req,res) =>{
     try{
+        if(!validationResult(req).isEmpty()) return res.status(400).json(validationResult(req))
         const {planType,cryptoName} = req.query
-        if(planType&&coins.includes(cryptoName)){
-            const plans = await mPlan.getPlans(planType,cryptoName)
+        if(planType&&cryptoName){
+            const plans = await mPlan.getPlans(planType.toLowerCase(),cryptoName.toUpperCase())
             if(plans[0]){
                var type
                planType==="long"?type=365:type=30
@@ -93,16 +94,17 @@ exports.GetPlans =async (req,res) =>{
 
 exports.putUpdatePlan = async (req,res)=>{
     try{
+        if(!validationResult(req).isEmpty()) return res.status(400).json(validationResult(req))
         const id = req.params.id
         const {planType,planName,cryptoName,
             algorithm,planDuration,profitability,price,availability} = req.body
-            if(id&&planType&&planName&&coins.includes(cryptoName)&&
+            if(id&&planType&&planName&&cryptoName&&
                 algorithm&&planDuration&&profitability&&price){
                     let plan = await mPlan.updatePlan(id,{
-                        planType:planType,
+                        planType:planType.toLowerCase(),
                         planName:planName,
-                        cryptoName:cryptoName,
-                        algorithm:algorithm,
+                        cryptoName:cryptoName.toUpperCase(),
+                        algorithm:algorithm.toUpperCase(),
                         planDuration:planDuration,
                         profitability:profitability,
                         price:price,

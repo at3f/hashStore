@@ -1,8 +1,10 @@
 const mAsic = require('../models/mAsic')
 const mAsicContarct = require('../models/mAsicContract')
-let coins = ["ETH","BTC","RVN","LTCT"]
+const validationResult = require('express-validator').validationResult
+
 exports.postAddAsic = async (req,res)=>{
     try{
+        if(!validationResult(req).isEmpty()) return res.status(400).json(validationResult(req))
         const {
             asicName,
             cryptoName,
@@ -11,11 +13,11 @@ exports.postAddAsic = async (req,res)=>{
             price,
             hostFees,
         } = req.body
-            if(asicName&&coins.includes(cryptoName)&&algorithm&&hashPower&&price&&hostFees){
+            if(asicName&&cryptoName&&algorithm&&hashPower&&price&&hostFees){
                     let asic = await mAsic.addAsic({
                         asicName:asicName,
-                        cryptoName:cryptoName,
-                        algorithm:algorithm,
+                        cryptoName:cryptoName.toUpperCase(),
+                        algorithm:algorithm.toUpperCase(),
                         hashPower:hashPower,
                         price:price,
                         hostFees:hostFees
@@ -61,6 +63,7 @@ exports.getGetAsics =async (req,res) =>{
 
 exports.putUpdateAsic = async (req,res)=>{
     try{
+        if(!validationResult(req).isEmpty()) return res.status(400).json(validationResult(req))
         const id = req.params.id
         const {
             asicName,
@@ -71,11 +74,11 @@ exports.putUpdateAsic = async (req,res)=>{
             hostFees,
             availability,
         } = req.body
-            if(id&&asicName&&coins.includes(cryptoName)&&algorithm&&hashPower&&price&&hostFees){
+            if(id&&asicName&&cryptoName&&algorithm&&hashPower&&price&&hostFees){
                     let asic = await mAsic.updateAsic(id,{
                         asicName:asicName,
-                        cryptoName:cryptoName,
-                        algorithm:algorithm,
+                        cryptoName:cryptoName.toUpperCase(),
+                        algorithm:algorithm.toUpperCase(),
                         hashPower:hashPower,
                         price:price,
                         hostFees:hostFees,
@@ -99,7 +102,7 @@ exports.deleteDeleteAsic = async (req,res)=>{
         const id = req.params.id
             if(id){
                 const chck = await mAsicContarct.checkAsicContractOndemand(id)
-                if(chck[0]) res.sendStatus(400)
+                if(chck[0])return res.sendStatus(400)
                 let asic = await mAsic.deleteAsic(id)
                         if(asic){
                             res.sendStatus(200)

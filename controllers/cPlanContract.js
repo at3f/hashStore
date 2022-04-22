@@ -2,6 +2,7 @@ const mPlanContarct = require('../models/mPlanContract')
 const mPlan = require('../models/mplan')
 const mUser = require('../models/mUser')
 const eth = require('./ETH')
+const validationResult = require('express-validator').validationResult
 
 // const endDemoContarct = (contractID,userID,start,end) =>{
 //     const time = end-start 
@@ -157,6 +158,7 @@ exports.getGetDemoPlansContract = async (req,res)=>{
 
 exports.postAddPlanContract = async (req,res)=>{
     try{
+        if(!validationResult(req).isEmpty()) return res.status(400).json(validationResult(req))
         const {planID,currency} = req.body
         const userID = req.user.id
             if(userID&&planID&&currency){
@@ -227,11 +229,12 @@ exports.postAddPlanContract = async (req,res)=>{
 }
 exports.postAddDemoPlanContract = async (req,res)=>{
     try{
+        if(!validationResult(req).isEmpty()) return res.status(400).json(validationResult(req))
         const {planID,currency} = req.body
         const userID = req.user.id
         if((await mUser.get_N_UserActiveDemoPlans(userID))>0) return res.status(400).json({ message:"U reached the max Number of demo plans"})
                 const plan = await mPlan.getPlanByID(planID)
-                if(!plan) res.sendStatus(400)
+                if(!plan) return res.sendStatus(400)
                 //===========
                 const user = await mUser.getUser(userID)
                 switch (currency) {

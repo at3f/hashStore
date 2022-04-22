@@ -80,6 +80,7 @@ let asicContractSchema = mongoose.Schema({
     startDate:{type:Date}, 
     address:{type:String},
     workerID:{type:String},
+    pool:{type:String},
     userID:{type:String,required:true},
     asicID:{type:String,required:true}
 }, { timestamps: true })

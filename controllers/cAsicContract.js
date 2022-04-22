@@ -3,6 +3,7 @@ const mUser = require('../models/mUser')
 const mAsic = require('../models/mAsic')
 const eth = require('./ETH')
 const mTransaction = require('../models/mTransaction')
+const validationResult = require('express-validator').validationResult
 
 exports.getGetAsicsContract = async (req,res)=>{
     try{
@@ -20,11 +21,12 @@ exports.getGetAsicsContract = async (req,res)=>{
 
 exports.postAddAsicContract = async (req,res)=>{
     try {
+        if(!validationResult(req).isEmpty()) return res.status(400).json(validationResult(req))
         const {asicID,currency} = req.body
         const userID = req.user.id
         if(userID&&asicID&&currency){
             const asic = await mAsic.getAsicByID(asicID)
-            if(!asic) res.sendStatus(400)
+            if(!asic)return res.sendStatus(400)
             //===========
             const user = await mUser.getUser(userID)
             switch (currency) {
@@ -62,13 +64,15 @@ exports.postAddAsicContract = async (req,res)=>{
 
 exports.activateAsicContarct = async (req,res)=>{
     try {
+        if(!validationResult(req).isEmpty()) return res.status(400).json(validationResult(req))
         const contractID = req.params.id
-        const {address,workerID} = req.body
-        if(contractID&&address&&workerID){
+        const {address,workerID,pool} = req.body
+        if(contractID&&address&&workerID&&pool){
             let asicContract = await mAsicContarct.updateAsicContract(contractID,{
                 asicStatus:true,
                 address:address,
-                workerID:workerID
+                workerID:workerID,
+                pool:pool
             })
             if(asicContract){
                 await mUser.UpdateActiveAsics(asicContract.userID,1)

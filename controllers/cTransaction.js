@@ -4,16 +4,16 @@ const mUser = require('../models/mUser')
 const mAsicContarct = require('../models/mAsicContract')
 const mAsic = require('../models/mAsic')
 const { verify } = require('coinpayments-ipn')
-
-let coins = ["ETH","LTCT","BTC","RVN"]
+const validationResult = require('express-validator').validationResult
 
 exports.getDepositAddress = async (req,res)=>{
+    if(!validationResult(req).isEmpty()) return res.status(400).json(validationResult(req))
     const currency = req.query.currency
     const userID = req.user.id
-    if(!coins.includes(currency) || !userID) return res.sendStatus(400)
-    let userAddress = await mUser.getAddress(userID,currency)
+    if(!currency || !userID) return res.sendStatus(400)
+    let userAddress = await mUser.getAddress(userID,currency.toUpperCase())
     if(!userAddress) {
-        userAddress = (await COINPAYMENT.getDepositAddress(currency)).address
+        userAddress = (await COINPAYMENT.getDepositAddress(currency.toUpperCase())).address
         await mUser.setAddress(userID,userAddress,currency)
     }
     res.status(200).json({address:userAddress})
@@ -21,9 +21,9 @@ exports.getDepositAddress = async (req,res)=>{
 
 exports.getDepositAddressForAsicContarct = async (req,res)=>{
     const asicID = req.query.asicID
-    if(!asicID) res.sendStatus(400)
+    if(!asicID)return res.sendStatus(400)
     const asic = (await mAsic.getAsicByID(asicID))
-    if(!asic)res.sendStatus(400)
+    if(!asic) return res.sendStatus(400)
     const currency = asic.cryptoName
     let asicContractAddress = (await COINPAYMENT.getDepositAddressForAsicContract(currency)).address
     res.status(200).json({address:asicContractAddress})
@@ -63,12 +63,12 @@ exports.depositNotification = async (req, res) => {
     let deposit =await mTransaction.getDeposit(deposit_id)
     let userID = await mUser.getUserIDByAddress(currency,address)
     status==="100"?fStatus="SUCCESS":fStatus="PENDING"
-    if(status==="100") await mUser.UpdateBalance(userID,currency,amount)
+    if(status==="100") await mUser.UpdateBalance(userID,currency,amount-amount*0.005)
     if(!deposit){
         if(!userID) return res.end()
         await mTransaction.addDeposit({
             _id:deposit_id,
-            amount:+amount,
+            amount:+amount-amount*0.005,
             currency:currency,
             transactionStatus:fStatus,
             txn_id:txn_id,
@@ -115,8 +115,9 @@ exports.depositNotificationForAsicContract = async (req, res) => {
 }
 
 exports.setWithdrawRequest = async (req,res)=>{
+    if(!validationResult(req).isEmpty()) return res.status(400).json(validationResult(req))
     const {currency,amount,address} = req.body
-    if(amount<=0||!coins.includes(currency)||!amount||!address) return res.status(400).json({ message:'invalid credentials'})
+    if(amount<=0||!currency||!amount||!address) return res.status(400).json({ message:'invalid credentials'})
     const userID = req.user.id
     const user = await mUser.getUser(userID)
     switch (currency) {
@@ -128,6 +129,9 @@ exports.setWithdrawRequest = async (req,res)=>{
             break;
         case 'LTCT':
             if(amount>user.balance.ltct) return res.status(400).json({message:'no sufficient balance'})
+            break;
+        case 'RVN':
+            if(amount>user.balance.rvn) return res.status(400).json({message:'no sufficient balance'})
             break;
         default:
             return res.status(400).json({message:'invalid currency'})
