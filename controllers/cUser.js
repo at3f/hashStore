@@ -20,10 +20,10 @@ const generatePassword = async ()=> {
 }
 
 exports.postRegister = async (req,res)=>{
-    const { userName,email,phone, password } = req.body;
     if(!validationResult(req).isEmpty()) return res.status(400).json(validationResult(req))
+    const { userName,email,phone, password } = req.body;
     if(userName&&email&&password&&phone){
-       let user = await mUser.register(userName,email,phone,password)
+       let user = await mUser.register(userName,email.toLowerCase(),phone,password)
        if(user.email){
            res.status(200).json({})
        }else{
@@ -35,6 +35,7 @@ exports.postRegister = async (req,res)=>{
 }
 
 exports.isUser = async (req,res,next)=>{
+    if(!validationResult(req).isEmpty()) return res.status(400).json(validationResult(req))
     const { userName, password } = req.body;
     if(userName&&password){
         if((await mUser.isUser(userName, password))){
@@ -100,6 +101,7 @@ exports.getNewAccessToken = async (req,res)=>{
 }
 
 exports.UpdatePassword = async(req,res)=>{
+    if(!validationResult(req).isEmpty()) return res.status(400).json(validationResult(req))
     const { password, newPassword } = req.body;
     const id = req.user.id
     if(id&&password&&newPassword){
@@ -137,8 +139,9 @@ exports.getUserDataForAdmin = async (req,res)=>{
 
 //=======================================================================
 exports.sendCode = async (req,res) =>{
+    if(!validationResult(req).isEmpty()) return res.status(400).json(validationResult(req))
     const email = req.body.email
-    const found = await mUser.isMail(email)
+    const found = await mUser.isMail(email.toLowerCase())
     if(found){
         await MAAS.send(email,found)
         res.sendStatus(200)
@@ -148,9 +151,10 @@ exports.sendCode = async (req,res) =>{
 }
 
 exports.verifyCode = async (req,res) =>{
+    if(!validationResult(req).isEmpty()) return res.status(400).json(validationResult(req))
     const {email,code} = req.body
     if(email&&code){
-        let rez = await mUser.compareCode(email,code)
+        let rez = await mUser.compareCode(email.toLowerCase(),code)
         if(rez.email){
             let jwt = await jtoken.getToken(rez._id,code)
             res.status(200).json(jwt)

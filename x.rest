@@ -40,9 +40,9 @@ POST http://127.0.0.1:8888/api/user/register?key=c3fe929c35dd0cbcc8f062bb60e9d2c
 Content-Type: application/json
 
 {
-    "userName":"d83",
-    "email": "te#st@487.38",
-    "phone": "98076e258",
+    "userName":"ahmed",
+    "email": "tERst@test.co",
+    "phone": "98076258",
     "password": "sdsdwewc"
 }
 
@@ -105,21 +105,21 @@ Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzExZjVlOT
 ###==================================PLAN============================================
 POST http://127.0.0.1:8888/api/plan/add?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDlmNzA5NGY4ODVmNDg5YjdhYzhkNiIsImlhdCI6MTY1MDI0MTI3MCwiZXhwIjoxNjUwMzI3NjcwfQ.uYWjMMI5JFXL7vL7BHb9MEExazuWlJ81_0loeyhU9cI
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDlmNzA5NGY4ODVmNDg5YjdhYzhkNiIsImlhdCI6MTY1MDU5MDYyMCwiZXhwIjoxNjUwNjc3MDIwfQ.ih81ssDZ3iDHnyfR6IvDSXN6JZ-hIroiX97j1bfMl9I
 
 {
-    "planType":"long",
+    "planType":"lOnG",
     "planName":"GOLD LiteX",
-    "cryptoName":"LTCT",
+    "cryptoName":"BtC",
     "algorithm":"SHA-256",
     "planDuration":2,
-    "profitability":170,
+    "profitability":200,
     "price":9000
 }
 ###
-GET http://127.0.0.1:8888/api/plan?planType=long&cryptoName=ETH&key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
+GET http://127.0.0.1:8888/api/plan?planType=loNg&cryptoName=BtC&key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNTc3YzAzOTU4NGFhYTkzNTk2MzMzOCIsImlhdCI6MTY1MDI0MzA5MywiZXhwIjoxNjUwMzI5NDkzfQ.efD3gOrlWK9wI3WXyIg9GNV9jDAk_4o5kBXDgnHu_-c
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNTc3YzAzOTU4NGFhYTkzNTk2MzMzOCIsImlhdCI6MTY1MDU5MTgwNCwiZXhwIjoxNjUwNjc4MjA0fQ.g4xeAfIClVIPkuxEuPqPJS4klNg-pK5C5ior0PpE6lU
 
 ###
 GET http://127.0.0.1:8888/api/plan/admin?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
@@ -132,19 +132,19 @@ Content-Type: application/json
 Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoibWVubjk5ODc4NzZhYWRobTlkeHgiLCJpYXQiOjE2NDU4ODQyMzQsImV4cCI6MTY0NTk3MDYzNH0.y0cYbV0oJKQz6wFyO89Bjx7UzuzaM47A8lTOVu4RwiQ
 
 ###
-PUT http://127.0.0.1:8888/api/plan/update/6241fac32e9d176352ea9419?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
+PUT http://127.0.0.1:8888/api/plan/update/62622322fabaa330a520d66e?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDlmNzA5NGY4ODVmNDg5YjdhYzhkNiIsImlhdCI6MTY0OTgxMjk4MCwiZXhwIjoxNjQ5ODk5MzgwfQ.L4aEWo-zqvKDr1flfg0x_Tr4kXuqweeaa43oLTwtmws
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDlmNzA5NGY4ODVmNDg5YjdhYzhkNiIsImlhdCI6MTY1MDU5MDYyMCwiZXhwIjoxNjUwNjc3MDIwfQ.ih81ssDZ3iDHnyfR6IvDSXN6JZ-hIroiX97j1bfMl9I
 
 {
     "planType":"long",
     "planName":"regular",
-    "cryptoName":"ETH",
-    "algorithm":"SHA-256",
+    "cryptoName":"btc",
+    "algorithm":"ethash",
     "planDuration":1,
     "profitability":150,
     "price":1000,
-    "availability":"false"
+    "availability":"true"
 }
 
 ###
@@ -187,14 +187,14 @@ Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDlmNzA5NG
 ###==================================ASIC============================================
 POST http://127.0.0.1:8888/api/asic/add?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDlmNzA5NGY4ODVmNDg5YjdhYzhkNiIsImlhdCI6MTY1MDI0MTI3MCwiZXhwIjoxNjUwMzI3NjcwfQ.uYWjMMI5JFXL7vL7BHb9MEExazuWlJ81_0loeyhU9cI
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDlmNzA5NGY4ODVmNDg5YjdhYzhkNiIsImlhdCI6MTY1MDQ5MDQ5MSwiZXhwIjoxNjUwNTc2ODkxfQ.gDnCiU9d3V9UVmuj3SMhOqfMcOglG4n0VlaueBUZW24
 
 {
-    "asicName":"AntMiner X89",
+    "asicName":"AntMiner SX) 14T/s",
     "cryptoName":"BTC",
     "algorithm":"SHA-256",
     "hashPower":14000,
-    "price":6900,
+    "price":900,
     "hostFees":28
 }
 ###
