@@ -7,5 +7,5 @@ router.post('/FFAuth',cADMIN.isAdminPassword,cADMIN.sendOTP)
 router.post('/2FAuth',cADMIN.ADMINlogin)
 router.post('/getNewAccessToken',cADMIN.getNewAccessToken)
 router.post('/logout',cADMIN.ADMINLogout)
-router.get('/OVERVIEW',cADMIN.getOverViewData)
+router.get('/OVERVIEW',jADMINtoken.authorize,cADMIN.getOverViewData)
 module.exports = router
