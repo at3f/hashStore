@@ -35,7 +35,7 @@ exports.expirationON = async id=>{
 
 exports.getAsicsContract_needActivation = async ()=>{
     try {
-        return await AsicContract.find({asicStatus:false})
+        return await AsicContract.find({asicStatus:false,expired:false})
     } catch (error) {
         console.log(error)
     }

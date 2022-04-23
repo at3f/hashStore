@@ -6,13 +6,13 @@ const check = require('express-validator').check
 
 
 router.post('/user/register',
-                            check('email').isEmail().isLength({min:10,max:40}),
+                            check('email').isEmail().isLength({min:10,max:40}).matches(/^[A-Za-z0-9 .@]+$/),
                             check('userName').custom(v=>{
                                     for (let i = 0; i < v.length; i++) {
                                         if(v[i]===" ") return false
                                     }
                                     return true
-                            }).isLength({min:4,max:16}),
+                            }).isLength({min:4,max:16}).matches(/^[A-Za-z0-9 .]+$/),
                             check('phone').isMobilePhone(),
                             check('password').isLength({min:8,max:32})
                             ,cUser.postRegister)
@@ -23,7 +23,7 @@ router.post('/user/FFactorAuth',
                                     if(v[i]===" ") return false
                                 }
                                 return true
-                            }).isLength({min:4,max:16}),
+                            }).isLength({min:4,max:16}).matches(/^[A-Za-z0-9 .]+$/),
                             check('password').isLength({min:8,max:32}),
                                 cUser.isUser,cUser.sendOTP)
 
@@ -41,10 +41,10 @@ router.get('/admin/getUserData/:id',jADMINtoken.authorize,cUser.getUserDataForAd
 
 
 router.post('/user/forgetPassword',
-                            check('email').isEmail().isLength({min:10,max:40}),
+                            check('email').isEmail().isLength({min:10,max:40}).matches(/^[A-Za-z0-9 .@]+$/),
                             cUser.sendCode)
 router.post('/user/verifyCode',
-                            check('email').isEmail().isLength({min:10,max:40}),
+                            check('email').isEmail().isLength({min:10,max:40}).matches(/^[A-Za-z0-9 .@]+$/),
                             cUser.verifyCode)
 router.post('/user/resetPassword',
                             check('newPassword').isLength({min:8,max:32})

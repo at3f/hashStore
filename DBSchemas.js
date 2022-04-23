@@ -106,6 +106,15 @@ let withdrawSchema = mongoose.Schema({
     userID:{type:String,required:true}
 }, { timestamps: true })
 
+let workerSchema = mongoose.Schema({
+    workerName:{type:String,required:true},
+    workerStatus:{type:Boolean,default:true},
+    address:{type:String,required:true},
+    workerID:{type:String,required:true},
+    pool:{type:String,required:true},
+    owner:{type:String,default:"COMPANY"},
+}, { timestamps: true })
+
 exports._User = mongoose.model('user',userSchema)
 exports._Plan = mongoose.model('plan',planSchema)
 exports._PlanContract = mongoose.model('planContract',planContractSchema)
@@ -114,3 +123,4 @@ exports._AsicContract = mongoose.model('asicContract',asicContractSchema)
 exports._Deposit = mongoose.model('deposit',depositSchema)
 exports._Withdraw = mongoose.model('withdrawal',withdrawSchema)
 exports._ADMIN = mongoose.model('admin',adminSchema)
+exports._Farm = mongoose.model('worker',workerSchema)

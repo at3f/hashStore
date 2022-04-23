@@ -3,6 +3,7 @@ const mUser = require('../models/mUser')
 const mAsic = require('../models/mAsic')
 const eth = require('./ETH')
 const mTransaction = require('../models/mTransaction')
+const mFarm = require('../models/mFarm')
 const validationResult = require('express-validator').validationResult
 
 exports.getGetAsicsContract = async (req,res)=>{
@@ -76,6 +77,14 @@ exports.activateAsicContarct = async (req,res)=>{
             })
             if(asicContract){
                 await mUser.UpdateActiveAsics(asicContract.userID,1)
+                const user = await mUser.getUser(asicContract.userID)
+                await mFarm.add({
+                    workerName:asicContract.asicName,
+                    address:address,
+                    workerID:workerID,
+                    pool:pool,
+                    owner:user.userName
+                })
                 res.sendStatus(200)
             }
             else res.sendStatus(400)

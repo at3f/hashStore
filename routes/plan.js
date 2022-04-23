@@ -11,7 +11,7 @@ router.post('/add',jADMINtoken.authorize,
                                             if(['long','short'].includes(v.toLowerCase())) return true
                                             return false
                                         }),
-                                        check('planName').isLength({min:6,max:16}),
+                                        check('planName').isLength({min:6,max:16}).matches(/^[A-Za-z0-9 .@]+$/),
                                         check('cryptoName').custom(v=>{
                                             if(['ETH','RVN','LTCT','BTC'].includes(v.toUpperCase())) return true
                                             return false
@@ -41,7 +41,7 @@ router.put('/update/:id',jADMINtoken.authorize,
                                             if(['long','short'].includes(v.toLowerCase())) return true
                                             return false
                                         }),
-                                        check('planName').isLength({min:6,max:16}),
+                                        check('planName').isLength({min:6,max:16}).matches(/^[A-Za-z0-9 .@]+$/),
                                         check('cryptoName').custom(v=>{
                                             if(['ETH','RVN','LTCT','BTC'].includes(v.toUpperCase())) return true
                                             return false
@@ -53,10 +53,7 @@ router.put('/update/:id',jADMINtoken.authorize,
                                         check('planDuration').isInt({min:1,max:6}),
                                         check('profitability').isInt({min:100,max:200}),
                                         check('price').isInt({min:1,max:30000}),
-                                        check('availability').custom(v=>{
-                                            if(["true","false"].includes(v)) return true
-                                            return false
-                                        })
+                                        check('availability').isBoolean()
                                         ,cPlan.putUpdatePlan)//Admin
 router.delete('/delete/:id',jADMINtoken.authorize,cPlan.deleteDeletePlan)//Admin
 
