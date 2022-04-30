@@ -16,12 +16,32 @@
 #===============================================================
 #===============================================================
 
-#send mail to SUPER ADMIN at deposits & withdrawals
+#MARCHANT  !!!!!!!!!!!!!!
 
 #btc calculator
 #real contract manager
 
-#The farm of workers for Company (AsicContract)
-
-
 #===============================================================
+
+
+#----------->seller
+# user need to be seller
+# get sellerworkers by sellerID
+# get seller plans by seller worker id
+# get plan contracts by seller worker id
+# C,U,D plans by insure that plan(sellerWorkerID)--> sellerID===userID for U,D
+
+#----------->user
+# get sellers
+# get seller plans by seller worker id
+# subscribe in sellerPlan
+
+#----------->admin
+# get sellers
+# get sellerworkers by sellerID
+# get seller plans by seller worker id
+# get plan contracts by seller worker id
+#=========================================
+# ==> deposit for asic contract & planContracts with that asic contract
+# ==> when user buy asic contarct if(seller) add asic contarct as a seller worker
+# ==> unavailable plan asic contract 
