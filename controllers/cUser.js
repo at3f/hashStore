@@ -144,7 +144,7 @@ exports.sendCode = async (req,res) =>{
     const found = await mUser.isMail(email.toLowerCase())
     if(found){
         await MAAS.send(email,found)
-        res.sendStatus(200)
+        res.status(200).send({})
     }else{
         res.status(401).send({message:'Email Not Found!'})
     }
@@ -170,7 +170,7 @@ exports.resetPassword = async (req,res)=>{
     const id = req.user.id
     if(newPassword&&id){
         let newUser = await mUser.updateNewPassword(id,newPassword)
-        if(newUser) res.sendStatus(200)
+        if(newUser) res.status(200).send({})
     }else{
         res.sendStatus(400)
     }

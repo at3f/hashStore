@@ -1,5 +1,74 @@
 const PlanContract = require('../DBSchemas')._PlanContract
 
+exports.getSellerWorkerPlanContracts = async (sellerWorkerID)=>{
+    try {
+        return await PlanContract.aggregate([
+            { 
+                "$match": {
+                  "sellerWorkerID": sellerWorkerID
+                }
+            },
+            { "$lookup": {
+                "let": { "planObjId": { "$toObjectId": "$planID" } },
+                "from": "sellerplans",
+                "pipeline": [
+                  { "$match": 
+                        { 
+                            "$expr": { 
+                                "$eq": [ 
+                                    "$_id", "$$planObjId"
+                                 ]
+                             }
+                         }
+                  },
+                  { "$project": { 
+                    "_id":0,
+                    "planName": 1,
+                    }
+                  }
+                ],
+                "as": "planDetails"
+              }
+            },
+            { "$lookup": {
+                "let": { "userObjId": { "$toObjectId": "$userID" } },
+                "from": "users",
+                "pipeline": [
+                  { "$match": 
+                        { 
+                            "$expr": { 
+                                "$eq": [ 
+                                    "$_id", "$$userObjId"
+                                 ]
+                             }
+                         }
+                  },
+                  { "$project": { 
+                    "_id":0,
+                    "userName": 1,
+                    "email":1,
+                    "phone":1
+                    }
+                  }
+                ],
+                "as": "userDetails"
+              }
+            },
+            { "$project": { 
+                "_id":0,
+                "startDate":1,
+                "endDate":1,
+                "totalMined":1,
+                "planDetails":1,
+                "userDetails":1,
+                }
+             },
+        ])
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 exports.demoContractSTATUSoff = async id =>{
     try {
         await PlanContract.findByIdAndUpdate(id,{planStatus:false})
@@ -84,7 +153,7 @@ exports.addNewProfit_Contract = async (id,profit)=>{
 
 exports.getActiveContracts = async()=>{
     try{
-        return await PlanContract.find({planStatus:true})
+        return await PlanContract.find({planStatus:true,seller:false})
     }catch(error){
         console.log(error)
     }

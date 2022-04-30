@@ -1,8 +1,22 @@
 const AsicContract = require('../DBSchemas')._AsicContract
 
+exports.getAsicContarctByID = async id=>{
+    try{
+        return await AsicContract.findById(id)
+    }catch(error){
+        console.log(error)
+    }
+}
 exports.getAsicsContract = async id =>{
     try{
         return await AsicContract.find({userID:id})
+    }catch(error){
+        console.log(error)
+    }
+}
+exports.getActiveAsicContracts = async id =>{
+    try{
+        return await AsicContract.find({userID:id,asicStatus:true})
     }catch(error){
         console.log(error)
     }
@@ -84,9 +98,9 @@ exports.totalAsicContarctsOnDemand = async () =>{
     }
 }
 
-exports.checkAsicContractOndemand = async asicID =>{
+exports.checkAsicContract = async asicID =>{
     try {
-        return await AsicContract.find({asicID:asicID,asicStatus:false,expired:false})
+        return await AsicContract.find({asicID:asicID})
     } catch (error) {
         console.log(error)
     }

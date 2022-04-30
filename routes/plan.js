@@ -30,7 +30,7 @@ router.get('/',jtoken.authorize,
                                             return false
                                         }),
                                         query('cryptoName').custom(v=>{
-                                            if(['ETH','RVN','LTCT','BTC'].includes(v.toUpperCase())) return true
+                                            if(['ETH','RVN','BTC'].includes(v.toUpperCase())) return true
                                             return false
                                         })
                                         ,cPlan.getGetPlans)
@@ -60,7 +60,7 @@ router.delete('/delete/:id',jADMINtoken.authorize,cPlan.deleteDeletePlan)//Admin
 router.post('/x/democontract/add',jtoken.authorize,
                                         check('planID').exists(),
                                         check('currency').custom(v=>{
-                                            if(['ETH','RVN','LTCT','BTC'].includes(v)) return true
+                                            if(['LTCT'].includes(v)) return true
                                             return false
                                         })
                                         ,cPlanContract.postAddDemoPlanContract)

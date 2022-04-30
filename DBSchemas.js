@@ -13,13 +13,7 @@ let userSchema = mongoose.Schema({
     password:{type:String,required:true},
     balance:{
         rvn:{type:Number,default:0},
-        ltct:{type:Number,default:0},
-        eth:{type:Number,default:0},
-        btc:{type:Number,default:0}
-    },
-    demoBalance:{
-        rvn:{type:Number,default:0},
-        ltct:{type:Number,default:0},
+        ltct:{type:Number,default:400},
         eth:{type:Number,default:0},
         btc:{type:Number,default:0}
     },
@@ -60,7 +54,9 @@ let planContractSchema = mongoose.Schema({
         profit:{type:Number,default:0}
     }],
     userID:{type:String,required:true},
-    planID:{type:String,required:true}
+    planID:{type:String,required:true},
+    seller:{type:Boolean,default:false},
+    sellerWorkerID:{type:String}
 })
 let asicSchema = mongoose.Schema({
     asicName:{type:String,required:true},
@@ -76,6 +72,7 @@ let asicContractSchema = mongoose.Schema({
     asicName:{type:String,required:true},
     asicStatus:{type:Boolean,default:false},  //status:false = On-demand but not working
     expired:{type:Boolean,default:false},
+    hashPower:{type:Number,required:true},
     totalMined:{type:Number,default:0},
     startDate:{type:Date}, 
     address:{type:String},
@@ -114,7 +111,29 @@ let workerSchema = mongoose.Schema({
     pool:{type:String,required:true},
     owner:{type:String,default:"COMPANY"},
 }, { timestamps: true })
+//=========
+let sellerSchema = mongoose.Schema({
+    _id:{type:String,required:true},
+    subscribers:{type:Number,default:0}
+}, { timestamps: true })
 
+let sellerWorkersSchema = mongoose.Schema({
+    _id:{type:String,required:true},//asic contract id
+    availableHashrate:{type:Number,required:true},
+    totalConnectedUsers:{type:Number,default:0},
+    sellerID:{type:String,required:true}
+})
+
+let sellerPlansSchema = mongoose.Schema({
+    planName:{type:String,required:true},
+    cryptoName:{type:String,required:true},
+    algorithm:{type:String,required:true},
+    price:{type:Number,required:true},
+    hashPower:{type:Number,required:true},
+    sellerWorkerID:{type:String,required:true},
+    sellerID:{type:String,required:true},//more secure
+})
+//===========
 exports._User = mongoose.model('user',userSchema)
 exports._Plan = mongoose.model('plan',planSchema)
 exports._PlanContract = mongoose.model('planContract',planContractSchema)
@@ -124,3 +143,6 @@ exports._Deposit = mongoose.model('deposit',depositSchema)
 exports._Withdraw = mongoose.model('withdrawal',withdrawSchema)
 exports._ADMIN = mongoose.model('admin',adminSchema)
 exports._Farm = mongoose.model('worker',workerSchema)
+exports._Seller = mongoose.model('seller',sellerSchema)
+exports._SellerWorkers = mongoose.model('sellerWorker',sellerWorkersSchema)
+exports._SellerPlans = mongoose.model('sellerPlan',sellerPlansSchema)

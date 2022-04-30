@@ -101,7 +101,7 @@ exports.deleteDeleteAsic = async (req,res)=>{
     try{
         const id = req.params.id
             if(id){
-                const chck = await mAsicContarct.checkAsicContractOndemand(id)
+                const chck = await mAsicContarct.checkAsicContract(id)
                 if(chck[0])return res.sendStatus(400)
                 let asic = await mAsic.deleteAsic(id)
                         if(asic){
