@@ -19,31 +19,31 @@ Content-Type: application/json
 }
 
 ###
-POST http://127.0.0.1:8888/api/user/sendCode?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
+POST http://127.0.0.1:8888/api/user/verifyCode?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
 Content-Type: application/json
 
 {
     "email":"ahmed0103060120@gmail.com",
-    "code":"6684219"
+    "code":"9650425"
 }
 ###
 POST http://127.0.0.1:8888/api/user/resetPassword?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNGEwYjg0YThmM2M5NDU1ODU4YTFhNyIsImlhdCI6MTY0OTEwOTQwMSwiZXhwIjoxNjQ5MTA5NDYxfQ.Fq5HoOwFFG2Idyb1dSDX86ABTqL8XjUWd3BskxfH7LU
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNTc3YzAzOTU4NGFhYTkzNTk2MzMzOCIsImlhdCI6MTY1MDYxOTE1MCwiZXhwIjoxNjUwNjE5MjEwfQ.X2EvLkY9SPqJE6Sj42qjrThrTHo8twS4vjkPyyRziPU
 
 {
-    "newPassword":"x",
-    "code":"6684219"
+    "newPassword":"xxxxxxxx",
+    "code":"9650425"
 }
 ###
 POST http://127.0.0.1:8888/api/user/register?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
 Content-Type: application/json
 
 {
-    "userName":"ahmed",
+    "userName":"vtrc&hyt",
     "email": "tERst@test.co",
     "phone": "98076258",
-    "password": "sdsdwewc"
+    "password": "sw@#$%^&*(ewc"
 }
 
 ###
@@ -51,16 +51,16 @@ POST http://127.0.0.1:8888/api/user/FFactorAuth?key=c3fe929c35dd0cbcc8f062bb60e9
 Content-Type: application/json
 
 {
-    "userName": "at33f",
-    "password": "x"
+    "userName": "ayman",
+    "password": "A@a123456"
 }
 ###
 POST http://127.0.0.1:8888/api/user/TwoFactorAuth?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
 Content-Type: application/json
 
 {
-    "userName": "at33f",
-    "otp": "OpO2MzjhtuPoxNV0"
+    "userName": "ayman",
+    "otp": "cMq1KBSWVabD71FG"
 }
 ###
 POST http://127.0.0.1:8888/api/user/logout?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
@@ -105,7 +105,7 @@ Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzExZjVlOT
 ###==================================PLAN============================================
 POST http://127.0.0.1:8888/api/plan/add?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDlmNzA5NGY4ODVmNDg5YjdhYzhkNiIsImlhdCI6MTY1MDU5MDYyMCwiZXhwIjoxNjUwNjc3MDIwfQ.ih81ssDZ3iDHnyfR6IvDSXN6JZ-hIroiX97j1bfMl9I
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDlmNzA5NGY4ODVmNDg5YjdhYzhkNiIsImlhdCI6MTY1MDcwMTc3MiwiZXhwIjoxNjUwNzg4MTcyfQ.Cs64z98Cuu9ap3FmU2w4_Se8J_uqmGxYK91GbbcAe_A
 
 {
     "planType":"lOnG",
@@ -113,7 +113,7 @@ Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDlmNzA5NG
     "cryptoName":"BtC",
     "algorithm":"SHA-256",
     "planDuration":2,
-    "profitability":200,
+    "profitability":160,
     "price":9000
 }
 ###
@@ -134,7 +134,7 @@ Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoibWVubjk5ODc4Nz
 ###
 PUT http://127.0.0.1:8888/api/plan/update/62622322fabaa330a520d66e?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDlmNzA5NGY4ODVmNDg5YjdhYzhkNiIsImlhdCI6MTY1MDU5MDYyMCwiZXhwIjoxNjUwNjc3MDIwfQ.ih81ssDZ3iDHnyfR6IvDSXN6JZ-hIroiX97j1bfMl9I
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDlmNzA5NGY4ODVmNDg5YjdhYzhkNiIsImlhdCI6MTY1MDY2NzY3NywiZXhwIjoxNjUwNzU0MDc3fQ.6LqQupj6lUosVq5qCSpM8M8IkUxtLjDPsKrdkmpTkmE
 
 {
     "planType":"long",
@@ -150,7 +150,8 @@ Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDlmNzA5NG
 ###
 DELETE  http://127.0.0.1:8888/api/plan/delete/62151626448be90dcf016713?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoibWVubjk5YWFkaG05ZHh4IiwiaWF0IjoxNjQ1NTQ5MDc2LCJleHAiOjE2NDU2MzU0NzZ9.oD4kyDCoyINYJnYpU1vXytB43h_Eo_3qxlwC62cpYaE
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDlmNzA5NGY4ODVmNDg5YjdhYzhkNiIsImlhdCI6MTY1MDY2NzY3NywiZXhwIjoxNjUwNzU0MDc3fQ.6LqQupj6lUosVq5qCSpM8M8IkUxtLjDPsKrdkmpTkmE
+
 ###==================================PLAN-CONTRACT============================================
 POST https://cominer.herokuapp.com/api/plan/x/democontract/add?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
 Content-Type: application/json
@@ -187,7 +188,7 @@ Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDlmNzA5NG
 ###==================================ASIC============================================
 POST http://127.0.0.1:8888/api/asic/add?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDlmNzA5NGY4ODVmNDg5YjdhYzhkNiIsImlhdCI6MTY1MDQ5MDQ5MSwiZXhwIjoxNjUwNTc2ODkxfQ.gDnCiU9d3V9UVmuj3SMhOqfMcOglG4n0VlaueBUZW24
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDlmNzA5NGY4ODVmNDg5YjdhYzhkNiIsImlhdCI6MTY1MDY2NzY3NywiZXhwIjoxNjUwNzU0MDc3fQ.6LqQupj6lUosVq5qCSpM8M8IkUxtLjDPsKrdkmpTkmE
 
 {
     "asicName":"AntMiner SX) 14T/s",
@@ -210,35 +211,35 @@ Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDlmNzA5NG
 ###
 GET http://127.0.0.1:8888/api/asic/621a62e000e949327e0dc11b?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNTFlY2FlMDAwZWM0NmJhNWYwOGQzNCIsImlhdCI6MTY0OTgxODY5MiwiZXhwIjoxNjQ5OTA1MDkyfQ.9p3tFS-vGlWYIMXdr7M-fgPIrh6FN-Dh7KNASGnpSUU
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDlmNzA5NGY4ODVmNDg5YjdhYzhkNiIsImlhdCI6MTY1MDY2NzY3NywiZXhwIjoxNjUwNzU0MDc3fQ.6LqQupj6lUosVq5qCSpM8M8IkUxtLjDPsKrdkmpTkmE
 
 ###
 PUT http://127.0.0.1:8888/api/asic/update/621a3e91b017345a26497416?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoibWVubjk5ODc4NzZhYWRobTlkeHgiLCJpYXQiOjE2NDU4ODQyMzQsImV4cCI6MTY0NTk3MDYzNH0.y0cYbV0oJKQz6wFyO89Bjx7UzuzaM47A8lTOVu4RwiQ
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDlmNzA5NGY4ODVmNDg5YjdhYzhkNiIsImlhdCI6MTY1MDY2NzY3NywiZXhwIjoxNjUwNzU0MDc3fQ.6LqQupj6lUosVq5qCSpM8M8IkUxtLjDPsKrdkmpTkmE
 
 {
     "asicName":"AntMiner E9",
-    "cryptoName":"BTCx",
-    "algorithm":"HASH-256",
+    "cryptoName":"BTC",
+    "algorithm":"sha-256",
     "hashPower":120000,
     "price":13000,
-    "hostFees":200,
+    "hostFees":20,
     "availability":true
 }
 
 ###
 DELETE  http://127.0.0.1:8888/api/asic/delete/621a3e91b017345a26497416?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoibWVubjk5ODc4NzZhYWRobTlkeHgiLCJpYXQiOjE2NDU4ODQyMzQsImV4cCI6MTY0NTk3MDYzNH0.y0cYbV0oJKQz6wFyO89Bjx7UzuzaM47A8lTOVu4RwiQ
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDlmNzA5NGY4ODVmNDg5YjdhYzhkNiIsImlhdCI6MTY1MDY2NzY3NywiZXhwIjoxNjUwNzU0MDc3fQ.6LqQupj6lUosVq5qCSpM8M8IkUxtLjDPsKrdkmpTkmE
 
 ###==================================ASIC-CONTRACT============================================
 POST http://127.0.0.1:8888/api/asic/x/contract/add?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNTc3YzAzOTU4NGFhYTkzNTk2MzMzOCIsImlhdCI6MTY1MDI1NTY3MiwiZXhwIjoxNjUwMzQyMDcyfQ.MV70RAdN-07BQ8qt65DBdDP-pdJ1xgpFxEHW5XqO-Go
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNTc3YzAzOTU4NGFhYTkzNTk2MzMzOCIsImlhdCI6MTY1MTAwODk3NywiZXhwIjoxNjUxMDk1Mzc3fQ.hRDs5aWTC2Ctujz-dg3roy6NL7C67DG69n4Oq9IvJIk
 
 {
-    "asicID":"625cb040c1afd54a944d54da",
+    "asicID":"626254580f9c6fc2989a36e1",
     "currency":"ETH"
 }
 ###
@@ -249,26 +250,27 @@ Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNTc3YzAzOT
 ###
 GET http://127.0.0.1:8888/api/asic/x/contract/ondemand?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDlmNzA5NGY4ODVmNDg5YjdhYzhkNiIsImlhdCI6MTY0OTgxMjk4MCwiZXhwIjoxNjQ5ODk5MzgwfQ.L4aEWo-zqvKDr1flfg0x_Tr4kXuqweeaa43oLTwtmws
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDlmNzA5NGY4ODVmNDg5YjdhYzhkNiIsImlhdCI6MTY1MDU5MDYyMCwiZXhwIjoxNjUwNjc3MDIwfQ.ih81ssDZ3iDHnyfR6IvDSXN6JZ-hIroiX97j1bfMl9I
 
 ###
-PUT http://127.0.0.1:8888/api/asic/x/contract/activate/625ccd6b3f76858d5c96b4fa?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
+PUT http://127.0.0.1:8888/api/asic/x/contract/activate/626279fe9f0dfdffc879c339?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDlmNzA5NGY4ODVmNDg5YjdhYzhkNiIsImlhdCI6MTY1MDI0MTI3MCwiZXhwIjoxNjUwMzI3NjcwfQ.uYWjMMI5JFXL7vL7BHb9MEExazuWlJ81_0loeyhU9cI
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDlmNzA5NGY4ODVmNDg5YjdhYzhkNiIsImlhdCI6MTY1MDY2NzY3NywiZXhwIjoxNjUwNzU0MDc3fQ.6LqQupj6lUosVq5qCSpM8M8IkUxtLjDPsKrdkmpTkmE
 
 {
     "address":"mhbCuX9DngAvJynPJrJqAcz7jUz3vhnQPv",
-    "workerID":"Rig_7862348"
+    "workerID":"Rig_7862348",
+    "pool":"test"
 }
 ###
 PUT http://127.0.0.1:8888/api/asic/x/contract/expire/621aaa71edce9d7ecc1d4bca?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNTFlY2FlMDAwZWM0NmJhNWYwOGQzNCIsImlhdCI6MTY0OTgxODY5MiwiZXhwIjoxNjQ5OTA1MDkyfQ.9p3tFS-vGlWYIMXdr7M-fgPIrh6FN-Dh7KNASGnpSUU
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDlmNzA5NGY4ODVmNDg5YjdhYzhkNiIsImlhdCI6MTY1MDY2NzY3NywiZXhwIjoxNjUwNzU0MDc3fQ.6LqQupj6lUosVq5qCSpM8M8IkUxtLjDPsKrdkmpTkmE
 
 ###
-GET http://127.0.0.1:8888/api/asic/admin/getUserContracts/6251ecae000ec46ba5f08d34?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
+GET http://127.0.0.1:8888/api/asic/admin/getUserContracts/6251ecae0jhh00ec46ba5f08d34?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDlmNzA5NGY4ODVmNDg5YjdhYzhkNiIsImlhdCI6MTY0OTgxMjk4MCwiZXhwIjoxNjQ5ODk5MzgwfQ.L4aEWo-zqvKDr1flfg0x_Tr4kXuqweeaa43oLTwtmws
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDlmNzA5NGY4ODVmNDg5YjdhYzhkNiIsImlhdCI6MTY1MDY2NzY3NywiZXhwIjoxNjUwNzU0MDc3fQ.6LqQupj6lUosVq5qCSpM8M8IkUxtLjDPsKrdkmpTkmE
 
 ###============================================ADMIN============================================
 # POST http://127.0.0.1:8888/admin?key=XGYwZGFlXX0CI$6MTY76dhQXh@xNjQ4ODkzfQ2IDjGR0I6tps7zbinX
@@ -310,7 +312,7 @@ Content-Type: application/json
 ###
 GET http://127.0.0.1:8888/api/admin/getUsers?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDlmNzA5NGY4ODVmNDg5YjdhYzhkNiIsImlhdCI6MTY0OTgxMjk4MCwiZXhwIjoxNjQ5ODk5MzgwfQ.L4aEWo-zqvKDr1flfg0x_Tr4kXuqweeaa43oLTwtmws
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDlmNzA5NGY4ODVmNDg5YjdhYzhkNiIsImlhdCI6MTY1MDU5MDYyMCwiZXhwIjoxNjUwNjc3MDIwfQ.ih81ssDZ3iDHnyfR6IvDSXN6JZ-hIroiX97j1bfMl9I
 
 ###
 GET http://127.0.0.1:8888/admin/OVERVIEW?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
@@ -356,3 +358,120 @@ Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDlmNzA5NG
 GET http://127.0.0.1:8888/api/transaction/admin/getdepositaddressForAsicContarct?asicID=625ce35ab963f068f8bf6b08
 Content-Type: application/json
 Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDlmNzA5NGY4ODVmNDg5YjdhYzhkNiIsImlhdCI6MTY1MDI0MTI3MCwiZXhwIjoxNjUwMzI3NjcwfQ.uYWjMMI5JFXL7vL7BHb9MEExazuWlJ81_0loeyhU9cI
+
+###============================================FARM============================================
+
+POST http://127.0.0.1:8888/api/farm/addworker?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
+Content-Type: application/json
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDlmNzA5NGY4ODVmNDg5YjdhYzhkNiIsImlhdCI6MTY1MDY2NzY3NywiZXhwIjoxNjUwNzU0MDc3fQ.6LqQupj6lUosVq5qCSpM8M8IkUxtLjDPsKrdkmpTkmE
+
+{
+    "workerName":"AntMiners9",
+    "address":"waeudytwvqut&mhbCuX9DngAvJynPJrJqAcz7jUz3vhnQPv",
+    "workerID":"test",
+    "pool":"test"
+}
+###
+delete http://127.0.0.1:8888/api/farm/deleteworker/6263563899c501b26e2539a5?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
+Content-Type: application/json
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDlmNzA5NGY4ODVmNDg5YjdhYzhkNiIsImlhdCI6MTY1MDY2NzY3NywiZXhwIjoxNjUwNzU0MDc3fQ.6LqQupj6lUosVq5qCSpM8M8IkUxtLjDPsKrdkmpTkmE
+
+###
+PUT http://127.0.0.1:8888/api/farm/endworker/62635a2e372f281e6e35f8d0?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
+Content-Type: application/json
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDlmNzA5NGY4ODVmNDg5YjdhYzhkNiIsImlhdCI6MTY1MDY2NzY3NywiZXhwIjoxNjUwNzU0MDc3fQ.6LqQupj6lUosVq5qCSpM8M8IkUxtLjDPsKrdkmpTkmE
+
+###
+GET http://127.0.0.1:8888/api/farm/getactiveworkers?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
+Content-Type: application/json
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDlmNzA5NGY4ODVmNDg5YjdhYzhkNiIsImlhdCI6MTY1MDY2NzY3NywiZXhwIjoxNjUwNzU0MDc3fQ.6LqQupj6lUosVq5qCSpM8M8IkUxtLjDPsKrdkmpTkmE
+
+###
+GET http://127.0.0.1:8888/api/farm/getnotactiveworkers?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
+Content-Type: application/json
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDlmNzA5NGY4ODVmNDg5YjdhYzhkNiIsImlhdCI6MTY1MDY2NzY3NywiZXhwIjoxNjUwNzU0MDc3fQ.6LqQupj6lUosVq5qCSpM8M8IkUxtLjDPsKrdkmpTkmE
+
+###============================================SELLER============================================
+POST http://127.0.0.1:8888/api/seller/createsellerstore?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
+Content-Type: application/json
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNTc3YzAzOTU4NGFhYTkzNTk2MzMzOCIsImlhdCI6MTY1MTA5NTYwMCwiZXhwIjoxNjUxMTgyMDAwfQ.tw0jovaBNL1K-yXcAF52t5oFfDTz7qnTJQepE33laJs
+
+###
+GET http://127.0.0.1:8888/api/seller/getworkers?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
+Content-Type: application/json
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNTc3YzAzOTU4NGFhYTkzNTk2MzMzOCIsImlhdCI6MTY1MTIzNzUyNCwiZXhwIjoxNjUxMzIzOTI0fQ.6bb-zU2Fc563rtf19LcFlRLc5QphV8PcVDtW2ZkawCg
+
+###
+POST http://127.0.0.1:8888/api/seller/addworkerplan/6268e57a4ae12d67bb9bd019?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
+Content-Type: application/json
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNTc3YzAzOTU4NGFhYTkzNTk2MzMzOCIsImlhdCI6MTY1MTA5NTYwMCwiZXhwIjoxNjUxMTgyMDAwfQ.tw0jovaBNL1K-yXcAF52t5oFfDTz7qnTJQepE33laJs
+
+{
+    "planName":"testPlan2",
+    "price":400,
+    "hashPower":12000
+}
+###
+PUT http://127.0.0.1:8888/api/seller/updateworkerplan/6268e57a4ae12d67bb9bd019/626a0442f6d89862062afce8?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
+Content-Type: application/json
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNTc3YzAzOTU4NGFhYTkzNTk2MzMzOCIsImlhdCI6MTY1MTA5NTYwMCwiZXhwIjoxNjUxMTgyMDAwfQ.tw0jovaBNL1K-yXcAF52t5oFfDTz7qnTJQepE33laJs
+
+{
+    "planName":"testPlan 45",
+    "price":90,
+    "hashPower":300
+}
+###
+DELETE http://127.0.0.1:8888/api/seller/deleteworkerplan/6268e57a4ae12d67bb9bd019/626a0176f25f3600fab9b5f6?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
+Content-Type: application/json
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNTc3YzAzOTU4NGFhYTkzNTk2MzMzOCIsImlhdCI6MTY1MTA5NTYwMCwiZXhwIjoxNjUxMTgyMDAwfQ.tw0jovaBNL1K-yXcAF52t5oFfDTz7qnTJQepE33laJs
+
+###
+GET http://127.0.0.1:8888/api/seller/getworkerplans/6268e57a4ae12d67bb9bd019?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
+Content-Type: application/json
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNjk0YzFjNjUxMjI5ODkwNGQ3MjZlNSIsImlhdCI6MTY1MTIzMzg2OSwiZXhwIjoxNjUxMzIwMjY5fQ.2Hkw09CLklcp-BZk9uAmO4pqtsycspQwXF9B6WCXUwQ
+
+###
+GET http://127.0.0.1:8888/api/seller/getsellers?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
+Content-Type: application/json
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNjk0YzFjNjUxMjI5ODkwNGQ3MjZlNSIsImlhdCI6MTY1MTIzMzg2OSwiZXhwIjoxNjUxMzIwMjY5fQ.2Hkw09CLklcp-BZk9uAmO4pqtsycspQwXF9B6WCXUwQ
+
+###
+GET http://127.0.0.1:8888/api/seller/getsellerplans/62577c039584aaa935963338?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
+Content-Type: application/json
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNjk0YzFjNjUxMjI5ODkwNGQ3MjZlNSIsImlhdCI6MTY1MTIzMzg2OSwiZXhwIjoxNjUxMzIwMjY5fQ.2Hkw09CLklcp-BZk9uAmO4pqtsycspQwXF9B6WCXUwQ
+
+###
+POST http://127.0.0.1:8888/api/seller/addplancontarct?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
+Content-Type: application/json
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNjk0YzFjNjUxMjI5ODkwNGQ3MjZlNSIsImlhdCI6MTY1MTIzMzg2OSwiZXhwIjoxNjUxMzIwMjY5fQ.2Hkw09CLklcp-BZk9uAmO4pqtsycspQwXF9B6WCXUwQ
+
+{
+    "planID":"626a218a28ea42451385cdb3",
+    "currency":"eth"
+}
+
+###
+GET http://127.0.0.1:8888/api/seller/getplancontracts/6268e57a4ae12d67bb9bd019?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
+Content-Type: application/json
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNjk0YzFjNjUxMjI5ODkwNGQ3MjZlNSIsImlhdCI6MTY1MTIzMzg2OSwiZXhwIjoxNjUxMzIwMjY5fQ.2Hkw09CLklcp-BZk9uAmO4pqtsycspQwXF9B6WCXUwQ
+
+###======================================ADMIN=================
+GET http://127.0.0.1:8888/api/seller/admin/getsellers?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
+Content-Type: application/json
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDlmNzA5NGY4ODVmNDg5YjdhYzhkNiIsImlhdCI6MTY1MTIyNTU4MywiZXhwIjoxNjUxMzExOTgzfQ.ks7d_QOqhxLYmOQXo1KXr3lBcrH96QDln5Oe-gjErWA
+
+###
+GET http://127.0.0.1:8888/api/seller/admin/getworkers/62577c039584aaa935963338?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
+Content-Type: application/json
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDlmNzA5NGY4ODVmNDg5YjdhYzhkNiIsImlhdCI6MTY1MTIyNTU4MywiZXhwIjoxNjUxMzExOTgzfQ.ks7d_QOqhxLYmOQXo1KXr3lBcrH96QDln5Oe-gjErWA
+
+###
+GET http://127.0.0.1:8888/api/seller/admin/getworkerplans/6268e57a4ae12d67bb9bd019?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
+Content-Type: application/json
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDlmNzA5NGY4ODVmNDg5YjdhYzhkNiIsImlhdCI6MTY1MTIyNTU4MywiZXhwIjoxNjUxMzExOTgzfQ.ks7d_QOqhxLYmOQXo1KXr3lBcrH96QDln5Oe-gjErWA
+
+###
+GET http://127.0.0.1:8888/api/seller/admin/getplancontracts/6268e57a4ae12d67bb9bd019?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
+Content-Type: application/json
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDlmNzA5NGY4ODVmNDg5YjdhYzhkNiIsImlhdCI6MTY1MTIyNTU4MywiZXhwIjoxNjUxMzExOTgzfQ.ks7d_QOqhxLYmOQXo1KXr3lBcrH96QDln5Oe-gjErWA
