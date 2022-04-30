@@ -121,10 +121,6 @@ exports.UpdateActiveDemoPlans = async (id,op) =>{
 }
 
 
-exports.get_N_UserActiveDemoPlans = async id =>{
-    return (await User.findById(id)).activeDemoPlans
-}
-
 exports.UpdateBalance = async (id,currency,profit)=>{
     switch (currency) {
         case 'RVN':
@@ -152,24 +148,6 @@ exports.UpdateBalance = async (id,currency,profit)=>{
             await User.findByIdAndUpdate(id,{
                 $inc : {
                     'balance.btc':profit
-                }
-            })
-            break
-    }
-}
-exports.UpdateDemoBalance = async (id,currency,profit)=>{
-    switch (currency) {
-        case 'ETH':
-            await User.findByIdAndUpdate(id,{
-                $inc : {
-                    'demoBalance.eth':profit
-                }
-            })
-            break
-        case 'BTC':
-            await User.findByIdAndUpdate(id,{
-                $inc : {
-                    'demoBalance.btc':profit
                 }
             })
             break
@@ -293,6 +271,9 @@ exports.setAddress = async (userID,address,currency)=>{
             case 'LTCT':
                 await User.findByIdAndUpdate(userID,{'depositAddress.ltct':address})
                 break;
+            case 'RVN':
+                await User.findByIdAndUpdate(userID,{'depositAddress.rvn':address})
+                break;
         }
     } catch (error) {
         console.log(error)
@@ -310,6 +291,9 @@ exports.getAddress = async (userID,currency)=>{
                 break;
             case 'LTCT':
                 userAddress = (await User.findById(userID)).depositAddress.ltct
+                break;
+            case 'RVN':
+                userAddress = (await User.findById(userID)).depositAddress.rvn
                 break;
         }
         return userAddress
@@ -329,6 +313,9 @@ exports.getUserIDByAddress = async (currency,address) =>{
                 break;
             case 'LTCT':
                 return (await User.findOne({'depositAddress.ltct':address}))._id
+                break;
+            case 'RVN':
+                return (await User.findOne({'depositAddress.rvn':address}))._id
                 break;
         }
     } catch (error) {

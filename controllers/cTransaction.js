@@ -120,7 +120,8 @@ exports.setWithdrawRequest = async (req,res)=>{
     if(amount<=0||!currency||!amount||!address) return res.status(400).json({ message:'invalid credentials'})
     const userID = req.user.id
     const user = await mUser.getUser(userID)
-    switch (currency) {
+    let coin = currency.toUpperCase()
+    switch (coin) {
         case 'ETH':
             if(amount>user.balance.eth) return res.status(400).json({message:'no sufficient balance'})
             break;
@@ -137,8 +138,8 @@ exports.setWithdrawRequest = async (req,res)=>{
             return res.status(400).json({message:'invalid currency'})
             break
     }
-    await mUser.UpdateBalance(userID,currency,-amount)
-    const withdraw = await COINPAYMENT.withdraw(amount,currency,address)
+    await mUser.UpdateBalance(userID,coin,-amount)
+    const withdraw = await COINPAYMENT.withdraw(amount,coin,address)
     if(!withdraw) return res.status(400)
     await mTransaction.addWithdraw({
         _id:withdraw.id,

@@ -30,20 +30,18 @@ exports.postAddAsicContract = async (req,res)=>{
             if(!asic)return res.sendStatus(400)
             //===========
             const user = await mUser.getUser(userID)
-            switch (currency) {
+            let coin = currency.toUpperCase()
+            switch (coin) {
                 case 'ETH':
                     const priceInETH = await eth.USDtoETH(asic.price)
                     if(priceInETH>user.balance.eth) return res.status(400).json({ message:'no sufficient balance'})
-                    await mUser.UpdateBalance(userID,currency,-priceInETH)
+                    await mUser.UpdateBalance(userID,coin,-priceInETH)
                     break;
                 case 'BTC':
-                    const priceInBTC = await eth.USDtoBTC(plan.price)
+                    const priceInBTC = await eth.USDtoBTC(asic.price)
                     if(priceInBTC>user.balance.btc) return res.status(400).json({ message:'no sufficient balance'})
-                    await mUser.UpdateBalance(userID,currency,-priceInBTC)
+                    await mUser.UpdateBalance(userID,coin,-priceInBTC)
                     break;
-                default:
-                    return res.sendStatus(400)
-                    break
             }
             //===========
             let asicContract = await mAsicContarct.addAsicContract({
@@ -51,7 +49,8 @@ exports.postAddAsicContract = async (req,res)=>{
                 asicName:asic.asicName,
                 userID:userID,
                 asicID:asicID,
-                hostFees:asic.hostFees
+                hostFees:asic.hostFees,
+                hashPower:asic.hashPower
             })
             if(asicContract)res.status(200).json({})
             else res.sendStatus(400)

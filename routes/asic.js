@@ -44,7 +44,7 @@ router.get('/x/contract/payouts/:id',jtoken.authorize,cAsicContract.getAsicConta
 router.post('/x/contract/add',jtoken.authorize,
                                         check('asicID').exists(),
                                         check('currency').custom(v=>{
-                                            if(['ETH','RVN','BTC'].includes(v)) return true
+                                            if(['ETH','RVN','BTC'].includes(v.toUpperCase())) return true
                                             return false
                                         })
                                         ,cAsicContract.postAddAsicContract)

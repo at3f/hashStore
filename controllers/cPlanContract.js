@@ -99,18 +99,9 @@ const contractManager = async ()=>{
                     Contracts = Contracts.filter(t => t !== c)
                     return
                 }
-                switch (c.cryptoName) {
-                    case 'ETH':
-                        ethProfit=c.hashPower*TestEthProfit/100
-                        await mPlanContarct.addNewProfit_demoContract(c._id,ethProfit)
-                        await mUser.UpdateDemoBalance(c.userID,c.cryptoName,ethProfit)
-                        break
-                    case 'BTC':
-                        //btcProfit=c.hashPower*TestBtcProfit/100
-                        //await mPlanContarct.addNewProfit_demoContract(c._id,btcProfit)
-                        //await mUser.UpdateDemoBalance(c.userID,c.cryptoName,btcProfit)
-                        break
-                }
+                ethProfit=c.hashPower*TestEthProfit/100
+                await mPlanContarct.addNewProfit_demoContract(c._id,ethProfit)
+                await mUser.UpdateBalance(c.userID,"LTCT",ethProfit)
             }
             
         })
@@ -166,16 +157,17 @@ exports.postAddPlanContract = async (req,res)=>{
                 if(!plan) return res.sendStatus(400)
                 //===========
                 const user = await mUser.getUser(userID)
-                switch (currency) {
+                let coin = currency.toUpperCase()
+                switch (coin) {
                     case 'ETH':
                         const priceInETH = await eth.USDtoETH(plan.price)
                         if(priceInETH>user.balance.eth) return res.status(400).json({ message:'no sufficient balance'})
-                        await mUser.UpdateBalance(userID,currency,-priceInETH)
+                        await mUser.UpdateBalance(userID,coin,-priceInETH)
                         break;
                     case 'BTC':
                         const priceInBTC = await eth.USDtoBTC(plan.price)
                         if(priceInBTC>user.balance.btc) return res.status(400).json({ message:'no sufficient balance'})
-                        await mUser.UpdateBalance(userID,currency,-priceInBTC)
+                        await mUser.UpdateBalance(userID,coin,-priceInBTC)
                         break;
                     default:
                         return res.sendStatus(400)
@@ -232,23 +224,13 @@ exports.postAddDemoPlanContract = async (req,res)=>{
         if(!validationResult(req).isEmpty()) return res.status(400).json(validationResult(req))
         const {planID,currency} = req.body
         const userID = req.user.id
-        if((await mUser.get_N_UserActiveDemoPlans(userID))>0) return res.status(400).json({ message:"U reached the max Number of demo plans"})
-                const plan = await mPlan.getPlanByID(planID)
-                if(!plan) return res.sendStatus(400)
-                //===========
-                const user = await mUser.getUser(userID)
-                switch (currency) {
-                    case 'ETH':
-                        const priceInETH = await eth.USDtoETH(plan.price)
-                        if(priceInETH>user.demoBalance.eth) return res.status(400).json({ message:'no sufficient balance'})
-                        await mUser.UpdateDemoBalance(userID,currency,-priceInETH)
-                        break;
-                    case 'BTC':
-                        const priceInBTC = await eth.USDtoBTC(plan.price)
-                        if(priceInBTC>user.demoBalance.btc) return res.status(400).json({ message:'no sufficient balance'})
-                        await mUser.UpdateDemoBalance(userID,currency,-priceInBTC)
-                        break;
-                }
+        const plan = await mPlan.getPlanByID(planID)
+        if(!plan) return res.sendStatus(400)
+        //===========
+        const user = await mUser.getUser(userID)
+        const priceInLTCT = plan.price
+        if(priceInLTCT>user.balance.ltct) return res.status(400).json({ message:'no sufficient LTCT balance'})
+        await mUser.UpdateBalance(userID,currency.toUpperCase(),-priceInLTCT)                    
                 //===========
             if(userID&&planID&&currency){
                 const sec = 1000,
@@ -281,19 +263,16 @@ exports.postAddDemoPlanContract = async (req,res)=>{
                         await mUser.UpdateActiveDemoPlans(demoPlanContract.userID,1)
                         Contracts.push(demoPlanContract)
                         if(Contracts.length===1)contractManager()
-                        // run userProfitCalculator
-                        //await Add_ETH_demoProfit(demoPlanContract)
-
-                        //=====
                         res.status(200).json({})
                     }else{
-                        res.status(400).send("U reached the max Number of demo plans")
+                        res.sendStatus(400)
                     }
                }
                 }else{
                     res.sendStatus(500)
                 }
     }catch(error){
+        console.log(error)
         res.sendStatus(500)
     }
 }
