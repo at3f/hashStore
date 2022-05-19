@@ -4,6 +4,7 @@ const mAsic = require('../models/mAsic')
 const eth = require('./ETH')
 const mTransaction = require('../models/mTransaction')
 const mFarm = require('../models/mFarm')
+const mSeller = require('../models/mSeller')
 const validationResult = require('express-validator').validationResult
 
 exports.getGetAsicsContract = async (req,res)=>{
@@ -27,7 +28,7 @@ exports.postAddAsicContract = async (req,res)=>{
         const userID = req.user.id
         if(userID&&asicID&&currency){
             const asic = await mAsic.getAsicByID(asicID)
-            if(!asic)return res.sendStatus(400)
+            if(!asic||!asic.availability)return res.sendStatus(400)
             //===========
             const user = await mUser.getUser(userID)
             let coin = currency.toUpperCase()
@@ -52,6 +53,15 @@ exports.postAddAsicContract = async (req,res)=>{
                 hostFees:asic.hostFees,
                 hashPower:asic.hashPower
             })
+            //=================add worker if(seller)==============
+            if((await mSeller.getSellerAcc(userID))){
+                await mSeller.addworker({
+                    _id:asicContract._id,
+                    availableHashrate:asicContract.hashPower,
+                    sellerID:userID
+                })
+            }
+            //====================================================
             if(asicContract)res.status(200).json({})
             else res.sendStatus(400)
         }else{

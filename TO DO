@@ -17,9 +17,19 @@
 #===============================================================
 
 #MARCHANT  !!!!!!!!!!!!!!
+# ==> deposit for asic contract & planContracts with that asic contract
+# ==> when user buy asic contarct if(seller) add asic contarct as a seller worker
+# ==> unavailable plan asic contract 
+
 
 #btc calculator
-#real contract manager
+
+=#real contract manager
+=#if plan or asic is not available not complete contract
+#delete problem asic or plan
+=#seller validators
+=#add asic contract --> add worker if seller
+#sellers' users profits
 
 #===============================================================
 
@@ -42,6 +52,3 @@
 # get seller plans by seller worker id
 # get plan contracts by seller worker id
 #=========================================
-# ==> deposit for asic contract & planContracts with that asic contract
-# ==> when user buy asic contarct if(seller) add asic contarct as a seller worker
-# ==> unavailable plan asic contract 

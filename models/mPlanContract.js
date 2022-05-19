@@ -166,3 +166,11 @@ exports.totalPlanContarcts = async ()=>{
         console.log(error)
     }
 }
+
+exports.getWorkerPlanContracts = async id=>{
+    try {
+        return await PlanContract.find({sellerWorkerID:id,planStatus:true})
+    } catch (error) {
+        console.log(error)
+    }
+}

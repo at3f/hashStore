@@ -61,7 +61,7 @@ let contractManagerStatus=false
 const contractManager = async ()=>{
     contractManagerStatus=true
     var ethProfit,TestEthProfit
-    const period = 5000//1000*60*60
+    const period = 1000*60*60
 
     const m = await setInterval(async () => {
         if(Contracts.length===0){
@@ -74,7 +74,7 @@ const contractManager = async ()=>{
         Contracts.forEach(async c => {
             //c.startDate+100000 INSTEAD of c.endDate
             if(!c.demo){
-                if(+c.startDate+100000<Date.now()){
+                if(+c.endDate<Date.now()){
                     await mPlanContarct.ContractSTATUSoff(c._id)
                     await mUser.UpdateActivePlans(c.userID,-1)
                     Contracts = Contracts.filter(t => t !== c)
@@ -93,7 +93,7 @@ const contractManager = async ()=>{
                         break
                 }
             }else{
-                if(+c.startDate+100000<Date.now()){
+                if(+c.endDate<Date.now()){
                     await mPlanContarct.demoContractSTATUSoff(c._id)
                     await mUser.UpdateActiveDemoPlans(c.userID,-1)
                     Contracts = Contracts.filter(t => t !== c)
@@ -154,7 +154,7 @@ exports.postAddPlanContract = async (req,res)=>{
         const userID = req.user.id
             if(userID&&planID&&currency){
                 const plan = await mPlan.getPlanByID(planID)
-                if(!plan) return res.sendStatus(400)
+                if(!plan||!plan.availability) return res.sendStatus(400)
                 //===========
                 const user = await mUser.getUser(userID)
                 let coin = currency.toUpperCase()
@@ -225,7 +225,7 @@ exports.postAddDemoPlanContract = async (req,res)=>{
         const {planID,currency} = req.body
         const userID = req.user.id
         const plan = await mPlan.getPlanByID(planID)
-        if(!plan) return res.sendStatus(400)
+        if(!plan||!plan.availability) return res.sendStatus(400)
         //===========
         const user = await mUser.getUser(userID)
         const priceInLTCT = plan.price

@@ -236,11 +236,11 @@ Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDlmNzA5NG
 ###==================================ASIC-CONTRACT============================================
 POST http://127.0.0.1:8888/api/asic/x/contract/add?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNTc3YzAzOTU4NGFhYTkzNTk2MzMzOCIsImlhdCI6MTY1MTAwODk3NywiZXhwIjoxNjUxMDk1Mzc3fQ.hRDs5aWTC2Ctujz-dg3roy6NL7C67DG69n4Oq9IvJIk
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNTc3YzAzOTU4NGFhYTkzNTk2MzMzOCIsImlhdCI6MTY1MjkyNTAxNSwiZXhwIjoxNjUzMDExNDE1fQ.fL-7M_Q_ojHC8om-43Kaw2V8JQu5JBj6H0E4l3nUpYI
 
 {
-    "asicID":"626254580f9c6fc2989a36e1",
-    "currency":"ETH"
+    "asicID":"6263b65d780e74664cd5f26e",
+    "currency":"eth"
 }
 ###
 GET http://127.0.0.1:8888/api/asic/x/contract?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
@@ -317,7 +317,7 @@ Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDlmNzA5NG
 ###
 GET http://127.0.0.1:8888/admin/OVERVIEW?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
 Content-Type: application/json
-
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDlmNzA5NGY4ODVmNDg5YjdhYzhkNiIsImlhdCI6MTY1MjA5MTUzMCwiZXhwIjoxNjUyMTc3OTMwfQ.VAaVsaSR1qdi7t0XdsLDk_hY_HHWtzsk8MlvYycSBCE
 
 ###============================================TRANSACTIONS============================================
 GET http://127.0.0.1:8888/api/transaction/getdepositaddress?currency=LTCT
@@ -464,7 +464,7 @@ Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDlmNzA5NG
 ###
 GET http://127.0.0.1:8888/api/seller/admin/getworkers/62577c039584aaa935963338?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDlmNzA5NGY4ODVmNDg5YjdhYzhkNiIsImlhdCI6MTY1MTIyNTU4MywiZXhwIjoxNjUxMzExOTgzfQ.ks7d_QOqhxLYmOQXo1KXr3lBcrH96QDln5Oe-gjErWA
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDlmNzA5NGY4ODVmNDg5YjdhYzhkNiIsImlhdCI6MTY1MjkyNDI5OCwiZXhwIjoxNjUzMDEwNjk4fQ.KFgILFYgg3Haeyi05l6RZ7Rq3a5W-SwMfMHGWh1V_7o
 
 ###
 GET http://127.0.0.1:8888/api/seller/admin/getworkerplans/6268e57a4ae12d67bb9bd019?key=c3fe929c35dd0cbcc8f062bb60e9d2ce7d14be21513d07c53e370d81ba9de4a4
