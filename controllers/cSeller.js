@@ -4,9 +4,11 @@ const mAsic = require('../models/mAsic')
 const mUser = require('../models/mUser')
 const mPlanContarct = require('../models/mPlanContract')
 const eth = require('./ETH')
+const validationResult = require('express-validator').validationResult
 
 exports.beASeller = async (req,res)=>{
     const userID = req.user.id
+    if(!userID) return res.sendStatus(400)
     const workers = await mAsicContract.getActiveAsicContracts(userID)
     if(!workers[0]) return res.sendStatus(400)
     if((await mSeller.getSellerAcc(userID)))return res.sendStatus(400)
@@ -38,6 +40,12 @@ exports.getworkers = async (req,res)=>{
     let workers = await mSeller.getworkers(userID)
     res.status(200).json(workers)
 }
+exports.getworkerByID = async (req,res)=>{
+    const workerID = req.params.id
+    if(!workerID)return res.sendStatus(400)
+    let worker = await mSeller.getworkerByID(workerID)
+    res.status(200).json(worker)
+}
 exports.ADMINgetworkers = async (req,res)=>{
     const userID = req.params.id
     if(!userID)return res.sendStatus(400)
@@ -46,9 +54,11 @@ exports.ADMINgetworkers = async (req,res)=>{
 }
 
 exports.addPlan = async (req,res)=>{
+    if(!validationResult(req).isEmpty()) return res.status(400).json(validationResult(req))
     const sellerWorkerID = req.params.id
     const {planName,price,hashPower} = req.body
     const userID = req.user.id
+    if(!userID||!sellerWorkerID) return res.sendStatus(400)
     const sellerWorker = await mSeller.getSellerWorkerByID(sellerWorkerID)
     if(!sellerWorker||!(userID===sellerWorker.sellerID)||!(sellerWorker.availableHashrate>=hashPower))return res.sendStatus(400)
     const asicContract = await mAsicContract.getAsicContarctByID(sellerWorkerID)
@@ -69,9 +79,11 @@ exports.addPlan = async (req,res)=>{
 }
 
 exports.updatePlan = async (req,res)=>{
+    if(!validationResult(req).isEmpty()) return res.status(400).json(validationResult(req))
     const userID = req.user.id
     const sellerWorkerID = req.params.id
     const planID = req.params.planID
+    if(!userID||!sellerWorkerID||!planID) return res.sendStatus(400)
     const {planName,price,hashPower} = req.body
     const sellerWorker = await mSeller.getSellerWorkerByID(sellerWorkerID)
     if(!sellerWorker||!(userID===sellerWorker.sellerID)||!(sellerWorker.availableHashrate>=hashPower))return res.sendStatus(400)
@@ -87,6 +99,7 @@ exports.deletePlan = async (req,res)=>{
     const userID = req.user.id
     const sellerWorkerID = req.params.id
     const planID = req.params.planID
+    if(!userID||!sellerWorkerID||!planID) return res.sendStatus(400)
     const sellerWorker = await mSeller.getSellerWorkerByID(sellerWorkerID)
     if(!sellerWorker||!(userID===sellerWorker.sellerID))return res.sendStatus(400)
     const plan = await mSeller.deleteWorkerPlan(planID)
@@ -95,6 +108,7 @@ exports.deletePlan = async (req,res)=>{
 }
 exports.getWorkerPlans = async (req,res)=>{
     const sellerWorkerID = req.params.id
+    if(!sellerWorkerID) return res.sendStatus(400)
     const workerPlans = await mSeller.getWorkerPlans(sellerWorkerID)
     if(!workerPlans) return res.sendStatus(400)
     res.status(200).json({workerPlans})
@@ -115,9 +129,10 @@ exports.getSellerPlans = async (req,res)=>{
 }
 
 exports.addPlanContract = async (req,res)=>{
+    if(!validationResult(req).isEmpty()) return res.status(400).json(validationResult(req))
     const userID = req.user.id
     const {planID,currency} = req.body
-    if(!userID||!planID||!currency)return res.sendStatus(400)
+    if(!userID)return res.sendStatus(400)
     const plan = await mSeller.getWorkerPlanByID(planID)
     if(!plan||userID===plan.sellerID) return res.sendStatus(400)
     const sellerWorker = await mSeller.getSellerWorkerByID(plan.sellerWorkerID)

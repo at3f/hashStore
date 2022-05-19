@@ -1,6 +1,7 @@
 const mUser = require('../models/mUser')
 const jtoken = require('./JWT')
 const MAAS = require('./MAAS')
+const mSeller = require('../models/mSeller')
 const validationResult = require('express-validator').validationResult
 
 let refreshTokens = []
@@ -134,7 +135,11 @@ exports.getUserData = async (req,res)=>{
 
 exports.getUserDataForAdmin = async (req,res)=>{
     let user =await mUser.getUser(req.params.id)
-    if(user)res.status(200).json(user)
+    let userSeller = await mSeller.getSellerAcc(req.params.id)
+    let seller = false
+    if(!user)return res.sendStatus(400)
+    if(userSeller) seller=true
+    if(user)res.status(200).json({user:user,userSeller:seller})
 }
 
 //=======================================================================

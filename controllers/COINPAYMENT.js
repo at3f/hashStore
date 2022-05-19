@@ -6,12 +6,16 @@ const client = new Coinpayments({
 });
 
 exports.withdraw = async (amount,currency,address)=>{
-    return await client.createWithdrawal({
-        amount:amount,
-        currency: currency,
-        address:address,
-        ipn_url:'https://cominer.herokuapp.com/api/transaction/withdraw'
-    })
+    try {
+        return await client.createWithdrawal({
+            amount:amount,
+            currency: currency,
+            address:address,
+            ipn_url:'https://cominer.herokuapp.com/api/transaction/withdraw'
+        })
+    } catch (error) {
+        return null
+    }
 }
 exports.getDepositAddress = async currency=>{
     return await client.getCallbackAddress({

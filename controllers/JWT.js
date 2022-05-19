@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken')
 exports.getToken = async (id,code)=>{
     const Token = await jwt.sign({id},
         code,
-        {expiresIn:'60s'})
+        {expiresIn:'120s'})
         return Token
 }
 exports.verifyToken = async (req, res, next) => {

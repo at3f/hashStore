@@ -104,6 +104,33 @@ exports.getworkers = async id =>{
         console.log(error)
     }
 }
+exports.getworkerByID = async id =>{
+    try {
+        return await SellerWorkers.aggregate([
+            { 
+                "$match": {
+                  "_id": id
+                }
+            },
+            { "$project": { 
+                "workerObjId": { "$toObjectId": "$_id" },
+                "availableHashrate":1,
+                "totalConnectedUsers":1,
+                "sellerID":1
+                }
+             },
+            { "$lookup": {
+                "from": "asiccontracts",
+                "localField": "workerObjId",
+                "foreignField": "_id",
+                "as": "workerData"
+            }},
+            
+        ])
+    } catch (error) {
+        console.log(error)
+    }
+}
 exports.getSellerWorkerByID = async id=>{
     try {
         return await SellerWorkers.findById(id)

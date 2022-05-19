@@ -2,7 +2,9 @@ const COINPAYMENT = require('./COINPAYMENT')
 const mTransaction = require('../models/mTransaction')
 const mUser = require('../models/mUser')
 const mAsicContarct = require('../models/mAsicContract')
+const mPlanContarct = require('../models/mPlanContract')
 const mAsic = require('../models/mAsic')
+const mSeller = require('../models/mSeller')
 const { verify } = require('coinpayments-ipn')
 const validationResult = require('express-validator').validationResult
 
@@ -92,8 +94,26 @@ exports.depositNotificationForAsicContract = async (req, res) => {
      let profit = (+amount-(asicContract.hostFees/100)*(+amount))
      status==="100"?fStatus="SUCCESS":fStatus="PENDING"
      if(status==="100") {
-         await mAsicContarct.addNewProfit_Contract(asicContract._id,profit)
-         await mUser.UpdateBalance(asicContract.userID,currency,profit)
+         const fullProfit = profit
+         await mAsicContarct.addNewProfit_Contract(asicContract._id,fullProfit)
+         //===================
+         const planContracts = await mPlanContarct.getWorkerPlanContracts(asicContract._id)
+         if(planContracts[0]){
+             planContracts.forEach(async c => {
+                if(+c.endDate<Date.now()){
+                    await mPlanContarct.ContractSTATUSoff(c._id)
+                    await mUser.UpdateActivePlans(c.userID,-1)
+                    await mSeller.updateSellerWorkerHashRate(c.sellerWorkerID,c.hashPower)
+                    return
+                }
+                partialProfit = (c.hashPower/asicContract.hashPower)*profit
+                await mPlanContarct.addNewProfit_Contract(c._id,partialProfit)
+                await mUser.UpdateBalance(c.userID,c.cryptoName,partialProfit)
+                fullProfit-=partialProfit
+             });
+         }
+         //===================
+         await mUser.UpdateBalance(asicContract.userID,currency,fullProfit)
     }
     if(!deposit){
         await mTransaction.addDeposit({
@@ -138,9 +158,9 @@ exports.setWithdrawRequest = async (req,res)=>{
             return res.status(400).json({message:'invalid currency'})
             break
     }
-    await mUser.UpdateBalance(userID,coin,-amount)
     const withdraw = await COINPAYMENT.withdraw(amount,coin,address)
     if(!withdraw) return res.status(400)
+    await mUser.UpdateBalance(userID,coin,-amount)
     await mTransaction.addWithdraw({
         _id:withdraw.id,
         address:address,
