@@ -53,15 +53,6 @@ exports.postAddAsicContract = async (req,res)=>{
                 hostFees:asic.hostFees,
                 hashPower:asic.hashPower
             })
-            //=================add worker if(seller)==============
-            if((await mSeller.getSellerAcc(userID))){
-                await mSeller.addworker({
-                    _id:asicContract._id,
-                    availableHashrate:asicContract.hashPower,
-                    sellerID:userID
-                })
-            }
-            //====================================================
             if(asicContract)res.status(200).json({})
             else res.sendStatus(400)
         }else{
@@ -94,6 +85,15 @@ exports.activateAsicContarct = async (req,res)=>{
                     pool:pool,
                     owner:user.userName
                 })
+                //=================add worker if(seller)==============
+                if((await mSeller.getSellerAcc(asicContract.userID))){
+                    await mSeller.addworker({
+                        _id:asicContract._id,
+                        availableHashrate:asicContract.hashPower,
+                        sellerID:userID
+                    })
+                }
+                //====================================================
                 res.sendStatus(200)
             }
             else res.sendStatus(400)

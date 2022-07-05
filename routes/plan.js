@@ -68,7 +68,7 @@ router.get('/x/democontract',jtoken.authorize,cPlanContract.getGetDemoPlansContr
 router.post('/x/contract/add',jtoken.authorize,
                                         check('planID').exists(),
                                         check('currency').custom(v=>{
-                                            if(['ETH','RVN','BTC'].includes(v)) return true
+                                            if(['ETH','RVN','BTC'].includes(v.toUpperCase())) return true
                                             return false
                                         })
                                         ,cPlanContract.postAddPlanContract)
