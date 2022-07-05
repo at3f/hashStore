@@ -204,7 +204,7 @@ exports.send = (email,otp,id='') =>{
         service: 'gmail',
         auth: {
             user: 'binance0103060120@gmail.com',
-            pass: '0103060120'
+            pass: 'snizhqockozfmknc'
         }
         });
 

@@ -47,7 +47,7 @@ router.get('/getsellerplans/:id',jToken.authorize,cSeller.getSellerPlans)
 router.post('/addplancontarct',jToken.authorize,
                                         check('planID').exists(),
                                         check('currency').custom(v=>{
-                                            if(['ETH','RVN','BTC'].includes(v)) return true
+                                            if(['ETH','RVN','BTC'].includes(v.toUpperCase())) return true
                                             return false
                                         }),
                                         cSeller.addPlanContract)

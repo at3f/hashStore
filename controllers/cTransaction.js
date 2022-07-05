@@ -99,7 +99,7 @@ exports.depositNotificationForAsicContract = async (req, res) => {
          //===================
          const planContracts = await mPlanContarct.getWorkerPlanContracts(asicContract._id)
          if(planContracts[0]){
-             planContracts.forEach(async c => {
+             await planContracts.forEach(async c => {
                 if(+c.endDate<Date.now()){
                     await mPlanContarct.ContractSTATUSoff(c._id)
                     await mUser.UpdateActivePlans(c.userID,-1)
